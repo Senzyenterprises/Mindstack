@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindStack - Create Your Account</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo/mindstack_logo__1_-removebg-preview.png" type="image/png">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="assets/css/signup.css">
+    
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Remix Icons (for optional icons) -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="auth-page" style="background-image: url(assets/images/background-image.jpg);" >
+    <div class="auth-container">
+        <!-- 1. Top Header Area -->
+        <div class="auth-header">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo/mindstack_logo__1_-removebg-preview.png" alt="MindStack Logo">
+                </a>
+            </div>
+            <hr class="auth-divider">
+        </div>
+
+        <!-- 2. Form Heading Area -->
+        <div class="auth-heading">
+            <h2>Create your account</h2>
+            <p>Join over 100,000 learners mastering skills on MindStack.</p>
+        </div>
+
+        <!-- 3. Signup Form Fields -->
+        <form id="signupForm" class="auth-form">
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" placeholder="e.g. John Doe">
+                <span class="error-message" id="fullNameError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="e.g. you@example.com">
+                <span class="error-message" id="emailError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="At least 6 characters">
+                <span class="error-message" id="passwordError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Must match password">
+                <span class="error-message" id="confirmPasswordError"></span>
+            </div>
+
+            <!-- 4. Terms Agreement -->
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="terms" name="terms">
+                <label for="terms">I agree to the <a href="#" class="text-link">Terms of Use</a> and <a href="#" class="text-link">Privacy Policy</a></label>
+                <span class="error-message" id="termsError"></span>
+            </div>
+
+            <!-- 5. Account Button -->
+            <button type="submit" class="btn btn-primary full-width-btn" id="createAccountBtn">Create Account</button>
+        </form>
+
+        <!-- 6. CAPTCHA Section (Security Step) - Initially Hidden -->
+        <div class="recaptcha-section hidden" id="recaptchaSection">
+            <p class="recaptcha-text">Verify you are human by completing the action below.</p>
+            <p class="recaptcha-subtext">MindStack needs to review the security of your connection before proceeding...</p>
+            <div class="recaptcha-placeholder" id="recaptchaPlaceholder">
+                <div class="spinner"></div> <!-- Simple loading spinner -->
+                <i class="ri-check-line recaptcha-success-icon hidden"></i> <!-- Success icon -->
+            </div>
+            <p class="recaptcha-status" id="recaptchaStatus">Verifying...</p>
+        </div>
+
+        <!-- 7. Link to Login Page -->
+        <div class="auth-footer-link">
+            <p>Already have an account? <a href="login.html" class="text-link">Log in</a></p>
+        </div>
+    </div>
+
+    <!-- Auth-specific JavaScript File -->
+    <script type="module" src="assets/js/signup.js"></script> <!-- ADDED type="module" HERE -->
+</Div>
+</body>
+</html>

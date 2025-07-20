@@ -1,0 +1,693 @@
+/* mindstack/assets/css/courses.css */
+
+/* --- Base Styles & Reset --- */
+:root {
+    --color-navy: #1F2D5A;
+    --color-dark-blue: #1A2238; /* A slightly darker variation for text */
+    --color-teal: #0ED2F7;
+    --color-cyan: #1ABC9C; /* Alternative accent */
+    --color-white: #ffffff;
+    --color-light-gray: #f5f5f5;
+    --color-gray: #cccccc;
+    --color-dark-gray: #555555;
+
+    --font-primary: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--color-dark-blue);
+    background-color: var(--color-white);
+    overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+}
+
+body.no-scroll {
+    overflow: hidden; /* Disable scrolling when mobile menu is active */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* Add some padding on the sides */
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-teal);
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- Reusable Section Padding --- */
+.section-padding {
+    padding: 80px 0; /* Consistent vertical padding for sections */
+}
+
+.bg-light-gray {
+    background-color: var(--color-light-gray);
+}
+
+.bg-dark-blue {
+    background-color: var(--color-navy); /* Using navy for consistency with design */
+}
+
+.text-white {
+    color: var(--color-white);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-40 { /* Margin-top utility */
+    margin-top: 40px;
+}
+
+.section-description {
+    font-size: 1.1em;
+    max-width: 700px;
+    margin: 15px auto 40px auto;
+    color: var(--color-dark-gray);
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    white-space: nowrap; /* Prevent button text from wrapping */
+}
+
+.btn-primary {
+    background-color: var(--color-teal);
+    color: var(--color-white);
+    border: 2px solid var(--color-teal);
+}
+
+.btn-primary:hover {
+    background-color: #0cbbd9; /* Slightly darker teal */
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-navy);
+    border: 2px solid var(--color-navy);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+/* --- Header Styles --- */
+.main-header {
+    background-color: var(--color-white);
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky; /* Makes header sticky on scroll */
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 70px; /* Ensure header has a consistent minimum height */
+}
+
+.logo img {
+    height: 65px; /* Increased logo height for "very big" */
+    width: auto;
+    display: block; /* Prevents extra space below image */
+}
+
+.main-nav ul {
+    display: flex;
+    gap: 30px;
+}
+
+.main-nav ul li a {
+    color: var(--color-navy);
+    font-weight: 600;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.main-nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-teal);
+    transition: width 0.3s ease;
+}
+
+.main-nav ul li a:hover::after,
+.main-nav ul li a.active::after {
+    width: 100%;
+}
+
+.header-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.mobile-menu-toggle {
+    display: none; /* Hidden by default, shown on mobile */
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    width: 30px;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* For animating lines */
+    z-index: 1100; /* Ensure it's above the mobile nav */
+}
+
+.mobile-menu-toggle span {
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-navy);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center; /* For rotation */
+}
+
+/* Hamburger animation */
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px); /* Slide out for a cleaner 'X' */
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+
+/* --- Search and Filter Section --- */
+.search-filter-section {
+    background-color: var(--color-white);
+    padding: 30px 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    max-width: 1200px; /* Constrain width */
+    margin: 0 auto 40px auto; /* Center and add bottom margin */
+    border-radius: 10px; /* Add some rounded corners */
+}
+
+.search-bar {
+    position: relative;
+    flex-grow: 1;
+    max-width: 400px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 40px 12px 15px; /* Space for icon */
+    border: 1px solid var(--color-gray);
+    border-radius: 8px;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: var(--color-teal);
+    box-shadow: 0 0 0 3px rgba(14, 210, 247, 0.2);
+}
+.filters :focus {
+    border-color: var(--color-teal);
+    box-shadow: 0 0 0 3px rgba(14, 210, 247, 0.2);
+}
+
+.search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-dark-gray);
+    font-size: 1.2em;
+}
+
+.filters {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.filter-dropdown {
+    padding: 12px 40px 12px 15px; /* Adjusted padding-right for custom arrow */
+    border: 1px solid var(--color-gray);
+    border-radius: 8px;
+    font-size: 1em;
+    color: var(--color-dark-blue);
+    background-color: var(--color-white);
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s ease;
+
+    /* --- Custom Dropdown Arrow Styles --- */
+    -webkit-appearance: none; /* Remove default arrow for Chrome/Safari */
+    -moz-appearance: none;    /* Remove default arrow for Firefox */
+    appearance: none;         /* Remove default arrow for others */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23555555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* Position the custom arrow */
+    background-size: 18px; /* Size of the custom arrow */
+}
+
+.filter-dropdown:focus {
+    border-color: var(--color-teal);
+}
+
+
+/* --- Course Grid Section --- */
+.course-grid-section {
+    padding: 0 40px 40px 40px; /* Adjust padding as no header/footer */
+    max-width: 1200px; /* Keep max-width for overall content container */
+    margin: 0 auto;
+}
+
+.course-grid-section h2 {
+    font-size: 2em;
+    color: var(--color-navy);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.course-grid {
+    display: grid;
+    /* Responsive grid:
+       - On large screens, it will try to fit as many columns as possible, each at least 300px wide.
+       - The 'minmax' ensures cards don't get too small or too large.
+       - 'auto-fit' ensures empty space is filled if there aren't enough cards to fill a row.
+       - This will naturally create 3 columns on wider screens within the 1200px max-width.
+    */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; /* Space between grid items */
+}
+
+/* --- Course Card Styles (Optimized) --- */
+.course-card {
+    background-color: var(--color-white);
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden; /* Ensures content respects border-radius */
+    display: flex;
+    flex-direction: column; /* Stacks thumbnail, content, and button */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none; /* Remove underline from link */
+    color: inherit; /* Inherit text color from parent */
+}
+
+.course-card:hover {
+    transform: translateY(-5px); /* Slight lift effect on hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12); /* Enhanced shadow on hover */
+}
+
+.course-thumbnail {
+    width: 100%;
+    height: 180px; /* Fixed height for consistency */
+    object-fit: cover; /* Ensures image covers the area without distortion */
+    display: block; /* Remove extra space below image */
+    background-color: var(--color-gray); /* Fallback background color */
+}
+
+.card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allows content to push the button to the bottom */
+}
+
+.course-title {
+    font-size: 1.3em;
+    color: var(--color-navy);
+    margin-bottom: 10px;
+    line-height: 1.3;
+    min-height: 3.9em; /* Ensures consistent height for 3 lines of text */
+    display: -webkit-box; /* For multi-line ellipsis */
+    -webkit-line-clamp: 3; /* Limit title to 3 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis if text overflows */
+}
+
+.course-instructor {
+    font-size: 0.95em;
+    color: var(--color-dark-gray);
+    margin-bottom: 15px;
+}
+
+.course-badge { 
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.85em;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.course-badge.free {
+    background-color: var(--color-cyan); 
+    color: var(--color-white);
+}
+
+.course-badge.premium {
+    background-color: var(--color-navy); 
+    color: var(--color-white);
+}
+
+.view-course-btn {
+    margin-top: auto; /* Pushes button to the bottom of the card */
+    width: 100%;
+}
+
+/* --- Load More / Pagination --- */
+.load-more-container {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 60px; /* Add bottom margin for spacing at the end of the page */
+}
+.load-more-container :hover{
+    cursor: pointer;
+}
+
+/* --- Newsletter Signup Section Styles --- */
+.newsletter-signup h2 {
+    color: var(--color-navy);
+}
+
+.newsletter-signup p {
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+    color: var(--color-dark-gray);
+}
+
+.newsletter-form {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.newsletter-form input[type="email"] {
+    padding: 12px 20px;
+    border: 2px solid var(--color-gray);
+    border-radius: 8px;
+    font-size: 1em;
+    width: 100%;
+    max-width: 400px;
+    color: var(--color-navy);
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.newsletter-form input[type="email"]:focus {
+    border-color: var(--color-teal);
+}
+
+.newsletter-form .btn-primary {
+    padding: 12px 30px;
+    font-size: 1em;
+}
+
+/* --- Footer Styles --- */
+.main-footer {
+    background-color: var(--color-dark-blue);
+    color: var(--color-white);
+    padding: 40px 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.footer-logo img {
+    height: 95px;
+    width: 80px;
+    filter: brightness(0) invert(1); /* Example for making a dark logo white on dark background */
+    margin-bottom: -20px;
+    margin-top: -10px;
+}
+
+.footer-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px 30px;
+}
+
+.footer-nav ul li a {
+    color: var(--color-white);
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.footer-nav ul li a:hover {
+    color: var(--color-teal);
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.social-links a {
+    color: var(--color-white);
+    font-size: 1.5em;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--color-teal);
+}
+
+.copyright {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7);
+}
+/* Close button for mobile menu */
+.close-menu-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2.5em;
+    color: var(--color-white);
+    cursor: pointer;
+    z-index: 1200;
+    transition: transform 0.2s ease;
+}
+
+.close-menu-btn:hover {
+    transform: rotate(90deg);
+}.close-menu-btn {
+    position: absolute;
+    top: 15px; /* Adjusted top for better alignment */
+    right: 15px; /* Adjusted right for better alignment */
+    font-size: 2.2em; /* Slightly smaller font size for the icon itself */
+    color: var(--color-white);
+    cursor: pointer;
+    z-index: 1200;
+    transition: transform 0.2s ease, background-color 0.2s ease; /* Added background-color to transition */
+    display: flex; /* Use flex to center the icon */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: 40px; /* Explicit width to give a larger clickable area */
+    height: 40px; /* Explicit height to give a larger clickable area */
+    border-radius: 50%; /* Make it a circle */
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle background for click area */
+}
+
+.close-menu-btn:hover {
+    transform: rotate(90deg);
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly more prominent on hover */
+}
+@media (max-width: 992px) {
+    .section-padding {
+        padding: 60px 0;
+    }
+}
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    body {
+        padding-top: 20px; /* Less padding on mobile */
+    }
+     .main-nav {
+        /* Mobile menu overlay styles - NO CHANGES HERE */
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 65vw;
+        max-width: 200px;
+        max-height: calc(100vh - 70px); /* Adjusted to account for header min-height */
+        background-color: var(--color-navy);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 10px 0; /* General padding */
+        padding-top: 50px; /* Space for close button */
+        transform: translateX(100%);
+        transition: transform 0.4s ease-out;
+        z-index: 999;
+        overflow-y: auto;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    }
+
+    .main-nav.active {
+        transform: translateX(0);
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        gap: 1px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .main-nav ul li a {
+        color: var(--color-white);
+        font-size: 1em;
+        padding: 10px 0;
+        display: block;
+    }
+
+    .main-nav ul li a::after {
+        background-color: var(--color-teal);
+    }
+
+    /* Show header actions on mobile */
+    .header-actions {
+        display: flex; /* Make buttons visible */
+        gap: 8px; /* Reduce gap between buttons on mobile */
+        margin-left: auto; /* Push buttons to the right, next to hamburger */
+        align-items: center; /* Align with hamburger */
+    }
+
+    /* Adjust button size for mobile header - UPDATED */
+    .header-actions .btn {
+        padding: 6px 12px; /* Smaller padding for mobile header buttons */
+        font-size: 0.75em; /* Smaller font size for mobile header buttons */
+        border-width: 1px; /* Thinner border */
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+        margin-left: 15px; /* Add some space between buttons and hamburger */
+    }
+
+    /* Adjust search and filter for mobile */
+    .search-filter-section {
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+        margin-bottom: 30px; /* Less margin on mobile */
+    }
+
+    .search-bar {
+        width: 100%;
+        max-width: none;
+    }
+
+    .filters {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .filter-dropdown {
+        width: 100%;
+    }
+
+    /* Course grid for mobile */
+    .course-grid-section {
+        padding: 0 20px 20px 20px; /* Adjust padding for mobile */
+    }
+
+    
+    .course-grid {
+        grid-template-columns: 1fr; /* Single column on mobile */
+        gap: 20px;
+    }
+
+    .course-title {
+        font-size: 1.1em;
+        min-height: auto; /* Allow height to be natural */
+        -webkit-line-clamp: unset; /* Remove line clamp */
+    }
+
+    .course-instructor,
+    .course-badge {
+        font-size: 0.9em;
+    }
+
+    .view-course-btn {
+        padding: 10px 15px;
+        font-size: 1em;
+    }
+
+    .load-more-container {
+        margin-top: 30px;
+        margin-bottom: 40px;
+    }
+     .newsletter-form {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .newsletter-form input[type="email"] {
+        max-width: 100%;
+    }
+
+    .footer-nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+@media only screen 
+  and (min-width: 768px) 
+  and (max-width: 768px) 
+  and (min-height: 1024px) 
+  and (max-height: 1024px) 
+  and (orientation: portrait) {
+     .course-grid {
+        grid-template-columns: 1fr 1fr; /* Single column on mobile */
+        gap: 20px;
+    }
+}

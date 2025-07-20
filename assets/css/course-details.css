@@ -1,0 +1,587 @@
+/* mindstack/assets/css/course-details.css */
+
+/* --- Base Variables (match dashboard for consistency) --- */
+:root {
+    --color-navy: #1F2D5A;
+    --color-dark-blue: #1A2238;
+    --color-teal: #0ED2F7;
+    --color-cyan: #1ABC9C;
+    --color-white: #ffffff;
+    --color-light-gray: #f5f5f5;
+    --color-gray: #cccccc;
+    --color-dark-gray: #555555;
+    --color-red: #e74c3c; /* For error messages */
+    --color-green: #2ecc71; /* For success messages/icons */
+    --color-purple: #8A2BE2; /* For a stat card example */
+    --color-orange: #FF8C00; /* For a stat card example */
+
+    --font-primary: 'Poppins', sans-serif;
+}
+
+/* --- Global Resets & Body Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--color-dark-blue);
+    background-color: var(--color-light-gray);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-teal);
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #0cbbd9; /* Slightly darker teal */
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- Buttons (General Styles - consistent with dashboard) --- */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--color-teal);
+    color: var(--color-white);
+    border: 2px solid var(--color-teal);
+}
+
+.btn-primary:hover {
+    background-color: #0cbbd9; /* Slightly darker teal */
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-navy);
+    border: 2px solid var(--color-navy);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+/* --- Layout Container --- */
+.course-details-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+    flex-grow: 1; /* Allows content to push footer down */
+}
+
+/* --- Header / Breadcrumbs --- */
+.course-details-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+.course-details-header .back-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1em;
+    font-weight: 500;
+    color: var(--color-dark-gray);
+    margin-bottom: 15px;
+}
+
+.course-details-header .back-link i {
+    font-size: 1.2em;
+}
+
+.course-details-header h1 {
+    font-size: 2.5em;
+    color: var(--color-navy);
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* --- Course Hero Section (Video + Overview Card) --- */
+.course-hero {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Video takes 2/3, card takes 1/3 */
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.course-video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    background-color: #000;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.course-video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.course-overview-card {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.course-overview-card h2 {
+    font-size: 1.8em;
+    color: var(--color-navy);
+    margin-top: 0;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.course-short-description {
+    font-size: 1em;
+    color: var(--color-dark-gray);
+    margin-bottom: 20px;
+    flex-grow: 1; /* Pushes meta and button down */
+}
+
+.course-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+    color: var(--color-dark-gray);
+}
+
+.course-meta span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.course-meta i {
+    color: var(--color-teal);
+    font-size: 1.1em;
+}
+
+.course-price-access {
+    margin-bottom: 25px;
+}
+
+.course-price-access .access-type {
+    font-size: 1.2em;
+    font-weight: 700;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.course-price-access .access-type.free {
+    background-color: #e6ffe6; /* Light green */
+    color: var(--color-green);
+}
+
+.course-price-access .access-type.premium {
+    background-color: #ffe6e6; /* Light red */
+    color: var(--color-red);
+}
+
+.course-overview-card .action-btn {
+    width: 100%;
+    font-size: 1.1em;
+    padding: 15px 25px;
+}
+
+/* --- Course Sections Grid --- */
+.course-sections-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Main content takes 2/3, side content 1/3 */
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.course-section {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px; /* Space between sections if they stack */
+}
+
+.course-section:last-child {
+    margin-bottom: 0;
+}
+
+.course-section h2 {
+    font-size: 1.8em;
+    color: var(--color-navy);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-light-gray);
+}
+
+/* Specific section adjustments */
+.about-course {
+    grid-column: 1 / 3; /* Spans both columns initially for wider text */
+}
+
+.about-course p {
+    color: var(--color-dark-blue);
+    line-height: 1.7;
+}
+
+.what-youll-learn ul,
+.prerequisites-section ul,
+.downloads-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.what-youll-learn li,
+.prerequisites-section li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+    color: var(--color-dark-blue);
+}
+
+.what-youll-learn li::before,
+.prerequisites-section li::before {
+    content: "\e902"; /* Remixicon check-line */
+    font-family: "remixicon" !important;
+    font-size: 1.2em;
+    color: var(--color-green);
+    flex-shrink: 0;
+}
+
+.downloads-section li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.downloads-section li a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background-color: var(--color-light-gray);
+    border-radius: 5px;
+    color: var(--color-navy);
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.downloads-section li a:hover {
+    background-color: var(--color-gray);
+}
+
+.downloads-section li i {
+    font-size: 1.2em;
+    color: var(--color-teal);
+}
+
+/* Curriculum Section */
+.curriculum-module {
+    background-color: #f8f8f8;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.curriculum-module-header {
+    padding: 15px 20px;
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    font-weight: 600;
+    font-size: 1.1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.curriculum-module-header:hover {
+    background-color: #2a3a6b; /* Slightly lighter navy */
+}
+
+.curriculum-module-header i {
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+}
+
+.curriculum-module.open .curriculum-module-header i {
+    transform: rotate(90deg); /* Rotate icon when open */
+}
+
+.curriculum-lessons {
+    padding: 0;
+    max-height: 0; /* Hidden by default */
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+}
+
+.curriculum-module.open .curriculum-lessons {
+    max-height: 500px; /* Adjust as needed for content height */
+    padding: 15px 20px;
+}
+
+.curriculum-lesson-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 0;
+    border-bottom: 1px dashed #eee;
+    color: var(--color-dark-blue);
+    font-size: 0.95em;
+}
+
+.curriculum-lesson-item:last-child {
+    border-bottom: none;
+}
+
+.curriculum-lesson-item i {
+    font-size: 1.2em;
+    color: var(--color-teal);
+    flex-shrink: 0;
+}
+
+.curriculum-lesson-item .lesson-title {
+    flex-grow: 1;
+}
+
+.curriculum-lesson-item .lesson-duration {
+    font-size: 0.9em;
+    color: #777;
+    flex-shrink: 0;
+}
+
+.curriculum-lesson-item .lesson-locked i {
+    color: var(--color-red);
+}
+
+/* Instructor Section */
+.instructor-section {
+    /* Inherits general .course-section styles */
+}
+
+.instructor-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.instructor-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--color-teal);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.instructor-details h3 {
+    font-size: 1.5em;
+    color: var(--color-navy);
+    margin-bottom: 5px;
+}
+
+.instructor-details p {
+    color: var(--color-dark-gray);
+    line-height: 1.6;
+}
+
+/* --- Generic Message Modal (consistent with dashboard) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    position: relative; /* CRITICAL for close button positioning */
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.modal-content h3 {
+    color: var(--color-navy);
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.modal-content p {
+    color: #555;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.modal-content .close-modal-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    padding: 5px;
+    z-index: 10;
+}
+
+.modal-content .close-modal-btn:hover {
+    color: #333;
+}
+
+/* Ensure the ri-close-line icon itself is styled */
+.modal-content .close-modal-btn.ri-close-line::before {
+    content: "\e90b"; /* Remixicon close icon unicode */
+    font-family: "remixicon" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 992px) {
+    .course-details-container {
+        margin: 20px auto;
+        padding: 0 15px;
+    }
+
+    .course-details-header h1 {
+        font-size: 2em;
+    }
+
+    .course-hero {
+        grid-template-columns: 1fr; /* Stack video and overview card */
+        gap: 25px;
+    }
+
+    .course-sections-grid {
+        grid-template-columns: 1fr; /* Stack all content sections */
+        gap: 25px;
+    }
+
+    .about-course {
+        grid-column: 1 / 2; /* Remove span */
+    }
+
+    .course-section {
+        padding: 25px;
+    }
+
+    .course-section h2 {
+        font-size: 1.6em;
+        margin-bottom: 15px;
+    }
+
+    .instructor-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .instructor-avatar {
+        margin-bottom: 10px;
+    }
+
+    .curriculum-module-header {
+        font-size: 1em;
+        padding: 12px 15px;
+    }
+
+    .curriculum-lesson-item {
+        font-size: 0.9em;
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
+    .modal-content h3 {
+        font-size: 1.5em;
+    }
+    .modal-content p {
+        font-size: 1em;
+    }
+    .modal-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .modal-actions .btn {
+        width: 100%;
+    }
+}

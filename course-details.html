@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindStack - Course Details</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo/mindstack_logo__1_-removebg-preview.png" type="image/png">
+    
+    <!-- Course Details Specific Stylesheet -->
+    <link rel="stylesheet" href="assets/css/course-details.css">
+    
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+    
+    <!-- Remix Icons (for icons) -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="course-details-container">
+        <!-- Header/Breadcrumbs -->
+        <header class="course-details-header">
+            <a href="dashboard.html" class="back-link"><i class="ri-arrow-left-line"></i> Back to Dashboard</a>
+            <h1 id="courseTitleHeader">Loading Course...</h1>
+        </header>
+
+        <!-- Main Course Content -->
+        <main class="course-main-content">
+            <div class="course-hero">
+                <div class="course-video-wrapper">
+                    <iframe id="introVideoEmbed" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="course-overview-card">
+                    <h2 id="courseTitleOverview"></h2>
+                    <p class="course-short-description" id="courseShortDescription"></p>
+                    <div class="course-meta">
+                        <span><i class="ri-time-line"></i> <span id="courseDuration"></span></span>
+                        <span><i class="ri-bar-chart-line"></i> <span id="courseLevel"></span></span>
+                        <span><i class="ri-book-open-line"></i> <span id="courseLessonsCount"></span> Lessons</span>
+                    </div>
+                    <div class="course-price-access">
+                        <span class="access-type" id="courseAccessType"></span>
+                    </div>
+                    <button class="btn btn-primary action-btn" id="courseActionButton">Loading...</button>
+                </div>
+            </div>
+
+            <div class="course-sections-grid">
+                <!-- About Course -->
+                <section class="course-section about-course">
+                    <h2>About This Course</h2>
+                    <p id="courseLongDescription"></p>
+                </section>
+
+                <!-- What You'll Learn -->
+                <section class="course-section what-youll-learn">
+                    <h2>What You'll Learn</h2>
+                    <ul id="whatYoullLearnList">
+                        <!-- Dynamic content -->
+                    </ul>
+                </section>
+
+                <!-- Course Curriculum -->
+                <section class="course-section curriculum">
+                    <h2>Course Curriculum</h2>
+                    <div id="curriculumContent">
+                        <!-- Dynamic modules and lessons -->
+                    </div>
+                    <div id="noCurriculumMessage" class="message-container" style="display: none;">Curriculum details are not available yet.</div>
+                </section>
+            </div>
+
+            <!-- Instructor Section -->
+            <section class="course-section instructor-section">
+                <h2>About the Instructor</h2>
+                <div class="instructor-info">
+                    <img id="instructorAvatar" src="https://placehold.co/80x80/E0F2F7/0ED2F7?text=NA" alt="Instructor Avatar" class="instructor-avatar">
+                    <div class="instructor-details">
+                        <h3 id="instructorName"></h3>
+                        <p id="instructorBio"></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Downloads Section (Optional) -->
+            <section class="course-section downloads-section" id="downloadsSection" style="display: none;">
+                <h2>Course Downloads</h2>
+                <ul id="downloadsList">
+                    <!-- Dynamic downloads -->
+                </ul>
+                <div id="noDownloadsMessage" class="message-container" style="display: none;">No downloadable resources available for this course.</div>
+            </section>
+
+            <!-- Prerequisites Section (Optional) -->
+            <section class="course-section prerequisites-section" id="prerequisitesSection" style="display: none;">
+                <h2>Prerequisites</h2>
+                <ul id="prerequisitesList">
+                    <!-- Dynamic content -->
+                </ul>
+                <div id="noPrerequisitesMessage" class="message-container" style="display: none;">No specific prerequisites for this course.</div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Generic Message Modal (for user feedback) -->
+    <div class="modal-overlay" id="messageModalOverlay">
+        <div class="modal-content message-modal-content">
+            <button class="close-modal-btn ri-close-line" id="closeMessageModalBtn"></button>
+            <h3 id="messageModalTitle"></h3>
+            <p id="messageModalText"></p>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="messageModalCloseBtn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Course Details Specific JavaScript File -->
+    <script type="module" src="assets/js/course-details.js"></script>
+</body>
+</html>

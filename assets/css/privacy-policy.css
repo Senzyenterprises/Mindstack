@@ -1,0 +1,279 @@
+/* mindstack/assets/css/privacy-policy.css */
+
+/* --- Base Variables --- */
+:root {
+    --color-navy: #1F2D5A;
+    --color-dark-blue: #1A2238;
+    --color-teal: #0ED2F7;
+    --color-cyan: #1ABC9C;
+    --color-white: #ffffff;
+    --color-light-gray: #f5f5f5;
+    --color-gray: #cccccc;
+    --color-dark-gray: #555555;
+    --color-red: #e74c3c;
+    --color-green: #2ecc71;
+    --color-gold: #FFD700;
+
+    --font-primary: 'Poppins', sans-serif;
+}
+
+/* --- Global Resets & Body Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--color-dark-blue);
+    background-color: var(--color-light-gray);
+    overflow-x: hidden;
+    padding-top: 0; /* No general top padding as hero section handles it */
+}
+
+.container {
+    max-width: 900px; /* Slightly narrower for legal text readability */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-teal);
+}
+
+ul {
+    list-style: disc; /* Default disc for legal lists */
+    padding-left: 25px;
+}
+
+/* --- Buttons (General Styles) --- */
+.btn {
+    display: inline-flex; /* Use flex for icon alignment */
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Space between icon and text */
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--color-teal);
+    color: var(--color-white);
+    border: 2px solid var(--color-teal);
+}
+
+.btn-primary:hover {
+    background-color: #0cbbd9;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-white); /* White text on dark hero */
+    border: 2px solid var(--color-white); /* White border on dark hero */
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+
+/* --- Privacy Policy Hero Section --- */
+.privacy-policy-hero {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    padding: 80px 0;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.privacy-policy-hero h1 {
+    font-size: 3.5em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-subtext {
+    font-size: 1.3em;
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+    opacity: 0.9;
+}
+
+.back-to-home-btn {
+    opacity: 0; /* Start hidden for animation */
+    transform: translateY(20px); /* Start slightly below for slide-up */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.back-to-home-btn.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Policy Content Section --- */
+.policy-content-section {
+    background-color: var(--color-white);
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 60px; /* Space before potential footer */
+}
+
+.policy-content-section h2 {
+    font-size: 2em;
+    color: var(--color-navy);
+    margin-bottom: 25px;
+    margin-top: 40px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-light-gray);
+}
+
+.policy-content-section h2:first-child {
+    margin-top: 0; /* No top margin for the very first h2 */
+}
+
+.policy-content-section h3 {
+    font-size: 1.5em;
+    color: var(--color-dark-blue);
+    margin-bottom: 15px;
+    margin-top: 30px;
+}
+
+.policy-content-section p {
+    margin-bottom: 15px;
+    color: var(--color-dark-gray);
+}
+
+.policy-content-section ul {
+    margin-bottom: 20px;
+}
+
+.policy-content-section ul li {
+    margin-bottom: 8px;
+    color: var(--color-dark-blue);
+}
+
+.policy-content-section address {
+    font-style: normal; /* Override italic for address tag */
+    margin-top: 15px;
+    line-height: 1.8;
+    color: var(--color-dark-blue);
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 992px) {
+    .privacy-policy-hero {
+        padding: 60px 0;
+        margin-bottom: 30px;
+    }
+    .privacy-policy-hero h1 {
+        font-size: 2.8em;
+    }
+    .hero-subtext {
+        font-size: 1.1em;
+        margin-bottom: 30px;
+    }
+    .back-to-home-btn {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+    .policy-content-section {
+        padding: 30px;
+        margin-bottom: 40px;
+    }
+    .policy-content-section h2 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+        margin-top: 30px;
+    }
+    .policy-content-section h3 {
+        font-size: 1.3em;
+        margin-bottom: 10px;
+        margin-top: 25px;
+    }
+    .policy-content-section p,
+    .policy-content-section ul li {
+        font-size: 0.95em;
+    }
+}
+
+@media (max-width: 768px) {
+    .privacy-policy-hero h1 {
+        font-size: 2.5em;
+    }
+    .policy-content-section {
+        padding: 20px;
+    }
+    .policy-content-section h2 {
+        font-size: 1.6em;
+        margin-bottom: 15px;
+        margin-top: 25px;
+    }
+    .policy-content-section h3 {
+        font-size: 1.2em;
+        margin-bottom: 8px;
+        margin-top: 20px;
+    }
+    .policy-content-section p,
+    .policy-content-section ul li {
+        font-size: 0.9em;
+    }
+    .policy-content-section ul {
+        padding-left: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .privacy-policy-hero {
+        padding: 40px 0;
+        margin-bottom: 20px;
+    }
+    .privacy-policy-hero h1 {
+        font-size: 2em;
+    }
+    .hero-subtext {
+        font-size: 1em;
+        margin-bottom: 20px;
+    }
+    .back-to-home-btn {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+    .policy-content-section {
+        padding: 15px;
+        margin-bottom: 30px;
+    }
+    .policy-content-section h2 {
+        font-size: 1.4em;
+        margin-bottom: 12px;
+        margin-top: 20px;
+    }
+    .policy-content-section h3 {
+        font-size: 1.1em;
+        margin-bottom: 5px;
+        margin-top: 15px;
+    }
+    .policy-content-section p,
+    .policy-content-section ul li {
+        font-size: 0.85em;
+    }
+    .policy-content-section ul {
+        padding-left: 15px;
+    }
+}

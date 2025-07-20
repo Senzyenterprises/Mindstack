@@ -1,0 +1,287 @@
+/* mindstack/assets/css/admin-login.css */
+
+/* --- Base Variables --- */
+:root {
+    --color-navy: #1F2D5A;
+    --color-dark-blue: #1A2238;
+    --color-teal: #0ED2F7;
+    --color-cyan: #1ABC9C;
+    --color-white: #ffffff;
+    --color-light-gray: #f5f5f5;
+    --color-gray: #cccccc;
+    --color-dark-gray: #555555;
+    --color-red: #e74c3c;
+    --color-green: #2ecc71;
+    --color-gold: #FFD700;
+
+    --font-primary: 'Poppins', sans-serif;
+}
+
+/* --- Global Resets & Body Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--color-dark-blue);
+    background-color: var(--color-light-gray); /* Light background for the page */
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full viewport height */
+    padding: 20px; /* Padding around the login card */
+}
+
+body.admin-login-wrapper::before {
+    content: '';
+    position: fixed; /* Use fixed so it covers the whole viewport, even if you scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('assets/images/background-image.jpg'); 
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: -2; 
+    filter: blur(100vh);
+    transform: scale(1.02); 
+}
+body.admin-login-wrapper::after {
+    content: '';
+    position: fixed;  
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); 
+    z-index: -1; 
+}
+a {
+    text-decoration: none;
+    color: var(--color-teal);
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- Buttons (General Styles) --- */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--color-teal);
+    color: var(--color-white);
+    border: 2px solid var(--color-teal);
+}
+
+.btn-primary:hover {
+    background-color: #0cbbd9;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-navy);
+    border: 2px solid var(--color-navy);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+/* --- Admin Login Wrapper & Card --- */
+.admin-login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh; /* Ensure it takes full height even if content is short */
+}
+
+.login-card {
+    background-color: var(--color-white);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px; /* Max width for the login form */
+    text-align: center;
+}
+
+.login-header {
+    margin-bottom: 30px;
+}
+
+.login-header .logo {
+    height: 170px; /* Larger logo for admin login */
+    margin-bottom: -50px; /* Space below logo */
+    margin-top: -50px; /* Ensures no negative margin */
+}
+
+.login-header h1 {
+    font-size: 2.2em;
+    color: var(--color-navy);
+    font-weight: 700;
+}
+
+.login-form {
+    text-align: left; /* Align form elements left */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.95em;
+    color: var(--color-dark-blue);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--color-gray);
+    border-radius: 8px;
+    font-size: 1em;
+    color: var(--color-dark-blue);
+    background-color: var(--color-light-gray);
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: var(--color-teal);
+    box-shadow: 0 0 0 3px rgba(14, 210, 247, 0.2);
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    font-size: 0.9em;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-dark-gray);
+}
+
+.remember-me input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--color-teal); /* Style checkbox */
+    cursor: pointer;
+}
+
+.forgot-password {
+    color: var(--color-teal);
+    transition: color 0.2s ease;
+}
+
+.forgot-password:hover {
+    color: var(--color-navy);
+}
+
+.login-btn {
+    width: 100%;
+    padding: 15px 25px;
+    font-size: 1.1em;
+    border-radius: 10px;
+}
+
+/* Message Container for errors/success */
+.message-container {
+    margin-top: 25px;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 0.95em;
+    font-weight: 500;
+    text-align: center;
+    display: none; /* Hidden by default */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.message-container.active {
+    display: block;
+    opacity: 1;
+}
+
+.message-container.error {
+    background-color: #fce8e6; /* Light red */
+    color: var(--color-red);
+    border: 1px solid var(--color-red);
+}
+
+.message-container.success {
+    background-color: #e6f7ed; /* Light green */
+    color: var(--color-green);
+    border: 1px solid var(--color-green);
+}
+
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 500px) {
+    body {
+        padding: 15px;
+    }
+    .login-card {
+        padding: 30px 20px; /* Adjust padding for smaller screens */
+    }
+    .login-header .logo {
+        margin-bottom: -50px;
+        margin-top: -50px;
+    }
+    .login-header h1 {
+        font-size: 2em;
+    }
+    .form-group label {
+        font-size: 0.9em;
+    }
+    .form-group input {
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
+    .form-options {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+        margin-bottom: 25px;
+    }
+    .login-btn {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+    .message-container {
+        padding: 12px;
+        font-size: 0.9em;
+    }
+}

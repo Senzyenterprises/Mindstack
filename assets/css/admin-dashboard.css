@@ -1,0 +1,1423 @@
+/* mindstack/assets/css/admin-dashboard.css */
+
+/* --- Base Variables --- */
+:root {
+    --color-navy: #1F2D5A;
+    --color-dark-blue: #1A2238;
+    --color-teal: #0ED2F7;
+    --color-cyan: #1ABC9C;
+    --color-white: #ffffff;
+    --color-light-gray: #f5f5f5;
+    --color-gray: #cccccc;
+    --color-dark-gray: #555555;
+    --color-red: #e74c3c;
+    --color-green: #2ecc71;
+    --color-gold: #FFD700;
+    --color-orange: #f39c12;
+
+    --font-primary: 'Poppins', sans-serif;
+
+    --sidebar-width-desktop: 250px;
+    --topbar-height: 70px;
+}
+
+/* --- Global Resets & Body Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--color-dark-blue);
+    background-color: var(--color-light-gray);
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+body.no-scroll {
+    overflow: hidden; /* For mobile sidebar overlay */
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-teal);
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- Buttons (General Styles) --- */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--color-teal);
+    color: var(--color-white);
+    border: 2px solid var(--color-teal);
+}
+
+.btn-primary:hover {
+    background-color: #0cbbd9;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-navy);
+    border: 2px solid var(--color-navy);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+/* --- Dashboard Layout --- */
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--color-light-gray);
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    width: var(--sidebar-width-desktop);
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    flex-shrink: 0; /* Prevent shrinking */
+    padding: 20px 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    position: sticky; /* Sticky on desktop */
+    top: 0;
+    height: 100vh; /* Full height */
+    z-index: 900; /* Ensure it's above content */
+    padding-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+    scrollbar-width: thin; /* "auto" or "thin" */
+    scrollbar-color: var(--color-primary-light) var(--color-bg-dark);
+}
+.sidebar::-webkit-scrollbar-track {
+    background: var(--color-bg-dark); /* Color of the scrollbar track */
+    border-radius: 10px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary-light); /* Color of the scrollbar thumb */
+    border-radius: 10px;
+    border: 2px solid var(--color-bg-dark); /* Space around the thumb */
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 20px 20px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+    position: relative; /* For close button */
+}
+
+.sidebar-logo {
+    height: 90px;
+    width: 70px;
+    margin-left: -10px;
+    filter: brightness(0) invert(1); /* Make logo white */
+}
+
+.logo-text {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: var(--color-white);
+}
+
+.sidebar-nav ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-nav li {
+    margin-bottom: 5px;
+}
+
+.sidebar-nav .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.05em;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border-left: 4px solid transparent;
+}
+
+.sidebar-nav .nav-item i {
+    font-size: 1.4em;
+}
+
+.sidebar-nav .nav-item:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: var(--color-white);
+}
+
+.sidebar-nav .nav-item.active {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: var(--color-teal);
+    border-left-color: var(--color-teal);
+}
+
+.sidebar-nav .logout-item {
+    margin-top: auto; /* Push logout to bottom */
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.close-sidebar-btn {
+    display: none; /* This hides it on desktop by default */
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: var(--color-white);
+    cursor: pointer;
+    position: absolute; /* Keep this here for positioning when it IS visible */
+    top: 15px;
+    right: 5px;
+    z-index: 10; /* Ensure it's above other elements when visible */
+    /* ... other styles ... */
+}
+/* --- Main Content Area --- */
+.main-content-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Topbar --- */
+.topbar {
+    height: var(--topbar-height);
+    background-color: var(--color-white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    flex-shrink: 0; /* Prevent shrinking */
+    z-index: 800; /* Below sidebar */
+}
+
+.hamburger-menu {
+    display: none; /* Hidden on desktop */
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: var(--color-navy);
+    cursor: pointer;
+    padding: 5px;
+}
+
+.admin-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--color-dark-blue);
+    font-weight: 500;
+}
+
+.admin-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-teal);
+}
+
+/* --- Main Content Sections --- */
+.content-sections {
+    padding: 30px;
+    flex-grow: 1; /* Take remaining space */
+}
+
+.content-section {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px; /* Space between sections if multiple are visible (e.g. dashboard) */
+    display: none; /* Hidden by default, JS will show 'active' one */
+}
+
+.content-section.active {
+    display: block;
+}
+
+.section-heading {
+    font-size: 2em;
+    color: var(--color-navy);
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--color-light-gray);
+}
+
+/* --- Dashboard Overview Styles --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background-color: var(--color-light-gray);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-icon {
+    font-size: 2.5em;
+    color: var(--color-teal); /* Default icon color */
+}
+
+/* Specific icon colors for variety */
+.stat-card:nth-child(1) .stat-icon { color: var(--color-teal); } /* Users */
+.stat-card:nth-child(2) .stat-icon { color: var(--color-green); } /* Courses */
+.stat-card:nth-child(3) .stat-icon { color: var(--color-orange); } /* Affiliates */
+.stat-card:nth-child(4) .stat-icon { color: var(--color-gold); } /* Revenue */
+
+
+.stat-number {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--color-navy);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 1em;
+    color: var(--color-dark-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.recent-activity-block {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.recent-activity-block h3 {
+    font-size: 1.6em;
+    color: var(--color-navy);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-light-gray);
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.activity-item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 10px;
+    font-size: 0.95em;
+    color: var(--color-dark-blue);
+}
+
+.activity-user {
+    font-weight: 600;
+    color: var(--color-teal);
+}
+
+.activity-time {
+    color: var(--color-dark-gray);
+    margin-left: auto; /* Push time to right */
+}
+
+/* --- Admin Form Styles (for Add Course, Settings) --- */
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 700px; /* Limit form width */
+    margin: 0 auto;
+}
+
+.admin-form .form-group {
+    margin-bottom: 0; /* Override default form-group margin */
+}
+
+.admin-form label {
+    display: block;
+    font-size: 0.95em;
+    color: var(--color-navy);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.admin-form input[type="text"],
+.admin-form input[type="number"],
+.admin-form input[type="url"],
+.admin-form input[type="email"],
+.admin-form select,
+.admin-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--color-gray);
+    border-radius: 8px;
+    font-size: 1em;
+    color: var(--color-dark-blue);
+    background-color: var(--color-light-gray);
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-form input:focus,
+.admin-form select:focus,
+.admin-form textarea:focus {
+    border-color: var(--color-teal);
+    box-shadow: 0 0 0 3px rgba(14, 210, 247, 0.2);
+}
+
+.admin-form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.admin-form .checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.admin-form .checkbox-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--color-teal);
+    cursor: pointer;
+}
+
+.admin-form .submit-btn {
+    margin-top: 20px;
+    width: auto; /* Allow button to size naturally */
+    align-self: flex-start; /* Align to left */
+}
+
+/* Message Container for forms */
+.message-container {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    font-weight: 500;
+    text-align: center;
+    display: none; /* Hidden by default */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.message-container.active {
+    display: block;
+    opacity: 1;
+}
+
+.message-container.error {
+    background-color: #fce8e6; /* Light red */
+    color: var(--color-red);
+    border: 1px solid var(--color-red);
+}
+
+.message-container.success {
+    background-color: #e6f7ed; /* Light green */
+    color: var(--color-green);
+    border: 1px solid var(--color-green);
+}
+
+/* --- Data Table Styles (for Manage Courses, Users, Affiliates) --- */
+.table-responsive {
+    overflow-x: auto; /* Enable horizontal scroll on small screens */
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 10px; /* Space for scrollbar */
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--color-white);
+    border-radius: 10px;
+    overflow: hidden; /* For rounded corners on table */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    min-width: 700px; /* Minimum width for horizontal scroll */
+}
+
+.data-table thead {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+}
+
+.data-table th,
+.data-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--color-light-gray);
+}
+
+.data-table th {
+    font-weight: 600;
+    font-size: 0.9em;
+    text-transform: uppercase;
+}
+
+.data-table td {
+    font-size: 0.95em;
+    color: var(--color-dark-blue);
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.data-table tbody tr:hover {
+    background-color: var(--color-light-gray);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap; /* Allow buttons to wrap */
+}
+
+.action-buttons .btn {
+    padding: 8px 12px;
+    font-size: 0.85em;
+    border-radius: 5px;
+}
+
+.btn-edit {
+    background-color: var(--color-teal);
+    border-color: var(--color-teal);
+}
+.btn-edit:hover { background-color: #0cbbd9; }
+
+.btn-delete {
+    background-color: var(--color-red);
+    border-color: var(--color-red);
+}
+.btn-delete:hover { background-color: #c0392b; }
+
+.btn-view {
+    background-color: var(--color-navy);
+    border-color: var(--color-navy);
+}
+.btn-view:hover { background-color: #1a2238; }
+
+.btn-toggle-status {
+    background-color: var(--color-orange);
+    border-color: var(--color-orange);
+}
+.btn-toggle-status:hover { background-color: #e67e22; }
+
+/* --- Logout Confirmation Modal Styles --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Above everything */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.logout-modal-content {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+}
+
+.modal-overlay.active .logout-modal-content {
+    transform: translateY(0);
+}
+
+.logout-modal-content h3 {
+    font-size: 1.8em;
+    color: var(--color-navy);
+    margin-bottom: 15px;
+}
+
+.logout-modal-content p {
+    font-size: 1em;
+    color: var(--color-dark-gray);
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.modal-actions .btn {
+    padding: 10px 20px;
+    font-size: 0.95em;
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    color: var(--color-dark-gray);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-modal-btn:hover {
+    color: var(--color-red);
+}
+
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 992px) {
+    .dashboard-layout {
+        flex-direction: column; /* Stack sidebar and main content */
+    }
+
+    .sidebar {
+        position: fixed; /* Fixed position for mobile drawer */
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 280px; /* Width of mobile sidebar */
+        transform: translateX(-100%); /* Hidden by default */
+        transition: transform 0.3s ease-in-out;
+        z-index: 1000; /* Higher z-index for mobile */
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .sidebar.active {
+        transform: translateX(0); /* Slide in */
+    }
+
+    .close-sidebar-btn {
+        display: block; /* Show close button on mobile sidebar */
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 2em;
+        color: var(--color-white);
+        cursor: pointer;
+    }
+
+    .topbar {
+        padding: 0 20px;
+        justify-content: space-between; /* Ensure space between hamburger and admin info */
+    }
+
+    .hamburger-menu {
+        display: block; /* Show hamburger on mobile */
+    }
+
+    .main-content-area {
+        margin-left: 0; /* No margin from sidebar on mobile */
+        
+    }
+
+    .content-sections {
+        padding: 20px;
+    }
+
+    .section-heading {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr; /* Stack stats vertically */
+        gap: 20px;
+    }
+
+    .stat-card {
+        padding: 20px;
+    }
+    .stat-icon {
+        font-size: 2em;
+    }
+    .stat-number {
+        font-size: 2em;
+    }
+    .stat-label {
+        font-size: 0.9em;
+    }
+
+    .recent-activity-block {
+        padding: 20px;
+    }
+    .recent-activity-block h3 {
+        font-size: 1.4em;
+    }
+    .activity-item {
+        font-size: 0.9em;
+    }
+
+    .admin-form {
+        gap: 15px;
+        padding: 0; /* Remove padding if any from parent */
+    }
+    .admin-form label {
+        font-size: 0.9em;
+    }
+    .admin-form input,
+    .admin-form select,
+    .admin-form textarea {
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
+    .admin-form .submit-btn {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+
+    .data-table {
+        min-width: 600px; /* Keep minimum width for horizontal scroll */
+    }
+    .data-table th,
+    .data-table td {
+        padding: 12px;
+        font-size: 0.85em;
+    }
+    .action-buttons .btn {
+        padding: 6px 10px;
+        font-size: 0.8em;
+    }
+
+    .logout-modal-content {
+        padding: 25px;
+    }
+    .logout-modal-content h3 {
+        font-size: 1.5em;
+    }
+    .logout-modal-content p {
+        font-size: 0.9em;
+    }
+    .modal-actions .btn {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 576px) {
+    .sidebar {
+        width: 80%; /* Adjust sidebar width for very small screens */
+    }
+    .topbar {
+        padding: 0 15px;
+    }
+    .admin-info span {
+        font-size: 0.9em;
+    }
+    .admin-avatar {
+        width: 35px;
+        height: 35px;
+    }
+    .content-sections {
+        padding: 15px;
+    }
+    .section-heading {
+        font-size: 1.6em;
+        margin-bottom: 20px;
+    }
+    .stat-number {
+        font-size: 2em;
+    }
+    .stat-label {
+        font-size: 0.85em;
+    }
+    .recent-activity-block h3 {
+        font-size: 1.2em;
+    }
+    .activity-item {
+        font-size: 0.85em;
+    }
+    .data-table {
+        min-width: 500px; /* Further reduce min-width for very small screens if needed */
+    }
+}
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent dark background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top of everything else */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth fade-in/out */
+}
+
+/* When the modal is active (shown by JavaScript) */
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* General styling for the modal content box */
+.modal-content {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    width: 90%; /* Take up 90% width on smaller screens */
+    max-width: 500px; /* Default max-width for most modals (e.g., logout, message) */
+    transform: translateY(-20px); /* Start slightly above center for animation */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    position: relative; /* Needed for absolute positioning of close button */
+}
+
+/* Animation for modal content when active */
+.modal-overlay.active .modal-content {
+    transform: translateY(0); /* Slide into center */
+    opacity: 1;
+}
+
+/* Styling for modal headings (e.g., "Confirm Logout", "Edit Course") */
+.modal-content h3 {
+    color: var(--color-navy);
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.6em;
+    text-align: center;
+}
+
+/* Styling for modal paragraphs (e.g., confirmation messages) */
+.modal-content p {
+    color: var(--color-dark-gray);
+    line-height: 1.6;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* Styling for the close button (X icon) inside the modal */
+.close-modal-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5em; /* Size of the Remix Icon */
+    color: var(--color-gray);
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%; /* Make it circular */
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.close-modal-btn:hover {
+    background-color: var(--color-light-gray);
+    color: var(--color-dark-gray);
+}
+
+/* Container for action buttons at the bottom of modals (e.g., "Cancel", "Yes, Logout") */
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Space between buttons */
+    margin-top: 20px;
+}
+
+/* --- Specific Modal Styles --- */
+
+/* Logout Modal: Slightly smaller max-width */
+.logout-modal-content {
+    max-width: 400px;
+}
+
+/* Generic Message Modal (for success/error messages) */
+.message-modal-content {
+    max-width: 400px;
+}
+
+/* Border and text color for success messages */
+.modal-overlay.success .message-modal-content {
+    border: 2px solid var(--color-green);
+}
+
+.modal-overlay.success .message-modal-content h3 {
+    color: var(--color-green);
+}
+
+/* Border and text color for error messages */
+.modal-overlay.error .message-modal-content {
+    border: 2px solid var(--color-red);
+}
+
+.modal-overlay.error .message-modal-content h3 {
+    color: var(--color-red);
+}
+
+/* Edit Course Modal: Wider to accommodate the extensive form fields */
+.edit-course-modal-content {
+    max-width: 800px; /* Significantly wider */
+    padding: 35px;
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    max-height: 90vh; /* Limit height to 90% of viewport height */
+}
+
+/* Styling for the form inside the edit modal */
+.edit-course-modal-content .admin-form {
+    display: flex; /* Changed to flex for better control on small screens */
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Styling for section headings within the form (e.g., "Course Metadata", "What You'll Learn") */
+.edit-course-modal-content .form-section-heading {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--color-navy);
+    margin-top: 25px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--color-light-gray-darker);
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Align text and button */
+}
+
+/* Container for dynamic lists (What You'll Learn, Prerequisites, etc.) */
+.edit-course-modal-content .dynamic-list-container,
+.edit-course-modal-content .dynamic-curriculum-container {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px dashed var(--color-light-gray-darker); /* Dashed border for visual separation */
+    border-radius: 8px;
+    background-color: var(--color-light-gray);
+}
+
+/* Individual items within dynamic lists */
+.edit-course-modal-content .dynamic-list-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    background-color: var(--color-white);
+    padding: 8px 12px;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.edit-course-modal-content .dynamic-list-item:last-child {
+    margin-bottom: 0; /* No margin for the last item */
+}
+
+/* Inputs within dynamic list items */
+.edit-course-modal-content .dynamic-list-item input[type="text"],
+.edit-course-modal-content .dynamic-list-item input[type="url"] {
+    flex-grow: 1; /* Take up available space */
+    padding: 8px;
+    border: 1px solid var(--color-light-gray-darker);
+    border-radius: 5px;
+}
+
+/* Specific layout for download item fields */
+.edit-course-modal-content .download-item-fields {
+    display: grid; /* Use grid for better alignment of multiple inputs */
+    grid-template-columns: 1fr 1fr auto auto; /* Name, URL, Icon, Button */
+    gap: 10px;
+}
+
+/* Styling for a dynamic curriculum module */
+.edit-course-modal-content .dynamic-module-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-light-gray-darker);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Header within a module (title and remove button) */
+.edit-course-modal-content .dynamic-module-item .module-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.edit-course-modal-content .dynamic-module-item .module-header input {
+    flex-grow: 1;
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 8px;
+    border: 1px solid var(--color-light-gray-darker);
+    border-radius: 5px;
+}
+
+/* Container for lessons within a module */
+.edit-course-modal-content .module-lessons-container h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1em;
+    color: var(--color-dark-gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit-course-modal-content .lessons-list {
+    padding-left: 15px;
+    border-left: 2px solid var(--color-light-gray-darker); /* Visual indicator for nested lessons */
+}
+
+/* Individual lesson items */
+.edit-course-modal-content .dynamic-lesson-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    background-color: var(--color-light-gray);
+    padding: 6px 10px;
+    border-radius: 5px;
+}
+
+.edit-course-modal-content .dynamic-lesson-item input[type="text"] {
+    flex-grow: 1;
+    padding: 6px;
+    border: 1px solid var(--color-light-gray-darker);
+    border-radius: 4px;
+}
+
+.edit-course-modal-content .dynamic-lesson-item .checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap; /* Prevent wrapping of checkbox and label */
+}
+
+/* Delete Confirmation Modal: Specific styling for its content */
+.delete-confirm-modal-content {
+    max-width: 450px;
+}
+
+.delete-confirm-modal-content p {
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.delete-confirm-modal-content #deleteCourseTitle {
+    font-weight: 700;
+    color: var(--color-red); /* Highlight the course title in red */
+}
+
+/* --- Responsive Adjustments for Modals --- */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%; /* Take more width on smaller screens */
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .modal-content h3 {
+        font-size: 1.4em;
+        margin-bottom: 15px;
+    }
+
+    .modal-content p {
+        font-size: 0.95em;
+        margin-bottom: 20px;
+    }
+
+    .close-modal-btn {
+        font-size: 1.3em;
+        top: 10px;
+        right: 10px;
+    }
+
+    .modal-actions {
+        flex-direction: column; /* Stack buttons vertically on small screens */
+        gap: 10px;
+    }
+
+    .modal-actions .btn {
+        width: 100%; /* Make buttons full width */
+    }
+
+    .edit-course-modal-content {
+        padding: 20px;
+        max-height: 95vh; /* Allow more height for scrolling on small screens */
+    }
+
+    .edit-course-modal-content .form-section-heading {
+        flex-direction: column; /* Stack heading and button */
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 1.1em;
+    }
+
+    .edit-course-modal-content .dynamic-list-item,
+    .edit-course-modal-content .dynamic-lesson-item {
+        flex-direction: column; /* Stack inputs and button vertically */
+        align-items: stretch; /* Stretch items to fill width */
+        gap: 8px;
+        padding: 10px;
+    }
+
+    .edit-course-modal-content .dynamic-list-item input,
+    .edit-course-modal-content .dynamic-lesson-item input {
+        width: 100%; /* Ensure inputs take full width */
+    }
+
+    .edit-course-modal-content .dynamic-list-item .btn-small,
+    .edit-course-modal-content .dynamic-lesson-item .btn-small {
+        width: 100%; /* Make remove buttons full width */
+        margin-top: 5px;
+    }
+
+    .edit-course-modal-content .download-item-fields {
+        grid-template-columns: 1fr; /* Stack download fields vertically */
+    }
+}
+/* --- User Details Modal Styles --- */
+.view-user-modal-content {
+    max-width: 600px; /* Wider than simple message modals */
+    padding: 30px;
+}
+
+.user-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns for label and value */
+    gap: 15px 25px; /* Row and column gap */
+    margin-top: 20px;
+    font-size: 1em;
+    color: var(--color-dark-blue);
+}
+
+.user-details-grid strong {
+    color: var(--color-navy);
+    font-weight: 600;
+}
+
+/* --- Edit User Modal Styles --- */
+.edit-user-modal-content {
+    max-width: 500px;
+    padding: 30px;
+}
+
+.edit-user-modal-content h3 {
+    margin-bottom: 25px;
+}
+
+.edit-user-modal-content .admin-form {
+    max-width: none; /* Override max-width from general admin-form */
+    margin: 0;
+    gap: 20px;
+}
+
+/* Status Badges for User Table */
+.data-table .status.student {
+    background-color: #e0f7fa; /* Light cyan */
+    color: #00796b; /* Darker teal */
+}
+
+.data-table .status.affiliate {
+    background-color: #fff3e0; /* Light orange */
+    color: #e65100; /* Darker orange */
+}
+
+.data-table .status.admin {
+    background-color: #ffebee; /* Light red */
+    color: #c62828; /* Darker red */
+}
+
+.data-table .status.status-active {
+    background-color: #e8f5e9; /* Light green */
+    color: #2e7d32; /* Darker green */
+}
+
+.data-table .status.status-suspended {
+    background-color: #fbe9e7; /* Light red */
+    color: #d84315; /* Darker red */
+}
+
+/* Responsive adjustments for user modals */
+@media (max-width: 768px) {
+    .view-user-modal-content, .edit-user-modal-content {
+        padding: 20px;
+    }
+    .user-details-grid {
+        grid-template-columns: 1fr; /* Stack details vertically on mobile */
+        gap: 10px;
+    }
+}
+/* Style for lesson content textarea */
+.dynamic-lesson-item .lesson-content-textarea {
+    width: 100%;
+    min-height: 80px; /* Give it some initial height */
+    padding: 10px;
+    border: 1px solid var(--color-gray);
+    border-radius: 5px;
+    font-family: var(--font-primary);
+    font-size: 0.95em;
+    margin-top: 10px; /* Space from other inputs */
+    resize: vertical; /* Allow vertical resizing */
+}
+
+.dynamic-lesson-item .lesson-content-textarea:focus {
+    border-color: var(--color-teal);
+    box-shadow: 0 0 0 3px rgba(14, 210, 247, 0.2);
+    outline: none;
+}
+/* --- Affiliate Modals (New Styles) --- */
+
+/* View Affiliate Modal */
+.view-affiliate-modal-content {
+    max-width: 600px;
+    padding: 30px;
+}
+
+.affiliate-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px 20px;
+    margin-bottom: 25px;
+    font-size: 0.95em;
+}
+
+.affiliate-details-grid strong {
+    color: #333;
+}
+
+.affiliate-details-grid span {
+    color: #555;
+    font-weight: 500;
+}
+
+.payout-history-block {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.payout-history-block h4 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.payout-history-block ul {
+    list-style: none;
+    padding: 0;
+    max-height: 150px; /* Limit height for long lists */
+    overflow-y: auto; /* Enable scrolling */
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.payout-history-block li {
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.payout-history-block li:last-child {
+    border-bottom: none;
+}
+
+/* Mark Paid Confirmation Modal */
+.mark-paid-confirm-modal-content {
+    max-width: 450px;
+    padding: 30px;
+    text-align: center;
+}
+
+.mark-paid-confirm-modal-content p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    color: #444;
+}
+
+.mark-paid-confirm-modal-content .form-group {
+    margin-bottom: 25px;
+}
+
+.mark-paid-confirm-modal-content .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.mark-paid-confirm-modal-content .form-group input[type="number"] {
+    width: calc(100% - 20px);
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1.1em;
+    text-align: center;
+    -moz-appearance: textfield; /* Firefox number input arrows */
+}
+
+/* Hide number input arrows for Chrome, Safari, Edge */
+.mark-paid-confirm-modal-content .form-group input[type="number"]::-webkit-outer-spin-button,
+.mark-paid-confirm-modal-content .form-group input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.mark-paid-confirm-modal-content .modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Status classes for tables */
+.status-pending {
+    background-color: #fff3cd; /* Light yellow */
+    color: #856404; /* Dark yellow */
+}
+.status-active {
+    background-color: #d4edda; /* Light green */
+    color: #155724; /* Dark green */
+}
+.status-suspended {
+    background-color: #f8d7da; /* Light red */
+    color: #721c24; /* Dark red */
+}
+.status-free {
+    background-color: #e0f7fa; /* Light blue */
+    color: #007bff; /* Blue */
+}
+.status-premium {
+    background-color: #e6e6fa; /* Light purple */
+    color: #6f42c1; /* Purple */
+}
+
+/* --- Manage Pricing Section Styles (NEW) --- */
+#manage-pricing .card {
+    max-width: 600px; /* Constrain width for better form layout */
+    margin: 0 auto;
+    padding: 30px;
+}
+
+#manage-pricing .form-group {
+    margin-bottom: 25px;
+}
+
+#manage-pricing label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--color-navy);
+    font-size: 1.1em;
+}
+
+#manage-pricing input[type="number"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--color-gray);
+    border-radius: 8px;
+    font-size: 1.1em;
+    color: var(--color-dark-blue);
+    background-color: var(--color-light-gray);
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#manage-pricing input[type="number"]:focus {
+    border-color: var(--color-teal);
+    box-shadow: 0 0 0 3px rgba(14, 210, 247, 0.2);
+}
+
+#manage-pricing .btn-primary {
+    width: auto; /* Allow button to size naturally */
+    padding: 12px 30px;
+    font-size: 1.1em;
+}
+@media (max-width: 992px) {
+     /* Responsive adjustments for Manage Pricing */
+    #manage-pricing .card {
+        padding: 25px;
+    }
+    #manage-pricing label {
+        font-size: 1em;
+    }
+    #manage-pricing input[type="number"] {
+        padding: 10px 12px;
+        font-size: 1em;
+    }
+    #manage-pricing .btn-primary {
+        padding: 10px 25px;
+        font-size: 1em;
+    }
+}
+@media (max-width: 768px) {
+    /* Responsive adjustments for Manage Pricing */
+    #manage-pricing .card {
+        padding: 20px;
+    }
+    #manage-pricing .btn-primary {
+        width: 100%; /* Full width button on very small screens */
+    }
+}

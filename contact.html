@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindStack - Contact Us</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo/mindstack_logo__1_-removebg-preview.png" type="image/png">
+    
+    <!-- Contact Page Specific Stylesheet -->
+    <link rel="stylesheet" href="assets/css/contact.css">
+    
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+    
+    <!-- Remix Icons (for icons) -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+</head>
+<body>
+    <!-- Header (Content that would come from includes/header.html) -->
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo/mindstack_logo__1_-removebg-preview.png" alt="MindStack Logo">
+                </a>
+            </div>
+
+            <nav class="main-nav">
+                <div class="close-menu-btn" id="closeMenuBtn">
+                    <i class="ri-close-line"></i>
+                </div>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="affiliate.html" >Affiliates</a></li>
+                    <li><a href="contact.html"class="active">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="login.html" class="btn btn-secondary">Login</a>
+                <a href="signup.html" class="btn btn-primary">Start for Free</a>
+            </div>
+
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1>Get in Touch With MindStack</h1>
+            <p class="hero-subtext">We’re here to help. Whether it’s a course question or a business inquiry — reach out.</p>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section section-padding"> <!-- Added section-padding class -->
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p><i class="ri-mail-line"></i> Email: <a href="mailto:support@mindstack.com">support@mindstack.com</a></p>
+                    <p><i class="ri-phone-line"></i> Phone: +234 801 234 5678</p>
+                    <p><i class="ri-map-pin-line"></i> Address: 123 Learning Lane, Knowledge City, Nigeria</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="ri-twitter-fill"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="ri-instagram-fill"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form-block">
+                    <h3>Send Us a Message</h3>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" name="fullName" placeholder="Your Full Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="emailAddress">Email Address</label>
+                            <input type="email" id="emailAddress" name="emailAddress" placeholder="your.email@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" placeholder="Subject of your inquiry" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Your message..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary submit-btn">Send Message</button>
+                        <div id="contactFormMessage" class="message-container"></div> <!-- Message display area -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Other Contact Options Section -->
+    <section class="other-contact-options-section">
+        <div class="container">
+            <h2 class="section-title text-center">Other Ways to Reach Us</h2>
+            <div class="contact-options-grid">
+                <div class="contact-option-card">
+                    <i class="ri-mail-line contact-icon"></i>
+                    <h3>Email Us</h3>
+                    <p>For general inquiries or support.</p>
+                    <a href="mailto:support@mindstack.com">support@mindstack.com</a>
+                </div>
+                <div class="contact-option-card">
+                    <i class="ri-phone-line contact-icon"></i>
+                    <h3>Call Us</h3>
+                    <p>Monday - Friday, 9 AM - 5 PM WAT.</p>
+                    <a href="tel:+2349012345678">+234 901 234 5678</a>
+                </div>
+                <div class="contact-option-card">
+                    <i class="ri-map-pin-line contact-icon"></i>
+                    <h3>Our Location</h3>
+                    <p>Remote - Global (Head Office: Lagos, Nigeria)</p>
+                    <span>123 Learning Street, Lagos, Nigeria</span>
+                </div>
+                <div class="contact-option-card">
+                    <i class="ri-share-fill contact-icon"></i>
+                    <h3>Connect on Socials</h3>
+                    <p>Follow us for updates and community.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="ri-twitter-fill"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="ri-instagram-fill"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Google Map Section (Optional) -->
+    <section class="google-map-section">
+        <div class="container">
+            <h2 class="section-title text-center">Find Us on the Map</h2>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.31346740683!2d3.359800674895692!3d6.606352993393437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b9283f5000001%3A0x8e8e8e8e8e8e8e8e!2sLagos!5e0!3m2!1sen!2sng!4v1700000000000!5m2!1sen!2sng" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Help / FAQ Links Section -->
+    <section class="quick-help-section">
+        <div class="container">
+            <h2 class="section-title text-center">Quick Help & FAQs</h2>
+            <div class="faq-accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        How do I access my courses after enrollment?
+                        <i class="ri-arrow-down-s-line accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Once enrolled, you can access all your courses from your personalized dashboard. Simply log in and navigate to the "My Courses" section.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        I'm having trouble logging in. What should I do?
+                        <i class="ri-arrow-down-s-line accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>If you're experiencing login issues, please try resetting your password. If the problem persists, contact our support team immediately.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        What is your refund policy?
+                        <i class="ri-arrow-down-s-line accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Our refund policy varies by course type and duration. Please refer to our Terms of Service or contact support for specific details regarding refunds.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section class="newsletter-signup section-padding bg-light-gray">
+        <div class="container text-center">
+            <h2>Stay Updated with MindStack</h2>
+            <p>Get the latest course updates, special offers, and learning tips directly in your inbox.</p>
+            <form id="newsletterForm" class="newsletter-form">
+                <input type="email" id="newsletterEmail" placeholder="Enter your email address" required>
+                <button type="submit" class="btn btn-primary">Subscribe for updates</button>
+                <div id="newsletterMessage" class="newsletter-message"></div> 
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer (Content that would come from includes/footer.html) -->
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <img src="assets/images/logo/mindstack_logo__1_-removebg-preview.png" alt="MindStack Logo">
+            </div>
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                </ul>
+            </nav>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
+                <a href="#" aria-label="Twitter"><i class="ri-twitter-fill"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
+                <a href="#" aria-label="Instagram"><i class="ri-instagram-fill"></i></a>
+            </div>
+            <p class="copyright">&copy; 2025 MindStack. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Generic Message Modal (NEW) -->
+    <div class="modal-overlay" id="messageModalOverlay">
+        <div class="modal-content message-modal-content">
+            <button class="close-modal-btn ri-close-line" id="closeMessageModalBtnTop"></button>
+            <h3 id="messageModalTitle"></h3>
+            <p id="messageModalText"></p>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="messageModalCloseBtn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Specific JavaScript -->
+    <script type="module" src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/contact.js"></script> <!-- Changed to type="module" -->
+</body>
+</html>

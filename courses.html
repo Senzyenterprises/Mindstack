@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindStack - All Courses</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo/mindstack_logo__1_-removebg-preview.png" type="image/png">
+    
+    <!-- Courses Page Specific Stylesheet -->
+    <link rel="stylesheet" href="assets/css/courses.css">
+    
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+    
+    <!-- Remix Icons (for icons) -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+</head>
+<body>
+     <!-- Header (Content that would come from includes/header.html) -->
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <!-- Corrected path for header logo -->
+                    <img src="assets/images/logo/mindstack_logo__1_-removebg-preview.png" alt="MindStack Logo">
+                </a>
+            </div>
+
+            <nav class="main-nav">
+                <div class="close-menu-btn" id="closeMenuBtn">
+                    <i class="ri-close-line"></i>
+                </div>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="courses.html" class="active">Courses</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="affiliate.html">Affiliates</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="login.html" class="btn btn-secondary">Login</a>
+                <a href="signup.html" class="btn btn-primary">Start for Free</a>
+            </div>
+
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search and Filter Bar -->
+    <section class="search-filter-section">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for courses..." class="search-input"> <!-- Added id="searchInput" -->
+            <i class="ri-search-line search-icon"></i>
+        </div>
+        <div class="filters">
+            <select id="typeFilter" class="filter-dropdown"> <!-- Added id="typeFilter" -->
+                <option value="all">All Courses</option>
+                <option value="free">Free Courses</option>
+                <option value="premium">Premium Courses</option>
+            </select>
+            <select id="categoryFilter" class="filter-dropdown"> <!-- Added id="categoryFilter" -->
+                <option value="all-categories">All Categories</option>
+                <option value="design">Design</option>
+                <option value="business">Business</option>
+                <option value="coding">Coding</option>
+                <option value="marketing">Marketing</option>
+            </select>
+            <select id="levelFilter" class="filter-dropdown"> <!-- ADDED THIS NEW DROPDOWN -->
+                <option value="all">All Levels</option>
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+            </select>
+        </div>
+    </section>
+
+
+    <!-- Course Grid Display -->
+   <main class="course-grid-section">
+        <h2>All Courses</h2>
+        <!-- This is the container where courses will be dynamically loaded -->
+        <div class="course-grid" id="courseGrid">
+            <!-- ALL HARDCODED COURSE CARDS GO HERE (REMOVE THEM!) -->
+            <!-- They will be populated by courses.js from Firebase -->
+        </div>
+
+        <!-- Message for no results -->
+        <div id="noResultsMessage" style="display: none; text-align: center; margin-top: 40px; font-size: 1.2em; color: var(--color-dark-gray);">
+            No courses found matching your criteria.
+        </div>
+
+        <div class="load-more-container">
+            <button class="btn btn-secondary load-more-btn" id="loadMoreBtn">Load More Courses</button>
+        </div>
+    </main>
+
+      <!-- Newsletter Signup -->
+ <section class="newsletter-signup section-padding bg-light-gray">
+    <div class="container text-center">
+        <h2>Stay Updated with MindStack</h2>
+        <p>Get the latest course updates, special offers, and learning tips directly in your inbox.</p>
+        <form id="newsletterForm" class="newsletter-form"> <!-- ADDED id="newsletterForm" -->
+            <input type="email" id="newsletterEmail" placeholder="Enter your email address" required> <!-- ADDED id="newsletterEmail" -->
+            <button type="submit" class="btn btn-primary">Subscribe for updates</button>
+            <div id="newsletterMessage" class="newsletter-message"></div> 
+        </form>
+    </div>
+</section>
+
+    <!-- Footer (Content that would come from includes/footer.html) -->
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <!-- Corrected path for footer logo -->
+                <img src="assets/images/logo/mindstack_logo__1_-removebg-preview.png" alt="MindStack Logo">
+            </div>
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                </ul>
+            </nav>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
+                <a href="#" aria-label="Twitter"><i class="ri-twitter-fill"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
+                <a href="#" aria-label="Instagram"><i class="ri-instagram-fill"></i></a>
+            </div>
+            <p class="copyright">&copy; 2025 MindStack. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Courses Page Specific JavaScript -->
+     <script type="module" src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/courses.js"></script>
+</body>
+</html>

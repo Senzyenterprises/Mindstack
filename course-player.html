@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindStack - Course Player</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo/mindstack_logo__1_-removebg-preview.png" type="image/png">
+    
+    <!-- Course Player Specific Stylesheet -->
+    <link rel="stylesheet" href="assets/css/course-player.css">
+    
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+    
+    <!-- Remix Icons (for icons) -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="course-player-container">
+        <!-- Sidebar: Course Curriculum -->
+        <aside class="curriculum-sidebar" id="curriculumSidebar">
+            <div class="sidebar-header">
+                <a href="dashboard.html" class="back-link"><i class="ri-arrow-left-line"></i> Back to Dashboard</a>
+                <h2 id="sidebarCourseTitle">Loading Course...</h2>
+                <button class="close-sidebar-btn ri-close-line" id="closeSidebarBtn"></button>
+            </div>
+            <nav class="curriculum-nav">
+                <div id="curriculumList">
+                    <!-- Modules and lessons will be dynamically loaded here -->
+                    <p class="loading-message">Loading curriculum...</p>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content: Video Player & Lesson Content -->
+        <main class="main-player-content">
+            <header class="player-header">
+                <button class="hamburger-menu ri-menu-line" id="hamburgerMenu"></button>
+                <h1 id="currentLessonTitle">Loading Lesson...</h1>
+            </header>
+
+            <div class="video-player-wrapper">
+                <iframe id="lessonVideoEmbed" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <div class="lesson-actions">
+                <button class="btn btn-secondary" id="markCompleteBtn"><i class="ri-check-line"></i> Mark Complete</button>
+                <button class="btn btn-primary" id="nextLessonBtn">Next Lesson <i class="ri-arrow-right-line"></i></button>
+            </div>
+
+            <section class="lesson-details-section">
+                <h2>Lesson Details</h2>
+                <div id="lessonContent">
+                    <p>Select a lesson from the sidebar to view its content.</p>
+                </div>
+            </section>
+
+            <!-- Downloads Section (Optional, if specific to lesson or course) -->
+            <section class="downloads-section" id="downloadsSection" style="display: none;">
+                <h2>Lesson Downloads</h2>
+                <ul id="downloadsList">
+                    <!-- Dynamic downloads -->
+                </ul>
+                <div id="noDownloadsMessage" class="message-container" style="display: none;">No downloadable resources for this lesson.</div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Generic Message Modal (for user feedback) -->
+    <div class="modal-overlay" id="messageModalOverlay">
+        <div class="modal-content message-modal-content">
+            <button class="close-modal-btn ri-close-line" id="closeMessageModalBtn"></button>
+            <h3 id="messageModalTitle"></h3>
+            <p id="messageModalText"></p>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="messageModalCloseBtn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Course Player Specific JavaScript File -->
+    <script type="module" src="assets/js/course-player.js"></script>
+</body>
+</html>

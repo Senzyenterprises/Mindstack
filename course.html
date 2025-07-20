@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindStack - Course Title</title> <!-- Title will be updated by JS -->
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo/mindstack_logo__1_-removebg-preview.png" type="image/png">
+    
+    <!-- Course Page Specific Stylesheet -->
+    <link rel="stylesheet" href="assets/css/course.css">
+    
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+    
+    <!-- Remix Icons (for icons) -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+</head>
+<body>
+    <!-- Header (Content that would come from includes/header.html) -->
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo/mindstack_logo__1_-removebg-preview.png" alt="MindStack Logo">
+                </a>
+            </div>
+
+            <nav class="main-nav" id="mainNav"> <!-- Added ID for mobile menu -->
+                <div class="close-menu-btn" id="closeMenuBtn">
+                    <i class="ri-close-line"></i>
+                </div>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="courses.html" class="active">Courses</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="affiliate.html">Affiliates</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="login.html" class="btn btn-secondary">Login</a>
+                <a href="signup.html" class="btn btn-primary">Start for Free</a>
+            </div>
+
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Course Hero Section (Video & Main Info) -->
+    <section class="course-hero-section">
+        <div class="container hero-content">
+            <div class="course-header-info">
+                <span class="course-category-tag" id="courseCategoryTag"></span> <!-- Dynamic -->
+                <h1 class="course-main-title" id="courseMainTitle"></h1> <!-- Dynamic -->
+                <span class="course-access-badge" id="courseAccessBadge"></span> <!-- Dynamic -->
+            </div>
+
+            <div class="video-player-wrapper">
+                <!-- Video Player Container -->
+                <div class="course-video-player" id="courseVideoPlayer">
+                    <!-- Video iframe will be dynamically inserted here -->
+                </div>
+                <!-- Locked Overlay -->
+                <div class="locked-overlay" id="lockedOverlay">
+                    <div class="locked-content">
+                        <i class="ri-lock-fill lock-icon"></i>
+                        <p class="lock-message" id="lockMessage"></p> <!-- Dynamic -->
+                        <button class="btn btn-primary access-course-btn" id="accessCourseBtn"></button> <!-- Dynamic -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Wrapper (Description & Lessons) and Sidebar -->
+    <div class="course-content-layout container">
+        <main class="course-main-content">
+            <!-- Course Description Section -->
+            <section class="course-details-section">
+                <h2>Course Description</h2>
+                <div id="courseLongDescription"></div> <!-- Dynamic -->
+                
+                <h3>What You'll Learn:</h3>
+                <ul id="whatYoullLearnList"></ul> <!-- Dynamic -->
+
+                <h3>Who This Course Is For:</h3>
+                <ul id="whoThisIsForList"></ul> <!-- Dynamic -->
+
+                <h3>Prerequisites:</h3>
+                <ul id="prerequisitesList"></ul> <!-- Dynamic -->
+
+                <h3>Estimated Time to Complete:</h3>
+                <p id="estimatedTime"></p> <!-- Dynamic -->
+            </section>
+
+            <!-- Lesson List Section -->
+            <section class="course-lessons-section">
+                <h2>Course Curriculum</h2>
+                <div class="lesson-accordion" id="lessonAccordion">
+                    <!-- Modules and lessons will be dynamically inserted here -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Course Sidebar -->
+        <aside class="course-sidebar-section">
+            <button class="toggle-sidebar-btn ri-arrow-left-s-line" id="toggleSidebarBtn"></button>
+            <div class="sidebar-content">
+                <div class="sidebar-block instructor-info">
+                    <h3>Instructor</h3>
+                    <div class="instructor-details">
+                        <img src="" alt="Instructor Avatar" class="instructor-avatar" id="instructorAvatar"> <!-- Dynamic -->
+                        <p class="instructor-name" id="instructorName"></p> <!-- Dynamic -->
+                        <p class="instructor-bio" id="instructorBio"></p> <!-- Dynamic -->
+                    </div>
+                </div>
+
+                <div class="sidebar-block course-meta">
+                    <h3>Course Details</h3>
+                    <ul>
+                        <li><i class="ri-time-line"></i> <strong>Duration:</strong> <span id="courseDuration"></span></li> <!-- Dynamic -->
+                        <li><i class="ri-bar-chart-line"></i> <strong>Level:</strong> <span id="courseLevel"></span></li> <!-- Dynamic -->
+                        <li><i class="ri-book-open-line"></i> <strong>Lessons:</strong> <span id="lessonsCount"></span></li> <!-- Dynamic -->
+                    </ul>
+                </div>
+
+                <div class="sidebar-block what-you-learn">
+                    <h3>What You'll Learn</h3>
+                    <ul id="sidebarWhatYoullLearnList"></ul> <!-- Dynamic -->
+                </div>
+
+                <div class="sidebar-block downloads">
+                    <h3>Downloads</h3>
+                    <ul id="downloadsList"></ul> <!-- Dynamic -->
+                </div>
+
+                <div class="sidebar-block share-course">
+                    <h3>Share This Course</h3>
+                    <div class="social-share-icons">
+                        <a href="#" class="share-icon"><i class="ri-facebook-fill"></i></a>
+                        <a href="#" class="share-icon"><i class="ri-twitter-fill"></i></a>
+                        <a href="#" class="share-icon"><i class="ri-linkedin-fill"></i></a>
+                        <a href="#" class="share-icon"><i class="ri-instagram-fill"></i></a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Newsletter Signup -->
+    <section class="newsletter-signup section-padding bg-light-gray">
+        <div class="container text-center">
+            <h2>Stay Updated with MindStack</h2>
+            <p>Get the latest course updates, special offers, and learning tips directly in your inbox.</p>
+            <form id="newsletterForm" class="newsletter-form">
+                <input type="email" id="newsletterEmail" placeholder="Enter your email address" required>
+                <button type="submit" class="btn btn-primary">Subscribe for updates</button>
+                <div id="newsletterMessage" class="newsletter-message"></div> 
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer (Content that would come from includes/footer.html) -->
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <img src="assets/images/logo/mindstack_logo__1_-removebg-preview.png" alt="MindStack Logo">
+            </div>
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                </ul>
+            </nav>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
+                <a href="#" aria-label="Twitter"><i class="ri-twitter-fill"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
+                <a href="#" aria-label="Instagram"><i class="ri-instagram-fill"></i></a>
+            </div>
+            <p class="copyright">&copy; 2025 MindStack. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- Course Page Specific JavaScript -->
+    <!-- Removed main.js here, course.js will handle all dynamic content for this page -->
+    <script type="module" src="assets/js/course.js"></script> 
+</body>
+</html>

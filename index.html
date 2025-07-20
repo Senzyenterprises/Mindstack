@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindStack - Upgrade Your Skills, One Stack at a Time.</title>
+
+    <!-- Favicon - Using the correct path you provided -->
+    <link rel="icon" href="assets/images/logo/mindstack_logo__1_-removebg-preview.png" type="image/png">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Google Fonts: Poppins (or Montserrat/Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Remix Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+</head>
+<body>
+    <!-- Header (Content that would come from includes/header.html) -->
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <!-- Corrected path for header logo -->
+                    <img src="assets/images/logo/mindstack_logo__1_-removebg-preview.png" alt="MindStack Logo">
+                </a>
+            </div>
+
+            <nav class="main-nav">
+                <div class="close-menu-btn" id="closeMenuBtn">
+                    <i class="ri-close-line"></i>
+                </div>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="affiliate.html">Affiliates</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="login.html" class="btn btn-secondary">Login</a>
+                <a href="signup.html" class="btn btn-primary">Start for Free</a>
+            </div>
+
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="assets/videos/hero-section.mp4" type="video/mp4">
+            <img src="assets/images/hero-fallback.jpg" alt="MindStack Background" class="hero-fallback-img">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
+            <h1>Upgrade Your Skills, One Stack at a Time.</h1>
+            <p>Access free & premium video courses from industry experts.</p>
+            <a href="signup.html" class="btn btn-primary">Start Learning for Free</a>
+        </div>
+    </section>
+
+    <!-- Why Choose MindStack? Section -->
+    <section class="why-choose-us section-padding">
+        <div class="container">
+            <h2>Why Choose MindStack?</h2>
+            <div class="why-choose-grid">
+                <div class="why-choose-card">
+                    <i class="ri-globe-line icon"></i>
+                    <h3>Learn from Anywhere</h3>
+                    <p>Access high-quality courses on any device, anytime, anywhere.</p>
+                </div>
+                <div class="why-choose-card">
+                    <i class="ri-award-line icon"></i>
+                    <h3>Free & Premium Tiers</h3>
+                    <p>Start with free courses or unlock full access with premium plans.</p>
+                </div>
+                <div class="why-choose-card">
+                    <i class="ri-time-line icon"></i>
+                    <h3>Lifetime Access</h3>
+                    <p>Enroll once and enjoy lifetime access to your purchased courses.</p>
+                </div>
+                <div class="why-choose-card">
+                    <i class="ri-user-star-line icon"></i>
+                    <h3>Trusted by Learners</h3>
+                    <p>Join over 1,000+ satisfied learners building their future.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Featured Courses Section -->
+    <section class="featured-courses section-padding bg-light-gray">
+        <div class="container">
+            <h2>Featured Courses</h2>
+            <div class="course-grid" id="featuredCourseGrid"> <!-- ADDED id="featuredCourseGrid" -->
+                <!-- ALL HARDCODED FEATURED COURSE CARDS GO HERE (REMOVE THEM!) -->
+                <!-- They will be populated by main.js from Firebase -->
+            </div>
+            <div class="text-center mt-40">
+                <a href="courses.html" class="btn btn-secondary">See All Courses</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing / Subscription Teaser Section -->
+    <section class="pricing-teaser section-padding">
+        <div class="container">
+            <h2>Start Learning Today</h2>
+            <p class="section-description">Choose a plan that fits your learning journey.</p>
+            <div class="pricing-teaser-grid">
+                <div class="plan-card">
+                    <h3>Free Plan</h3>
+                    <p class="price">Free</p>
+                    <ul>
+                        <li><i class="ri-check-line"></i> Access to 3 free courses</li>
+                        <li><i class="ri-check-line"></i> Basic learning resources</li>
+                        <li><i class="ri-close-line"></i> No course certificates</li>
+                        <li><i class="ri-close-line"></i> Limited support</li>
+                    </ul>
+                    <a href="signup.html" class="btn btn-secondary">Get Started Free</a>
+                </div>
+                <div class="plan-card featured-plan">
+                    <h3>Premium Plan</h3>
+                    <p class="price">$19/month</p>
+                    <ul>
+                        <li><i class="ri-check-line"></i> Full access to all courses</li>
+                        <li><i class="ri-check-line"></i> Quizzes & assignments</li>
+                        <li><i class="ri-check-line"></i> Downloadable resources</li>
+                        <li><i class="ri-check-line"></i> Course certificates</li>
+                        <li><i class="ri-check-line"></i> Priority support</li>
+                    </ul>
+                    <a href="pricing.html" class="btn btn-primary">View Premium Plans</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Affiliate Promotion Section -->
+    <section class="affiliate-promo section-padding bg-dark-blue text-white">
+        <div class="container text-center">
+            <h2>Promote & Earn</h2>
+            <p>Recommend MindStack and earn generous commissions on every premium signup.</p>
+            <a href="affiliate.html" class="btn btn-primary">Join Affiliate Program</a>
+        </div>
+    </section>
+
+    <!-- Testimonials / Reviews (Optional) -->
+    <section class="testimonials section-padding">
+        <div class="container">
+            <h2>What Our Learners Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <img src="assets/images/Avatars/man_avatar.png" alt="User Avatar" class="avatar">
+                    <p>"MindStack has revolutionized my learning experience. The content is top-notch and easy to follow!"</p>
+                    <cite>- Alex P.</cite>
+                </div>
+                <div class="testimonial-card">
+                    <img src="assets/images/Avatars/woman_avatar.png" alt="User Avatar" class="avatar">
+                    <p>"The premium plan is worth every penny. I've gained so many valuable skills in just a few months."</p>
+                    <cite>- Maria G.</cite>
+                </div>
+                <div class="testimonial-card">
+                    <img src="assets/images/Avatars/man_avatar.png" alt="User Avatar" class="avatar">
+                    <p>"Finally, a platform that truly delivers on its promise. Highly recommend MindStack to everyone."</p>
+                    <cite>- David L.</cite>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Signup -->
+ <section class="newsletter-signup section-padding bg-light-gray">
+    <div class="container text-center">
+        <h2>Stay Updated with MindStack</h2>
+        <p>Get the latest course updates, special offers, and learning tips directly in your inbox.</p>
+        <form id="newsletterForm" class="newsletter-form"> <!-- ADDED id="newsletterForm" -->
+            <input type="email" id="newsletterEmail" placeholder="Enter your email address" required> <!-- ADDED id="newsletterEmail" -->
+            <button type="submit" class="btn btn-primary">Subscribe for updates</button>
+            <div id="newsletterMessage" class="newsletter-message"></div> 
+        </form>
+    </div>
+</section>
+
+    <!-- Footer (Content that would come from includes/footer.html) -->
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <!-- Corrected path for footer logo -->
+                <img src="assets/images/logo/mindstack_logo__1_-removebg-preview.png" alt="MindStack Logo">
+            </div>
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                </ul>
+            </nav>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
+                <a href="#" aria-label="Twitter"><i class="ri-twitter-fill"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
+                <a href="#" aria-label="Instagram"><i class="ri-instagram-fill"></i></a>
+            </div>
+            <p class="copyright">&copy; 2025 MindStack. All rights reserved.</p>
+        </div>
+    </footer>
+
+     <!-- Cookie Consent Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-content container">
+            <p>We use cookies to ensure you get the best experience on MindStack. By clicking "Accept", you agree to our use of cookies. <a href="#" class="cookie-policy-link">Learn more</a></p>
+            <div class="cookie-actions">
+                <button id="acceptCookies" class="btn btn-primary">Accept</button>
+                <button id="declineCookies" class="btn btn-secondary">Decline</button>
+                <button id="manageCookies" class="btn btn-text">Manage Cookies</button>
+            </div>
+        </div>
+    </div>
+    <!-- Main JavaScript File -->
+   <script type="module" src="assets/js/main.js"></script>
+</body>
+</html>

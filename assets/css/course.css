@@ -1,0 +1,978 @@
+/* mindstack/assets/css/course.css */
+
+/* --- Base Styles & Reset --- */
+:root {
+    --color-navy: #1F2D5A;
+    --color-dark-blue: #1A2238; /* A slightly darker variation for text */
+    --color-teal: #0ED2F7;
+    --color-cyan: #1ABC9C; /* Alternative accent */
+    --color-white: #ffffff;
+    --color-light-gray: #f5f5f5;
+    --color-gray: #cccccc;
+    --color-dark-gray: #555555;
+
+    --font-primary: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--color-dark-blue);
+    background-color: var(--color-white);
+    overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+}
+
+body.no-scroll {
+    overflow: hidden; /* Disable scrolling when mobile menu is active */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* Add some padding on the sides */
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-teal);
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- Reusable Section Padding --- */
+.section-padding {
+    padding: 80px 0; /* Consistent vertical padding for sections */
+}
+
+.bg-light-gray {
+    background-color: var(--color-light-gray);
+}
+
+.bg-dark-blue {
+    background-color: var(--color-navy); /* Using navy for consistency with design */
+}
+
+.text-white {
+    color: var(--color-white);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-40 { /* Margin-top utility */
+    margin-top: 40px;
+}
+
+.section-description {
+    font-size: 1.1em;
+    max-width: 700px;
+    margin: 15px auto 40px auto;
+    color: var(--color-dark-gray);
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    white-space: nowrap; /* Prevent button text from wrapping */
+}
+
+.btn-primary {
+    background-color: var(--color-teal);
+    color: var(--color-white);
+    border: 2px solid var(--color-teal);
+}
+
+.btn-primary:hover {
+    background-color: #0cbbd9; /* Slightly darker teal */
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-navy);
+    border: 2px solid var(--color-navy);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+/* --- Header Styles --- */
+.main-header {
+    background-color: var(--color-white);
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky; /* Makes header sticky on scroll */
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 70px; /* Ensure header has a consistent minimum height */
+}
+
+.logo img {
+    height: 65px; /* Increased logo height for "very big" */
+    width: auto;
+    display: block; /* Prevents extra space below image */
+}
+
+.main-nav ul {
+    display: flex;
+    gap: 30px;
+}
+
+.main-nav ul li a {
+    color: var(--color-navy);
+    font-weight: 600;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.main-nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-teal);
+    transition: width 0.3s ease;
+}
+
+.main-nav ul li a:hover::after,
+.main-nav ul li a.active::after {
+    width: 100%;
+}
+
+.header-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.mobile-menu-toggle {
+    display: none; /* Hidden by default, shown on mobile */
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    width: 30px;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* For animating lines */
+    z-index: 1100; /* Ensure it's above the mobile nav */
+}
+
+.mobile-menu-toggle span {
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-navy);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center; /* For rotation */
+}
+
+/* Hamburger animation */
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px); /* Slide out for a cleaner 'X' */
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* --- Course Hero Section (Video & Main Info) --- */
+.course-hero-section {
+    background-color: var(--color-navy); /* Dark background for hero */
+    color: var(--color-white);
+    padding: 60px 0;
+    margin-bottom: 40px;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.course-header-info {
+    text-align: center;
+}
+
+.course-category-tag {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.course-main-title {
+    font-size: 3em;
+    font-weight: 700;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.course-access-badge {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.course-access-badge.free {
+    background-color: var(--color-cyan);
+    color: var(--color-white);
+}
+
+.course-access-badge.premium {
+    background-color: var(--color-gold);
+    color: var(--color-navy);
+}
+
+.video-player-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* Max width for the video player */
+    aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
+    background-color: #000; /* Black background for video area */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.course-video-player iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* --- Locked Overlay Styles --- */
+.locked-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--color-white);
+    transition: opacity 0.3s ease;
+    z-index: 10; /* Above video player */
+    /* Initially hidden */
+    opacity: 0;
+    visibility: hidden;
+}
+
+.locked-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Blur effect for content behind overlay */
+.video-player-wrapper.blurred .course-video-player iframe {
+    filter: blur(8px);
+    transform: scale(1.05);
+}
+
+.locked-content {
+    padding: 20px;
+}
+
+.lock-icon {
+    font-size: 4em;
+    margin-bottom: 20px;
+}
+
+.lock-message {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+}
+
+.access-course-btn {
+    padding: 15px 30px;
+    font-size: 1.1em;
+}
+.access-course-btn:hover {
+    cursor: pointer;
+}
+
+/* --- Main Content Layout (Description & Lessons + Sidebar) --- */
+.course-content-layout {
+    display: flex;
+    gap: 40px; /* Space between main content and sidebar */
+    align-items: flex-start; /* Align items to the top */
+    padding-bottom: 60px; /* Space before potential footer */
+}
+
+.course-main-content {
+    flex: 3; /* Main content takes 3 parts of available space */
+    min-width: 0; /* Allow content to shrink */
+}
+
+/* --- Course Description Section --- */
+.course-details-section {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 40px;
+}
+
+.course-details-section h2,
+.course-details-section h3 {
+    color: var(--color-navy);
+    margin-bottom: 20px;
+}
+
+.course-details-section h2 {
+    font-size: 2.2em;
+}
+
+.course-details-section h3 {
+    font-size: 1.5em;
+    margin-top: 30px;
+}
+
+.course-details-section p {
+    margin-bottom: 15px;
+    color: var(--color-dark-gray);
+}
+
+.course-details-section ul {
+    list-style: none;
+    margin-bottom: 15px;
+}
+
+.course-details-section ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+    color: var(--color-dark-blue);
+}
+
+.course-details-section ul li i {
+    color: var(--color-green);
+    font-size: 1.2em;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* --- Lesson List Section --- */
+.course-lessons-section {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.course-lessons-section h2 {
+    font-size: 2.2em;
+    color: var(--color-navy);
+    margin-bottom: 25px;
+}
+
+.accordion-item {
+    border: 1px solid var(--color-light-gray);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.accordion-header {
+    width: 100%;
+    background-color: var(--color-light-gray);
+    color: var(--color-navy);
+    padding: 15px 20px;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-align: left;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+
+.accordion-header:hover {
+    background-color: var(--color-gray);
+}
+
+.accordion-icon {
+    font-size: 1.5em;
+    transition: transform 0.3s ease;
+}
+
+.accordion-header.active .accordion-icon {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    background-color: var(--color-white);
+}
+
+.accordion-content.active {
+    max-height: 500px; /* Sufficiently large value */
+}
+
+.accordion-content ul {
+    padding: 15px 20px;
+}
+
+.accordion-content ul li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    color: var(--color-dark-blue);
+    font-size: 0.95em;
+}
+
+.accordion-content ul li:last-child {
+    margin-bottom: 0;
+}
+
+.accordion-content ul li i {
+    font-size: 1.2em;
+    flex-shrink: 0;
+}
+
+.accordion-content ul li i.completed {
+    color: var(--color-green);
+}
+
+.accordion-content ul li i.locked {
+    color: var(--color-red);
+}
+
+
+/* --- Course Sidebar --- */
+.course-sidebar-section {
+    flex: 1.5; /* Sidebar takes 1.5 parts of available space */
+    position: sticky;
+    top: 40px; /* Stick below the general body padding */
+    align-self: flex-start; /* Ensure it sticks to the top of its flex container */
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    min-width: 280px; /* Minimum width for sidebar */
+}
+
+.toggle-sidebar-btn {
+    display: none; /* Hidden on desktop */
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: var(--color-navy);
+    cursor: pointer;
+    padding: 5px;
+    position: absolute; /* Position relative to sidebar-section */
+    top: 10px;
+    right: 10px;
+    z-index: 10; /* Ensure it's clickable */
+}
+
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.sidebar-block h3 {
+    font-size: 1.5em;
+    color: var(--color-navy);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-light-gray);
+}
+
+.instructor-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.instructor-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 3px solid var(--color-teal);
+}
+
+.instructor-name {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--color-navy);
+    margin-bottom: 5px;
+}
+
+.instructor-bio {
+    font-size: 0.9em;
+    color: var(--color-dark-gray);
+}
+
+.course-meta ul li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 0.95em;
+    color: var(--color-dark-blue);
+}
+
+.course-meta ul li i {
+    color: var(--color-teal);
+    font-size: 1.2em;
+}
+
+.what-you-learn ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 0.95em;
+    color: var(--color-dark-blue);
+}
+
+.what-you-learn ul li i {
+    color: var(--color-green);
+    font-size: 1.2em;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.downloads ul li {
+    margin-bottom: 10px;
+}
+
+.download-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-navy);
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.download-item:hover {
+    color: var(--color-teal);
+}
+
+.download-item i {
+    font-size: 1.3em;
+    color: var(--color-teal);
+}
+
+.social-share-icons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.share-icon {
+    font-size: 1.8em;
+    color: var(--color-navy);
+    transition: color 0.2s ease;
+}
+
+.share-icon:hover {
+    color: var(--color-teal);
+}
+/* --- Newsletter Signup Section Styles --- */
+.newsletter-signup h2 {
+    color: var(--color-navy);
+}
+
+.newsletter-signup p {
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+    color: var(--color-dark-gray);
+}
+
+.newsletter-form {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.newsletter-form input[type="email"] {
+    padding: 12px 20px;
+    border: 2px solid var(--color-gray);
+    border-radius: 8px;
+    font-size: 1em;
+    width: 100%;
+    max-width: 400px;
+    color: var(--color-navy);
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.newsletter-form input[type="email"]:focus {
+    border-color: var(--color-teal);
+}
+
+.newsletter-form .btn-primary {
+    padding: 12px 30px;
+    font-size: 1em;
+}
+
+/* --- Footer Styles --- */
+.main-footer {
+    background-color: var(--color-dark-blue);
+    color: var(--color-white);
+    padding: 40px 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.footer-logo img {
+    height: 95px;
+    width: 80px;
+    filter: brightness(0) invert(1); /* Example for making a dark logo white on dark background */
+    margin-bottom: -20px;
+    margin-top: -10px;
+}
+
+.footer-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px 30px;
+}
+
+.footer-nav ul li a {
+    color: var(--color-white);
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.footer-nav ul li a:hover {
+    color: var(--color-teal);
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.social-links a {
+    color: var(--color-white);
+    font-size: 1.5em;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--color-teal);
+}
+
+.copyright {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7);
+}
+/* Close button for mobile menu */
+.close-menu-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2.5em;
+    color: var(--color-white);
+    cursor: pointer;
+    z-index: 1200;
+    transition: transform 0.2s ease;
+}
+
+.close-menu-btn:hover {
+    transform: rotate(90deg);
+}.close-menu-btn {
+    position: absolute;
+    top: 15px; /* Adjusted top for better alignment */
+    right: 15px; /* Adjusted right for better alignment */
+    font-size: 2.2em; /* Slightly smaller font size for the icon itself */
+    color: var(--color-white);
+    cursor: pointer;
+    z-index: 1200;
+    transition: transform 0.2s ease, background-color 0.2s ease; /* Added background-color to transition */
+    display: flex; /* Use flex to center the icon */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: 40px; /* Explicit width to give a larger clickable area */
+    height: 40px; /* Explicit height to give a larger clickable area */
+    border-radius: 50%; /* Make it a circle */
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle background for click area */
+}
+
+.close-menu-btn:hover {
+    transform: rotate(90deg);
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly more prominent on hover */
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 992px) {
+    .course-hero-section {
+        padding: 40px 0;
+    }
+    .course-main-title {
+        font-size: 2.5em;
+    }
+    .course-content-layout {
+        flex-direction: column; /* Stack main content and sidebar */
+        gap: 30px;
+        padding-bottom: 40px;
+    }
+
+    .course-main-content {
+        flex: auto; /* Allow content to take full width */
+        width: 100%;
+    }
+
+    .course-sidebar-section {
+        position: static; /* Remove sticky on mobile */
+        width: 100%;
+        min-width: unset;
+        order: -1; /* Place sidebar above main content on mobile */
+        /* Styles for collapsible sidebar */
+        max-height: 60px; /* Collapsed height */
+        overflow: hidden;
+        transition: max-height 0.4s ease-out;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Add shadow for collapsed state */
+    }
+
+    .course-sidebar-section.active {
+        max-height: 1000px; /* Expanded height (adjust as needed) */
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Stronger shadow when open */
+    }
+
+    .toggle-sidebar-btn {
+        display: block; /* Show toggle button on mobile */
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background-color: var(--color-light-gray);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .toggle-sidebar-btn.active .accordion-icon {
+        transform: rotate(90deg); /* Rotate arrow when active */
+    }
+
+    .sidebar-content {
+        padding-top: 20px; /* Space from toggle button */
+    }
+
+    .course-details-section,
+    .course-lessons-section {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+
+    .course-details-section h2,
+    .course-lessons-section h2 {
+        font-size: 1.8em;
+    }
+
+    .course-details-section h3 {
+        font-size: 1.3em;
+    }
+
+    .locked-content .lock-icon {
+        font-size: 3em;
+    }
+    .locked-content .lock-message {
+        font-size: 1.2em;
+    }
+    .access-course-btn {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        padding-top: 15px;
+    }
+    .course-hero-section {
+        padding: 30px 0;
+    }
+    .course-main-title {
+        font-size: 2em;
+    }
+    .course-access-badge {
+        padding: 6px 12px;
+        font-size: 0.9em;
+    }
+    .course-details-section,
+    .course-lessons-section {
+        padding: 15px;
+    }
+    .course-details-section h2,
+    .course-lessons-section h2 {
+        font-size: 1.6em;
+    }
+    .course-details-section h3 {
+        font-size: 1.2em;
+    }
+    .accordion-header {
+        padding: 12px 15px;
+        font-size: 1em;
+    }
+    .accordion-content ul li {
+        font-size: 0.9em;
+    }
+    .course-sidebar-section {
+        padding-bottom: 1180px;
+        margin-top: -40px;
+    }
+    .sidebar-block h3 {
+        font-size: 1.3em;
+    }
+}
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    body {
+        padding-top: 20px; /* Less padding on mobile */
+    }
+     .main-nav {
+        /* Mobile menu overlay styles - NO CHANGES HERE */
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 65vw;
+        max-width: 200px;
+        max-height: calc(100vh - 70px); /* Adjusted to account for header min-height */
+        background-color: var(--color-navy);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 10px 0; /* General padding */
+        padding-top: 50px; /* Space for close button */
+        transform: translateX(100%);
+        transition: transform 0.4s ease-out;
+        z-index: 999;
+        overflow-y: auto;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    }
+
+    .main-nav.active {
+        transform: translateX(0);
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        gap: 1px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .main-nav ul li a {
+        color: var(--color-white);
+        font-size: 1em;
+        padding: 10px 0;
+        display: block;
+    }
+
+    .main-nav ul li a::after {
+        background-color: var(--color-teal);
+    }
+
+    /* Show header actions on mobile */
+    .header-actions {
+        display: flex; /* Make buttons visible */
+        gap: 8px; /* Reduce gap between buttons on mobile */
+        margin-left: auto; /* Push buttons to the right, next to hamburger */
+        align-items: center; /* Align with hamburger */
+    }
+
+    /* Adjust button size for mobile header - UPDATED */
+    .header-actions .btn {
+        padding: 6px 12px; /* Smaller padding for mobile header buttons */
+        font-size: 0.75em; /* Smaller font size for mobile header buttons */
+        border-width: 1px; /* Thinner border */
+    }
+
+    .access-course-btn{
+        padding: 10px 12px 12px 12px; /* Smaller padding for mobile header buttons */
+        font-size: 0.75em; /* Smaller font size for mobile header buttons */
+        border-width: 1px; /* Thinner border */
+        margin-top: -70px;
+    }
+    .mobile-menu-toggle {
+        display: flex;
+        margin-left: 15px; /* Add some space between buttons and hamburger */
+    }
+      .newsletter-form {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .newsletter-form input[type="email"] {
+        max-width: 100%;
+    }
+
+    .footer-nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+  }

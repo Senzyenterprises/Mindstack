@@ -1,0 +1,344 @@
+/* mindstack/assets/css/login.css */
+
+/* --- Base Variables --- */
+:root {
+    --color-navy: #1F2D5A;
+    --color-dark-blue: #1A2238; /* A slightly darker variation for text */
+    --color-teal: #0ED2F7;
+    --color-cyan: #1ABC9C; /* Alternative accent */
+    --color-white: #ffffff;
+    --color-light-gray: #f5f5f5;
+    --color-gray: #cccccc;
+    --color-dark-gray: #555555;
+    --color-red: #e74c3c; /* For error messages */
+    --color-green: #2ecc71; /* For success messages/icons */
+
+    --font-primary: 'Poppins', sans-serif;
+}
+body.auth-page::before {
+    content: '';
+    position: fixed; /* Use fixed so it covers the whole viewport, even if you scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('assets/images/background-image.jpg'); 
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: -2; 
+    filter: blur(100vh);
+    transform: scale(1.02); 
+}
+body.auth-page::after {
+    content: '';
+    position: fixed;  
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); 
+    z-index: -1; 
+}
+/* --- Global Resets & Body Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body { /* Ensure html and body take full height */
+    height: 100%;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--color-dark-blue);
+    background-color: var(--color-white);
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-teal);
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- Buttons (General Styles) --- */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--color-teal);
+    color: var(--color-white);
+    border: 2px solid var(--color-teal);
+}
+
+.btn-primary:hover {
+    background-color: #0cbbd9; /* Slightly darker teal */
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-navy);
+    border: 2px solid var(--color-navy);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+/* --- Auth Page Specific Styles --- */
+.auth-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full viewport height */
+    background-color: var(--color-light-gray); /* Light gray background for auth pages */
+    padding: 20px; /* General padding */
+}
+
+.auth-container {
+    background-color: var(--color-white);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    position: relative; /* Essential for absolute positioning of child views */
+    overflow: hidden;   /* Hides content outside the container during transitions */
+    min-height: 560px; /* Give it a minimum height to contain content */
+    display: flex; /* Make it a flex container */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: flex-start; /* Align children to the top */
+    align-items: center; /* Center children horizontally */
+}
+
+/* --- Auth Header (Logo and Divider) Styles --- */
+.auth-header {
+    width: 100%; /* Take full width of parent */
+    padding-bottom: -70px; /* Space below header */
+    /* Removed absolute positioning from here to simplify flow */
+    /* It's now a direct flex child of auth-container */
+}
+
+.auth-header .logo {
+    margin-bottom: 15px; /* Space below logo */
+    margin-top: 0; /* Ensures no negative margin */
+}
+
+.auth-header .logo img {
+    height: 170px; /* Larger logo for auth pages */
+    margin-bottom: -50px;
+    margin-top: -50px;
+}
+
+.auth-divider {
+    width: 60px; /* Short line */
+    height: 3px;
+    background-color: var(--color-teal);
+    border: none;
+    margin: 0 auto; /* Center the line */
+}
+
+/* --- Auth Heading Styles --- */
+.auth-heading {
+    margin-bottom: 30px;
+    margin-top: 20px; /* Adjusted positive margin */
+}
+
+.auth-heading h2 {
+    font-size: 2em;
+    color: var(--color-navy);
+    margin-bottom: 10px;
+}
+
+.auth-heading p {
+    font-size: 1em;
+    color: var(--color-dark-gray);
+}
+
+/* --- Auth Form General Styles --- */
+.auth-form {
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: px;
+}
+
+.auth-form .form-group {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.auth-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--color-dark-blue);
+}
+
+/* Targeting specific input types present in login.html */
+.auth-form input[type="email"],
+.auth-form input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid black; /* Your specific tweak for black border */
+    border-radius: 8px;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: -5px;
+}
+
+.auth-form input:focus {
+    border-color: var(--color-teal);
+    box-shadow: 0 0 0 3px rgba(14, 210, 247, 0.2);
+}
+
+.auth-form .error-message {
+    color: var(--color-red);
+    font-size: 0.85em;
+    margin-top: 5px;
+    display: block;
+    height: 1.2em;
+}
+
+/* --- Full-Width Button Styles --- */
+.full-width-btn {
+    width: 100%;
+    padding: 15px 25px;
+    font-size: 1.1em;
+    color: white;
+    background-color: black; /* Your specific tweak */
+}
+
+.full-width-btn:hover{
+    cursor: pointer;
+}
+.full-width-btn:active{
+    color: black;
+    background-color: white;
+}
+
+/* --- Auth Footer Link --- */
+.auth-footer-link {
+    margin-top: 30px;
+    font-size: 0.95em;
+    color: var(--color-dark-gray);
+    width: 100%;
+}
+
+.auth-footer-link .text-link {
+    font-weight: 600;
+}
+
+/* --- Login/Reset View Specific Styles & Transitions --- */
+
+/* These views will now be positioned absolutely within the auth-container
+   to enable overlapping transitions, but their content will flow normally. */
+#loginView,
+#resetPasswordView {
+    position: absolute;
+    top:100px; 
+    left: 0;
+    width: 100%;
+    /* Calculate height to fill remaining space */
+    height: calc(100% - 205px); /* Adjusted height based on new 'top' */
+    padding: 0 40px 40px 40px; /* Padding for content within the view, top padding handled by 'top' */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align content to the top within the view */
+    align-items: center;
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+    background-color: var(--color-white);
+    z-index: 1; /* Ensure they are below the absolute header when needed, or on top of each other */
+}
+
+/* Initial hidden state for views (used by JS to show/hide) */
+.hidden {
+    display: none !important;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    
+}
+
+/* Class added by JS to make element visible and animate */
+.fade-in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    pointer-events: auto;
+}
+
+/* Login specific options (for "Forgot Password?" link) */
+.auth-options {
+    text-align: right;
+    margin-top: -25px;
+    margin-bottom: 5px;
+}
+
+.auth-options .text-link {
+    font-size: 0.9em;
+}
+
+/* Password Reset View Specific Styles */
+.reset-status-area {
+    margin-top: 20px;
+    margin-bottom: 3px;
+    padding: 5px;
+    border-radius: 8px;
+    background-color: var(--color-light-gray);
+    text-align: center;
+}
+
+.reset-message {
+    font-size: 0.85em;
+    color: var(--color-dark-blue);
+    margin-bottom: 2px;
+}
+
+.countdown-timer {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--color-teal);
+}
+
+/* --- Mobile Responsiveness for Login Page --- */
+@media (max-width: 500px) {
+    .auth-header .logo img {
+    height: 170px; /* Larger logo for auth pages */
+    margin-bottom: -50px;
+    margin-top: -50px;
+}
+.auth-heading h2 {
+    font-size: 1.6em;
+    color: var(--color-navy);
+    margin-bottom: 10px;
+}
+.full-width-btn {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    color: white;
+    background-color: black; /* Your specific tweak */
+}
+.reset-status-area {
+    margin-bottom: -18px;
+}
+}

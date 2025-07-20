@@ -1,0 +1,1117 @@
+/* mindstack/assets/css/pricing.css */
+
+/* --- Base Styles & Reset --- */
+:root {
+    --color-navy: #1F2D5A;
+    --color-dark-blue: #1A2238;
+    --color-teal: #0ED2F7;
+    --color-cyan: #1ABC9C;
+    --color-white: #ffffff;
+    --color-light-gray: #f5f5f5;
+    --color-gray: #cccccc;
+    --color-dark-gray: #555555;
+    --color-red: #e74c3c;
+    --color-green: #2ecc71;
+    --color-gold: #FFD700; /* For premium badge */
+
+    --font-primary: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--color-dark-blue);
+    background-color: var(--color-white);
+    overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+}
+
+body.no-scroll {
+    overflow: hidden; /* Disable scrolling when mobile menu is active */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* Add some padding on the sides */
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-teal);
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- Reusable Section Padding --- */
+.section-padding {
+    padding: 80px 0; /* Consistent vertical padding for sections */
+}
+
+.bg-light-gray {
+    background-color: var(--color-light-gray);
+}
+
+.bg-dark-blue {
+    background-color: var(--color-navy); /* Using navy for consistency with design */
+}
+
+.text-white {
+    color: var(--color-white);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-40 { /* Margin-top utility */
+    margin-top: 40px;
+}
+
+.section-description {
+    font-size: 1.1em;
+    max-width: 700px;
+    margin: 15px auto 40px auto;
+    color: var(--color-dark-gray);
+}
+
+/* --- Buttons (General Styles) --- */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--color-teal);
+    color: var(--color-white);
+    border: 2px solid var(--color-teal);
+}
+
+.btn-primary:hover {
+    background-color: #0cbbd9; /* Slightly darker teal */
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-navy);
+    border: 2px solid var(--color-navy);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+/* --- Header Styles --- */
+.main-header {
+    background-color: var(--color-white);
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky; /* Makes header sticky on scroll */
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 70px; /* Ensure header has a consistent minimum height */
+}
+
+.logo img {
+    height: 65px; /* Increased logo height for "very big" */
+    width: auto;
+    display: block; /* Prevents extra space below image */
+}
+
+.main-nav ul {
+    display: flex;
+    gap: 30px;
+}
+
+.main-nav ul li a {
+    color: var(--color-navy);
+    font-weight: 600;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.main-nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-teal);
+    transition: width 0.3s ease;
+}
+
+.main-nav ul li a:hover::after,
+.main-nav ul li a.active::after {
+    width: 100%;
+}
+
+.header-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.mobile-menu-toggle {
+    display: none; /* Hidden by default, shown on mobile */
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    width: 30px;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* For animating lines */
+    z-index: 1100; /* Ensure it's above the mobile nav */
+}
+
+.mobile-menu-toggle span {
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-navy);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center; /* For rotation */
+}
+
+/* Hamburger animation */
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px); /* Slide out for a cleaner 'X' */
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    background-color: var(--color-navy); /* Dark background for hero */
+    color: var(--color-white);
+    padding: 80px 0;
+    margin-bottom: 60px;
+}
+
+.hero-section h1 {
+    font-size: 3.5em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-subtext {
+    font-size: 1.3em;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+/* --- Pricing Cards Section --- */
+.pricing-cards-section {
+    padding-bottom: 60px;
+}
+
+.pricing-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    justify-content: center; /* Center cards if fewer than 3 */
+    align-items: stretch; /* Make cards same height */
+}
+
+.pricing-card {
+    background-color: var(--color-white);
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden; /* For featured badge */
+}
+
+.pricing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.pricing-card .badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--color-gold);
+    color: var(--color-navy);
+    padding: 8px 20px;
+    font-size: 0.9em;
+    font-weight: 700;
+    border-bottom-left-radius: 12px;
+    transform: translateY(-100%) rotate(45deg); /* Initial position */
+    transform-origin: top right;
+    transition: transform 0.3s ease-out;
+}
+
+.pricing-card.featured .badge {
+    transform: translateY(0) rotate(0deg); /* Slide in */
+    top: 0;
+    right: 0;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    padding: 8px 15px;
+    transform: none; /* Remove transform for static positioning */
+}
+
+
+.plan-title {
+    font-size: 2em;
+    color: var(--color-navy);
+    margin-bottom: 10px;
+}
+
+.plan-price {
+    font-size: 3em;
+    font-weight: 700;
+    color: var(--color-teal);
+    margin-bottom: 5px;
+    line-height: 1;
+}
+
+.plan-price span {
+    font-size: 0.5em;
+    font-weight: 400;
+    color: var(--color-dark-gray);
+}
+
+.plan-label {
+    font-size: 1.1em;
+    color: var(--color-dark-gray);
+    margin-bottom: 30px;
+}
+
+.plan-features {
+    text-align: left;
+    margin-bottom: 30px;
+    flex-grow: 1; /* Pushes button to bottom */
+}
+
+.plan-features li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    color: var(--color-dark-blue);
+    font-size: 0.95em;
+}
+
+.plan-features li i {
+    font-size: 1.2em;
+    flex-shrink: 0;
+}
+
+.plan-features li .ri-check-line {
+    color: var(--color-green);
+}
+
+.plan-features li.unavailable {
+    color: var(--color-gray);
+    text-decoration: line-through;
+}
+
+.plan-features li .ri-close-line {
+    color: var(--color-red);
+}
+
+.plan-cta-btn {
+    margin-top: auto; /* Pushes button to bottom */
+    width: 100%;
+    padding: 15px 25px;
+    font-size: 1.1em;
+}
+
+.pricing-card.free-plan .plan-price {
+    color: var(--color-green);
+}
+.pricing-card.free-plan .plan-cta-btn {
+    background-color: var(--color-green);
+    border-color: var(--color-green);
+}
+.pricing-card.free-plan .plan-cta-btn:hover {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.pricing-card.premium-plan .plan-price {
+    color: var(--color-teal);
+}
+.pricing-card.premium-plan .plan-cta-btn {
+    background-color: var(--color-teal);
+    border-color: var(--color-teal);
+}
+.pricing-card.premium-plan .plan-cta-btn:hover {
+    background-color: #0cbbd9;
+    border-color: #0cbbd9;
+}
+
+.pricing-card.team-plan .plan-price {
+    color: var(--color-navy);
+}
+.pricing-card.team-plan .plan-cta-btn {
+    background-color: var(--color-navy);
+    border-color: var(--color-navy);
+    color: var(--color-white);
+}
+.pricing-card.team-plan .plan-cta-btn:hover {
+    background-color: #1a2238;
+    border-color: #1a2238;
+}
+
+/* --- Feature Comparison Table Section --- */
+.feature-comparison-section {
+    background-color: var(--color-white);
+    padding: 60px 0;
+    margin-bottom: 60px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.table-responsive {
+    overflow-x: auto; /* Enable horizontal scroll on small screens */
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 10px; /* Space for scrollbar */
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px; /* Ensure table doesn't shrink too much */
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 15px;
+    border: 1px solid var(--color-light-gray);
+    text-align: left;
+    color: var(--color-dark-blue);
+}
+
+.comparison-table th {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+.comparison-table th:first-child {
+    text-align: left;
+}
+
+.comparison-table td {
+    background-color: var(--color-white);
+    font-size: 0.95em;
+    text-align: center;
+}
+
+.comparison-table td:first-child {
+    font-weight: 500;
+    text-align: left;
+}
+
+.comparison-table tbody tr:nth-child(even) td {
+    background-color: var(--color-light-gray);
+}
+
+.check-icon {
+    color: var(--color-green);
+    font-size: 1.3em;
+}
+
+.close-icon {
+    color: var(--color-red);
+    font-size: 1.3em;
+}
+
+/* --- FAQ Section --- */
+.faq-section {
+    padding-bottom: 60px;
+}
+
+.faq-accordion {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-accordion .accordion-item {
+    background-color: var(--color-white);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.faq-accordion .accordion-header {
+    width: 100%;
+    background-color: var(--color-white);
+    color: var(--color-navy);
+    padding: 20px 25px;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-align: left;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+
+.faq-accordion .accordion-header:hover {
+    background-color: var(--color-light-gray);
+}
+
+.faq-accordion .accordion-icon {
+    font-size: 1.5em;
+    transition: transform 0.3s ease;
+}
+
+.faq-accordion .accordion-header.active .accordion-icon {
+    transform: rotate(180deg);
+}
+
+.faq-accordion .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+    background-color: var(--color-light-gray);
+    padding: 0 25px; /* Initial padding is 0 */
+}
+
+.faq-accordion .accordion-content.active {
+    max-height: 300px; /* Sufficiently large value */
+    padding: 15px 25px; /* Padding when active */
+}
+
+.faq-accordion .accordion-content p {
+    color: var(--color-dark-blue);
+    font-size: 0.95em;
+}
+
+/* --- Testimonials Section --- */
+.testimonials-section {
+    background-color: var(--color-navy); /* Dark background for testimonials */
+    color: var(--color-white);
+    padding: 80px 0;
+    margin-bottom: 60px;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.testimonial-card {
+    background-color: rgba(255, 255, 255, 0.08); /* Slightly transparent white */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.testimonial-card .quote {
+    font-size: 1.1em;
+    font-style: italic;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.testimonial-card .author-info {
+    margin-top: auto; /* Push to bottom */
+}
+
+.testimonial-card .author-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-teal);
+    margin-bottom: 10px;
+}
+
+.testimonial-card .author-name {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--color-white);
+    margin-bottom: 5px;
+}
+
+.testimonial-card .author-title {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* --- Final Call-to-Action Section --- */
+.final-cta-section {
+    padding-bottom: 80px;
+}
+
+.final-cta-section h2 {
+    font-size: 2.8em;
+    color: var(--color-navy);
+    margin-bottom: 15px;
+}
+
+.final-cta-section p {
+    font-size: 1.2em;
+    color: var(--color-dark-gray);
+    margin-bottom: 40px;
+}
+
+.final-cta-section .cta-btn {
+    padding: 18px 40px;
+    font-size: 1.2em;
+    border-radius: 10px;
+}
+
+/* --- Newsletter Signup Section Styles --- */
+.newsletter-signup h2 {
+    color: var(--color-navy);
+}
+
+.newsletter-signup p {
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+    color: var(--color-dark-gray);
+}
+
+.newsletter-form {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.newsletter-form input[type="email"] {
+    padding: 12px 20px;
+    border: 2px solid var(--color-gray);
+    border-radius: 8px;
+    font-size: 1em;
+    width: 100%;
+    max-width: 400px;
+    color: var(--color-navy);
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.newsletter-form input[type="email"]:focus {
+    border-color: var(--color-teal);
+}
+
+.newsletter-form .btn-primary {
+    padding: 12px 30px;
+    font-size: 1em;
+}
+
+/* --- Footer Styles --- */
+.main-footer {
+    background-color: var(--color-dark-blue);
+    color: var(--color-white);
+    padding: 40px 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.footer-logo img {
+    height: 95px;
+    width: 80px;
+    filter: brightness(0) invert(1); /* Example for making a dark logo white on dark background */
+    margin-bottom: -20px;
+    margin-top: -10px;
+}
+
+.footer-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px 30px;
+}
+
+.footer-nav ul li a {
+    color: var(--color-white);
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.footer-nav ul li a:hover {
+    color: var(--color-teal);
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.social-links a {
+    color: var(--color-white);
+    font-size: 1.5em;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--color-teal);
+}
+
+.copyright {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7);
+}
+/* Close button for mobile menu */
+.close-menu-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2.5em;
+    color: var(--color-white);
+    cursor: pointer;
+    z-index: 1200;
+    transition: transform 0.2s ease;
+}
+
+.close-menu-btn:hover {
+    transform: rotate(90deg);
+}.close-menu-btn {
+    position: absolute;
+    top: 15px; /* Adjusted top for better alignment */
+    right: 15px; /* Adjusted right for better alignment */
+    font-size: 2.2em; /* Slightly smaller font size for the icon itself */
+    color: var(--color-white);
+    cursor: pointer;
+    z-index: 1200;
+    transition: transform 0.2s ease, background-color 0.2s ease; /* Added background-color to transition */
+    display: flex; /* Use flex to center the icon */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: 40px; /* Explicit width to give a larger clickable area */
+    height: 40px; /* Explicit height to give a larger clickable area */
+    border-radius: 50%; /* Make it a circle */
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle background for click area */
+}
+
+.close-menu-btn:hover {
+    transform: rotate(90deg);
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly more prominent on hover */
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 992px) {
+    .course-hero-section {
+        padding: 40px 0;
+    }
+    .course-main-title {
+        font-size: 2.5em;
+    }
+    .course-content-layout {
+        flex-direction: column; /* Stack main content and sidebar */
+        gap: 30px;
+        padding-bottom: 40px;
+    }
+
+    .course-main-content {
+        flex: auto; /* Allow content to take full width */
+        width: 100%;
+    }
+
+    .course-sidebar-section {
+        position: static; /* Remove sticky on mobile */
+        width: 100%;
+        min-width: unset;
+        order: -1; /* Place sidebar above main content on mobile */
+        /* Styles for collapsible sidebar */
+        max-height: 60px; /* Collapsed height */
+        overflow: hidden;
+        transition: max-height 0.4s ease-out;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Add shadow for collapsed state */
+    }
+
+    .course-sidebar-section.active {
+        max-height: 1000px; /* Expanded height (adjust as needed) */
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Stronger shadow when open */
+    }
+
+    .toggle-sidebar-btn {
+        display: block; /* Show toggle button on mobile */
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background-color: var(--color-light-gray);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .toggle-sidebar-btn.active .accordion-icon {
+        transform: rotate(90deg); /* Rotate arrow when active */
+    }
+
+    .sidebar-content {
+        padding-top: 20px; /* Space from toggle button */
+    }
+
+    .course-details-section,
+    .course-lessons-section {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+
+    .course-details-section h2,
+    .course-lessons-section h2 {
+        font-size: 1.8em;
+    }
+
+    .course-details-section h3 {
+        font-size: 1.3em;
+    }
+
+    .locked-content .lock-icon {
+        font-size: 3em;
+    }
+    .locked-content .lock-message {
+        font-size: 1.2em;
+    }
+    .access-course-btn {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        padding-top: 15px;
+    }
+    .course-hero-section {
+        padding: 30px 0;
+    }
+    .course-main-title {
+        font-size: 2em;
+    }
+    .course-access-badge {
+        padding: 6px 12px;
+        font-size: 0.9em;
+    }
+    .course-details-section,
+    .course-lessons-section {
+        padding: 15px;
+    }
+    .course-details-section h2,
+    .course-lessons-section h2 {
+        font-size: 1.6em;
+    }
+    .course-details-section h3 {
+        font-size: 1.2em;
+    }
+    .accordion-header {
+        padding: 12px 15px;
+        font-size: 1em;
+    }
+    .accordion-content ul li {
+        font-size: 0.9em;
+    }
+    .course-sidebar-section {
+        padding-bottom: 1180px;
+        margin-top: -40px;
+    }
+    .sidebar-block h3 {
+        font-size: 1.3em;
+    }
+}
+/* --- Mobile Responsiveness --- */
+@media (max-width: 992px) {
+    body {
+        padding-top: 30px; /* Adjust top padding for smaller screens */
+    }
+    .hero-section {
+        padding: 60px 0;
+        margin-bottom: 40px;
+    }
+    .hero-section h1 {
+        font-size: 2.8em;
+    }
+    .hero-subtext {
+        font-size: 1.1em;
+    }
+    .section-title {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+    .pricing-cards-section,
+    .feature-comparison-section,
+    .faq-section,
+    .testimonials-section,
+    .final-cta-section {
+        padding-bottom: 40px;
+        margin-bottom: 40px;
+    }
+    .pricing-card {
+        padding: 25px 105px;
+    }
+    .plan-title {
+        font-size: 1.8em;
+    }
+    .plan-price {
+        font-size: 2.5em;
+    }
+    .plan-label {
+        font-size: 1em;
+    }
+    .plan-features li {
+        font-size: 0.9em;
+    }
+    .plan-cta-btn {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+    .comparison-table th,
+    .comparison-table td {
+        padding: 12px;
+        font-size: 0.85em;
+    }
+    .faq-accordion .accordion-header {
+        padding: 15px 20px;
+        font-size: 1em;
+    }
+    .faq-accordion .accordion-content.active {
+        padding: 10px 20px;
+    }
+    .testimonial-card .quote {
+        font-size: 1em;
+    }
+    .final-cta-section h2 {
+        font-size: 2.2em;
+    }
+    .final-cta-section p {
+        font-size: 1.1em;
+    }
+    .final-cta-section .cta-btn {
+        padding: 15px 30px;
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2.5em;
+    }
+    .pricing-cards-grid {
+        grid-template-columns: 1fr; /* Stack cards vertically */
+        gap: 25px;
+    }
+    .pricing-card {
+        max-width: 400px; /* Constrain width when stacked */
+        margin: 0 auto;
+    }
+    .table-responsive {
+        padding-bottom: 20px; /* More space for scrollbar on mobile */
+    }
+    .comparison-table {
+        min-width: 500px; /* Keep minimum width for horizontal scroll */
+    }
+    .testimonials-grid {
+        grid-template-columns: 1fr; /* Stack testimonials vertically */
+        gap: 25px;
+    }
+    .testimonial-card {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    .final-cta-section h2 {
+        font-size: 2em;
+    }
+    .main-nav {
+        /* Mobile menu overlay styles - NO CHANGES HERE */
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 65vw;
+        max-width: 200px;
+        max-height: calc(100vh - 70px); /* Adjusted to account for header min-height */
+        background-color: var(--color-navy);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 10px 0; /* General padding */
+        padding-top: 50px; /* Space for close button */
+        transform: translateX(100%);
+        transition: transform 0.4s ease-out;
+        z-index: 999;
+        overflow-y: auto;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    }
+
+    .main-nav.active {
+        transform: translateX(0);
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        gap: 1px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .main-nav ul li a {
+        color: var(--color-white);
+        font-size: 1em;
+        padding: 10px 0;
+        display: block;
+    }
+
+    .main-nav ul li a::after {
+        background-color: var(--color-teal);
+    }
+
+    /* Show header actions on mobile */
+    .header-actions {
+        display: flex; /* Make buttons visible */
+        gap: 8px; /* Reduce gap between buttons on mobile */
+        margin-left: auto; /* Push buttons to the right, next to hamburger */
+        align-items: center; /* Align with hamburger */
+    }
+
+    /* Adjust button size for mobile header - UPDATED */
+    .header-actions .btn {
+        padding: 6px 12px; /* Smaller padding for mobile header buttons */
+        font-size: 0.75em; /* Smaller font size for mobile header buttons */
+        border-width: 1px; /* Thinner border */
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+        margin-left: 15px; /* Add some space between buttons and hamburger */
+    }
+    .badge{
+      padding: 4px 6px;
+    }
+      .newsletter-form {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .newsletter-form input[type="email"] {
+        max-width: 100%;
+    }
+
+    .footer-nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        padding-top: 20px;
+    }
+    .hero-section {
+        padding: 40px 0;
+        margin-bottom: 30px;
+    }
+    .hero-section h1 {
+        font-size: 2em;
+    }
+    .hero-subtext {
+        font-size: 1em;
+    }
+    .section-title {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+    }
+    .pricing-card {
+        padding: 25px 65px;
+    }
+    .plan-title {
+        font-size: 1.6em;
+    }
+    .plan-price {
+        font-size: 2.2em;
+    }
+    .plan-label {
+        font-size: 0.9em;
+    }
+    .plan-features li {
+        font-size: 0.85em;
+    }
+    .plan-cta-btn {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+    .comparison-table th,
+    .comparison-table td {
+        padding: 10px;
+        font-size: 0.8em;
+    }
+    .faq-accordion .accordion-header {
+        padding: 12px 15px;
+        font-size: 0.9em;
+    }
+    .faq-accordion .accordion-content.active {
+        padding: 8px 15px;
+    }
+    .testimonial-card {
+        padding: 25px;
+    }
+    .testimonial-card .quote {
+        font-size: 0.9em;
+    }
+    .final-cta-section h2 {
+        font-size: 1.8em;
+    }
+    .final-cta-section p {
+        font-size: 1em;
+    }
+    .final-cta-section .cta-btn {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+}

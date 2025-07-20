@@ -1,0 +1,1047 @@
+/* mindstack/assets/css/contact.css */
+
+/* --- Base Variables --- */
+:root {
+    --color-navy: #1F2D5A;
+    --color-dark-blue: #1A2238;
+    --color-teal: #0ED2F7;
+    --color-cyan: #1ABC9C;
+    --color-white: #ffffff;
+    --color-light-gray: #f5f5f5;
+    --color-gray: #cccccc;
+    --color-dark-gray: #555555;
+    --color-red: #e74c3c;
+    --color-green: #2ecc71;
+    --color-gold: #FFD700;
+
+    --font-primary: 'Poppins', sans-serif;
+}
+
+/* --- Global Resets & Body Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--color-dark-blue);
+    background-color: var(--color-white);
+    overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+}
+
+body.no-scroll {
+    overflow: hidden; /* Disable scrolling when mobile menu is active */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* Add some padding on the sides */
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-teal);
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- Reusable Section Padding --- */
+.section-padding {
+    padding: 80px 0; /* Consistent vertical padding for sections */
+}
+
+.bg-light-gray {
+    background-color: var(--color-light-gray);
+}
+
+.bg-dark-blue {
+    background-color: var(--color-navy); /* Using navy for consistency with design */
+}
+
+.text-white {
+    color: var(--color-white);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-40 { /* Margin-top utility */
+    margin-top: 40px;
+}
+
+.section-description {
+    font-size: 1.1em;
+    max-width: 700px;
+    margin: 15px auto 40px auto;
+    color: var(--color-dark-gray);
+}
+
+/* --- Buttons (General Styles) --- */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--color-teal);
+    color: var(--color-white);
+    border: 2px solid var(--color-teal);
+}
+
+.btn-primary:hover {
+    background-color: #0cbbd9;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-navy);
+    border: 2px solid var(--color-navy);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+/* --- Header Styles --- */
+.main-header {
+    background-color: var(--color-white);
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky; /* Makes header sticky on scroll */
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 70px; /* Ensure header has a consistent minimum height */
+}
+
+.logo img {
+    height: 65px; /* Increased logo height for "very big" */
+    width: auto;
+    display: block; /* Prevents extra space below image */
+}
+
+.main-nav ul {
+    display: flex;
+    gap: 30px;
+}
+
+.main-nav ul li a {
+    color: var(--color-navy);
+    font-weight: 600;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.main-nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-teal);
+    transition: width 0.3s ease;
+}
+
+.main-nav ul li a:hover::after,
+.main-nav ul li a.active::after {
+    width: 100%;
+}
+
+.header-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.mobile-menu-toggle {
+    display: none; /* Hidden by default, shown on mobile */
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    width: 30px;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* For animating lines */
+    z-index: 1100; /* Ensure it's above the mobile nav */
+}
+
+.mobile-menu-toggle span {
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-navy);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center; /* For rotation */
+}
+
+/* Hamburger animation */
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px); /* Slide out for a cleaner 'X' */
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+/* --- Hero Section --- */
+.hero-section {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    padding: 80px 0;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.hero-section h1 {
+    font-size: 3.5em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-subtext {
+    font-size: 1.3em;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+/* --- Contact Form Section --- */
+/* --- Contact Form Section (Specific Styles) --- */
+.contact-form-section {
+    background-color: var(--color-white); /* Ensure white background */
+    padding: 80px 0; /* Already has section-padding, but explicitly set if needed */
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* 1/3 for info, 2/3 for form */
+    gap: 50px;
+    align-items: flex-start; /* Align items to the top */
+}
+
+.contact-info {
+    background-color: #f0f8ff; /* Light blue background */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.contact-info h3 {
+    font-size: 1.8em;
+    color: var(--color-navy);
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--color-teal); /* Using teal for primary color */
+    padding-bottom: 10px;
+    display: inline-block; /* Makes border-bottom only as wide as text */
+}
+
+.contact-info p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    color: var(--color-dark-gray);
+    display: flex; /* For icon alignment */
+    align-items: center;
+}
+
+.contact-info p i {
+    font-size: 1.4em;
+    margin-right: 15px;
+    color: var(--color-teal); /* Using teal for primary color */
+}
+
+.contact-info a {
+    color: var(--color-teal); /* Using teal for primary color */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+.contact-info .social-links {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+}
+
+.contact-info .social-links a {
+    font-size: 1.8em;
+    color: var(--color-navy);
+    transition: color 0.3s ease;
+}
+
+.contact-info .social-links a:hover {
+    color: var(--color-teal); /* Using teal for primary color */
+}
+
+.contact-form-block {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.contact-form-block h3 {
+    font-size: 1.8em;
+    color: var(--color-navy);
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--color-teal); /* Using teal for primary color */
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+/* --- Responsive Adjustments for Contact Form Section --- */
+@media (max-width: 992px) {
+    .contact-grid {
+        grid-template-columns: 1fr; /* Stack columns on tablets and smaller */
+        gap: 40px;
+    }
+
+    .contact-info,
+    .contact-form-block {
+        padding: 25px;
+    }
+
+    .contact-info h3,
+    .contact-form-block h3 {
+        font-size: 1.6em;
+    }
+
+    .contact-info p {
+        font-size: 1em;
+    }
+
+    .contact-info p i {
+        font-size: 1.2em;
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .contact-form-section {
+        padding: 60px 0;
+    }
+
+    .contact-grid {
+        gap: 30px;
+    }
+
+    .contact-info,
+    .contact-form-block {
+        padding: 20px;
+    }
+
+    .contact-info h3,
+    .contact-form-block h3 {
+        font-size: 1.4em;
+        margin-bottom: 20px;
+    }
+
+    .contact-info p {
+        font-size: 0.95em;
+        margin-bottom: 10px;
+    }
+
+    .contact-info p i {
+        font-size: 1.1em;
+        margin-right: 8px;
+    }
+
+    .contact-info .social-links {
+        margin-top: 20px;
+        justify-content: center; /* Center social icons on small screens */
+    }
+
+    .contact-info .social-links a {
+        font-size: 1.6em;
+    }
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1em;
+    color: var(--color-navy);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--color-gray);
+    border-radius: 8px;
+    font-size: 1em;
+    color: var(--color-dark-blue);
+    background-color: var(--color-light-gray);
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--color-teal);
+    box-shadow: 0 0 0 3px rgba(14, 210, 247, 0.2);
+}
+
+.form-group textarea {
+    resize: vertical; /* Allow vertical resizing */
+    min-height: 120px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px 25px;
+    font-size: 1.1em;
+    border-radius: 10px;
+}
+
+/* --- Other Contact Options Section --- */
+.other-contact-options-section {
+    background-color: var(--color-white);
+    padding: 60px 0;
+    margin-bottom: 60px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.contact-options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    justify-content: center;
+}
+
+.contact-option-card {
+    background-color: var(--color-light-gray);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.contact-option-card:hover {
+    transform: translateY(-5px);
+}
+
+.contact-icon {
+    font-size: 3.5em;
+    color: var(--color-teal);
+    margin-bottom: 20px;
+}
+
+.contact-option-card h3 {
+    font-size: 1.5em;
+    color: var(--color-navy);
+    margin-bottom: 10px;
+}
+
+.contact-option-card p {
+    font-size: 0.95em;
+    color: var(--color-dark-gray);
+    margin-bottom: 15px;
+    flex-grow: 1; /* Push link/socials to bottom */
+}
+
+.contact-option-card a {
+    font-weight: 500;
+    display: block;
+    margin-top: auto; /* Push link to bottom */
+}
+
+.contact-option-card span { /* For address line */
+    font-size: 0.9em;
+    color: var(--color-dark-gray);
+    margin-top: auto;
+    display: block;
+}
+
+.contact-option-card .social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: auto;
+}
+
+.contact-option-card .social-links a {
+    font-size: 1.8em;
+    color: var(--color-navy);
+    transition: color 0.2s ease;
+}
+
+.contact-option-card .social-links a:hover {
+    color: var(--color-teal);
+}
+
+/* --- Google Map Section --- */
+.google-map-section {
+    padding-bottom: 60px;
+}
+
+.map-container {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 450px;
+    display: block; /* Remove extra space below iframe */
+    border: none;
+}
+
+/* --- Quick Help / FAQ Links Section --- */
+.quick-help-section {
+    padding-bottom: 80px;
+}
+
+.faq-accordion {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-accordion .accordion-item {
+    background-color: var(--color-white);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.faq-accordion .accordion-header {
+    width: 100%;
+    background-color: var(--color-white);
+    color: var(--color-navy);
+    padding: 20px 25px;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-align: left;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+
+.faq-accordion .accordion-header:hover {
+    background-color: var(--color-light-gray);
+}
+
+.faq-accordion .accordion-icon {
+    font-size: 1.5em;
+    transition: transform 0.3s ease;
+}
+
+.faq-accordion .accordion-header.active .accordion-icon {
+    transform: rotate(180deg);
+}
+
+.faq-accordion .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+    background-color: var(--color-light-gray);
+    padding: 0 25px; /* Initial padding is 0 */
+}
+
+.faq-accordion .accordion-content.active {
+    max-height: 300px; /* Sufficiently large value */
+    padding: 15px 25px; /* Padding when active */
+}
+
+.faq-accordion .accordion-content p {
+    color: var(--color-dark-blue);
+    font-size: 0.95em;
+}
+
+/* --- Success Message Modal Styles --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Darker overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001; /* Above all other content */
+    opacity: 0; /* Start hidden for fade-in */
+    visibility: hidden; /* Start hidden for display toggle */
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.success-modal-content {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+    transform: translateY(-20px); /* Start slightly up for slide-in */
+    transition: transform 0.3s ease-in-out;
+    position: relative; /* For close button positioning */
+}
+
+.modal-overlay.active .success-modal-content {
+    transform: translateY(0);
+}
+
+.success-modal-content .success-icon {
+    font-size: 4em;
+    color: var(--color-green);
+    margin-bottom: 20px;
+}
+
+.success-modal-content h3 {
+    font-size: 1.8em;
+    color: var(--color-navy);
+    margin-bottom: 15px;
+}
+
+.success-modal-content p {
+    font-size: 1em;
+    color: var(--color-dark-gray);
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.success-modal-content .btn {
+    padding: 12px 30px;
+    font-size: 1em;
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    color: var(--color-dark-gray);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-modal-btn:hover {
+    color: var(--color-red);
+}
+/* --- Newsletter Signup Section Styles --- */
+.newsletter-signup h2 {
+    color: var(--color-navy);
+}
+
+.newsletter-signup p {
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+    color: var(--color-dark-gray);
+}
+
+.newsletter-form {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.newsletter-form input[type="email"] {
+    padding: 12px 20px;
+    border: 2px solid var(--color-gray);
+    border-radius: 8px;
+    font-size: 1em;
+    width: 100%;
+    max-width: 400px;
+    color: var(--color-navy);
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.newsletter-form input[type="email"]:focus {
+    border-color: var(--color-teal);
+}
+
+.newsletter-form .btn-primary {
+    padding: 12px 30px;
+    font-size: 1em;
+}
+
+/* --- Footer Styles --- */
+.main-footer {
+    background-color: var(--color-dark-blue);
+    color: var(--color-white);
+    padding: 40px 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.footer-logo img {
+    height: 95px;
+    width: 80px;
+    filter: brightness(0) invert(1); /* Example for making a dark logo white on dark background */
+    margin-bottom: -20px;
+    margin-top: -10px;
+}
+
+.footer-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px 30px;
+}
+
+.footer-nav ul li a {
+    color: var(--color-white);
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.footer-nav ul li a:hover {
+    color: var(--color-teal);
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.social-links a {
+    color: var(--color-white);
+    font-size: 1.5em;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--color-teal);
+}
+
+.copyright {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7);
+}
+/* Close button for mobile menu */
+.close-menu-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2.5em;
+    color: var(--color-white);
+    cursor: pointer;
+    z-index: 1200;
+    transition: transform 0.2s ease;
+}
+
+.close-menu-btn:hover {
+    transform: rotate(90deg);
+}.close-menu-btn {
+    position: absolute;
+    top: 15px; /* Adjusted top for better alignment */
+    right: 15px; /* Adjusted right for better alignment */
+    font-size: 2.2em; /* Slightly smaller font size for the icon itself */
+    color: var(--color-white);
+    cursor: pointer;
+    z-index: 1200;
+    transition: transform 0.2s ease, background-color 0.2s ease; /* Added background-color to transition */
+    display: flex; /* Use flex to center the icon */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: 40px; /* Explicit width to give a larger clickable area */
+    height: 40px; /* Explicit height to give a larger clickable area */
+    border-radius: 50%; /* Make it a circle */
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle background for click area */
+}
+
+.close-menu-btn:hover {
+    transform: rotate(90deg);
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly more prominent on hover */
+}
+/* --- Mobile Responsiveness --- */
+@media (max-width: 992px) {
+    body {
+        padding-top: 30px;
+    }
+    .hero-section {
+        padding: 60px 0;
+        margin-bottom: 40px;
+    }
+    .hero-section h1 {
+        font-size: 2.8em;
+    }
+    .hero-subtext {
+        font-size: 1.1em;
+    }
+    .section-title {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+    .contact-form-section,
+    .other-contact-options-section,
+    .google-map-section,
+    .quick-help-section {
+        padding-bottom: 40px;
+        margin-bottom: 40px;
+    }
+    .contact-form {
+        padding: 30px;
+    }
+    .form-group label {
+        font-size: 0.95em;
+    }
+    .form-group input,
+    .form-group textarea {
+        padding: 10px 12px;
+        font-size: 0.95em;
+    }
+    .submit-btn {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+    .contact-option-card {
+        padding: 25px;
+    }
+    .contact-icon {
+        font-size: 3em;
+    }
+    .contact-option-card h3 {
+        font-size: 1.3em;
+    }
+    .contact-option-card p,
+    .contact-option-card a,
+    .contact-option-card span {
+        font-size: 0.9em;
+    }
+    .contact-option-card .social-links a {
+        font-size: 1.6em;
+    }
+    .map-container iframe {
+        height: 350px;
+    }
+    .faq-accordion .accordion-header {
+        padding: 15px 20px;
+        font-size: 1em;
+    }
+    .faq-accordion .accordion-content.active {
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2.5em;
+    }
+    .contact-options-grid {
+        grid-template-columns: 1fr; /* Stack cards vertically */
+        gap: 25px;
+    }
+    .contact-option-card {
+        max-width: 400px; /* Constrain width when stacked */
+        margin: 0 auto;
+    }
+    .map-container iframe {
+        height: 300px;
+    }
+     .main-nav {
+        /* Mobile menu overlay styles - NO CHANGES HERE */
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 65vw;
+        max-width: 200px;
+        max-height: calc(100vh - 70px); /* Adjusted to account for header min-height */
+        background-color: var(--color-navy);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 10px 0; /* General padding */
+        padding-top: 50px; /* Space for close button */
+        transform: translateX(100%);
+        transition: transform 0.4s ease-out;
+        z-index: 999;
+        overflow-y: auto;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    }
+
+    .main-nav.active {
+        transform: translateX(0);
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        gap: 1px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .main-nav ul li a {
+        color: var(--color-white);
+        font-size: 1em;
+        padding: 10px 0;
+        display: block;
+    }
+
+    .main-nav ul li a::after {
+        background-color: var(--color-teal);
+    }
+
+    /* Show header actions on mobile */
+    .header-actions {
+        display: flex; /* Make buttons visible */
+        gap: 8px; /* Reduce gap between buttons on mobile */
+        margin-left: auto; /* Push buttons to the right, next to hamburger */
+        align-items: center; /* Align with hamburger */
+    }
+
+    /* Adjust button size for mobile header - UPDATED */
+    .header-actions .btn {
+        padding: 6px 12px; /* Smaller padding for mobile header buttons */
+        font-size: 0.75em; /* Smaller font size for mobile header buttons */
+        border-width: 1px; /* Thinner border */
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+        margin-left: 15px; /* Add some space between buttons and hamburger */
+    }
+      .newsletter-form {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .newsletter-form input[type="email"] {
+        max-width: 100%;
+    }
+
+    .footer-nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+}
+
+@media (max-width: 576px) {
+    body {
+        padding-top: 20px;
+    }
+    .hero-section {
+        padding: 40px 0;
+        margin-bottom: 30px;
+    }
+    .hero-section h1 {
+        font-size: 2em;
+    }
+    .hero-subtext {
+        font-size: 1em;
+    }
+    .section-title {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+    }
+    .contact-form-section,
+    .other-contact-options-section,
+    .google-map-section,
+    .quick-help-section {
+        padding-bottom: 30px;
+        margin-bottom: 30px;
+    }
+    .contact-form {
+        padding: 20px;
+    }
+    .form-group label {
+        font-size: 0.9em;
+    }
+    .form-group input,
+    .form-group textarea {
+        padding: 8px 10px;
+        font-size: 0.9em;
+    }
+    .submit-btn {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+    .contact-option-card {
+        padding: 20px;
+    }
+    .contact-icon {
+        font-size: 2.8em;
+    }
+    .contact-option-card h3 {
+        font-size: 1.2em;
+    }
+    .faq-accordion .accordion-header {
+        padding: 12px 15px;
+        font-size: 0.9em;
+    }
+    .faq-accordion .accordion-content.active {
+        padding: 8px 15px;
+    }
+    .success-modal-content {
+        padding: 20px;
+    }
+    .success-modal-content .success-icon {
+        font-size: 3em;
+    }
+    .success-modal-content h3 {
+        font-size: 1.5em;
+    }
+    .success-modal-content p {
+        font-size: 0.9em;
+    }
+    .success-modal-content .btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindStack - Log In</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo/mindstack_logo__1_-removebg-preview.png" type="image/png">
+    
+    <!-- Login Page Specific Stylesheet (now truly self-contained) -->
+    <link rel="stylesheet" href="assets/css/login.css"> 
+    
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+    
+    <!-- Remix Icons (for optional icons) -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+</head>
+<body class="auth-page" style="background: url(assets/images/background-image.jpg);">
+    <div class="auth-container">
+        <!-- 1. Top Section (Logo) -->
+        <div class="auth-header">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo/mindstack_logo__1_-removebg-preview.png" alt="MindStack Logo">
+                </a>
+            </div>
+            <hr class="auth-divider">
+        </div>
+
+        <!-- 2. Login Form View (Default on Page Load) -->
+        <div id="loginView" class="hidden"> <!-- IMPORTANT: Keep class="hidden" here -->
+            <div class="auth-heading">
+                <h2>Log in to MindStack</h2>
+            </div>
+
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" name="loginEmail" placeholder="example@domain.com">
+                    <span class="error-message" id="loginEmailError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" name="loginPassword" placeholder="Your password">
+                    <span class="error-message" id="loginPasswordError"></span>
+                </div>
+
+                <div class="auth-options">
+                    <a href="#" id="forgotPasswordLink" class="text-link">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary full-width-btn" id="loginBtn">Log In</button>
+            </form>
+
+            <!-- Bottom Text: Don't have an account? Sign up -->
+            <div class="auth-footer-link">
+                <p>Don't have an account? <a href="signup.html" class="text-link">Sign up</a></p>
+            </div>
+        </div>
+
+        <!-- 3. Password Reset View (Hidden Initially) -->
+        <div id="resetPasswordView" class="hidden"> <!-- IMPORTANT: Keep class="hidden" here -->
+            <div class="auth-heading">
+                <h2>Reset Your Password</h2>
+            </div>
+
+            <form id="resetPasswordForm" class="auth-form">
+                <div class="form-group">
+                    <label for="resetEmail">Email Address</label>
+                    <input type="email" id="resetEmail" name="resetEmail" placeholder="name@example.com">
+                    <span class="error-message" id="resetEmailError"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary full-width-btn" id="sendInstructionsBtn">Send Me Instructions</button>
+            </form>
+
+            <!-- Reset Status and Countdown -->
+            <div class="reset-status-area hidden" id="resetStatusArea">
+                <p class="reset-message" id="resetMessage"></p>
+                <p class="countdown-timer" id="countdownTimer"></p>
+            </div>
+
+            <!-- Back to Login Button -->
+            <div class="auth-footer-link">
+                <button type="button" id="backToLoginBtn" class="btn btn-secondary full-width-btn">Back to Login</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Authentication Specific JavaScript File -->
+    <script type="module" src="assets/js/login.js"></script> <!-- ADDED type="module" HERE -->
+</body>
+</html>

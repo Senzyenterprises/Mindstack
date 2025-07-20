@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindStack - User Dashboard</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo/mindstack_logo__1_-removebg-preview.png" type="image/png">
+    
+    <!-- Dashboard Specific Stylesheet -->
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+    
+    <!-- Remix Icons (for icons) -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar (Left) -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <img src="assets/images/logo/mindstack_logo__1_-removebg-preview.png" alt="MindStack Logo">
+                    <span>MindStack</span>
+                </a>
+                <button class="close-sidebar-btn ri-close-line" id="closeSidebarBtn"></button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#" class="nav-item active" data-section="dashboard-overview-content"><i class="ri-dashboard-line"></i><span>Dashboard</span></a></li>
+                    <li><a href="#" class="nav-item" data-section="my-courses-content"><i class="ri-book-open-line"></i><span>My Courses</span></a></li>
+                    <li><a href="#" class="nav-item" data-section="progress-content"><i class="ri-line-chart-line"></i><span>Progress</span></a></li>
+                    <li><a href="#" class="nav-item" data-section="affiliate-tools-content" id="affiliateToolsNavItem" style="display: none;"><i class="ri-tools-line"></i><span>Affiliate Tools</span></a></li>
+                    <li><a href="#" class="nav-item" data-section="account-settings-content"><i class="ri-settings-3-line"></i><span>Account Settings</span></a></li>
+                </ul>
+                <ul class="bottom-nav">
+                    <li><a href="#" class="nav-item logout-item" id="logoutBtn"><i class="ri-logout-box-line"></i><span>Logout</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area (Right) -->
+        <main class="main-content">
+            <header class="main-header">
+                <button class="hamburger-menu ri-menu-line" id="hamburgerMenu"></button>
+                <div class="welcome-block">
+                    <h1>Welcome back, <span id="userName"></span> 👋</h1>
+                    <p id="welcomeMessage">Let’s continue your learning journey.</p>
+                </div>
+            </header>
+
+            <!-- --- Dashboard Overview Section --- -->
+            <section id="dashboard-overview-content" class="content-section active">
+                <div class="quick-stats-section">
+                    <div class="stat-card">
+                        <i class="ri-book-2-line stat-icon"></i>
+                        <span class="stat-number" id="coursesEnrolled">0</span>
+                        <span class="stat-label">Courses Enrolled</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="ri-award-line stat-icon"></i>
+                        <span class="stat-number" id="certificatesEarned">0</span>
+                        <span class="stat-label">Certificates Earned</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="ri-bar-chart-line stat-icon"></i>
+                        <span class="stat-number" id="completionRate">0%</span>
+                        <span class="stat-label">Completion Rate</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="ri-time-line stat-icon"></i>
+                        <span class="stat-number" id="timeSpent">0hr 0min</span>
+                        <span class="stat-label">Time Spent</span>
+                    </div>
+                </div>
+
+                <!-- NEW: Subscription Status Card -->
+                <div class="subscription-status-card card">
+                    <h2>Your Subscription</h2>
+                    <p><strong>Current Plan:</strong> <span id="currentPlan">Loading...</span></p>
+                    <p id="subscriptionEndDateDisplay" style="display: none;"><strong>Expires On:</strong> <span id="subscriptionEndDate"></span></p>
+                    <div id="upgradeSection">
+                        <p class="upgrade-prompt">Unlock all premium courses and features!</p>
+                        <p class="premium-price-display">Premium Plan: <span id="premiumPriceDisplay">Loading...</span> / month</p>
+                        <button class="btn btn-primary" id="upgradeToPremiumBtn">Upgrade to Premium</button>
+                        <div id="upgradeMessage" class="message-container"></div>
+                    </div>
+                    <div id="premiumFeaturesInfo" style="display: none;">
+                        <p class="premium-info">You have access to all premium features!</p>
+                        <button class="btn btn-secondary" id="manageSubscriptionBtn">Manage Subscription</button>
+                    </div>
+                </div>
+                <!-- END NEW: Subscription Status Card -->
+
+                <div class="enrolled-courses-section">
+                    <h2>Your Courses</h2>
+                    <div class="course-cards-container" id="enrolledCoursesContainer">
+                        <!-- Dynamic course cards will be populated here by JS -->
+                        <div id="noEnrolledCoursesMessage" class="message-container" style="display: none;">You haven't enrolled in any courses yet. Explore our <a href="courses.html" class="text-link">Course Catalog</a>!</div>
+                    </div>
+                </div>
+
+                <div class="notifications-section">
+                    <h2>Notifications & Tips</h2>
+                    <div class="notifications-list" id="notificationsList">
+                        <!-- Dynamic notifications will be populated here by JS -->
+                        <div class="notification-item">
+                            <i class="ri-notification-line"></i>
+                            <p><strong>Welcome to MindStack!</strong> We're excited to have you here.</p>
+                        </div>
+                        <div class="notification-item">
+                            <i class="ri-lightbulb-line"></i>
+                            <p><strong>Tip:</strong> Explore our diverse course catalog to find your next learning adventure.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- --- My Courses Section (Dedicated) --- -->
+            <section id="my-courses-content" class="content-section" style="display: none;">
+                <h2>All Available Courses</h2>
+                <p>Here are all the courses available on MindStack. Enroll to start learning!</p>
+                <div class="course-cards-container" id="allAvailableCoursesContainer">
+                    <!-- Dynamic course cards will be populated here by JS -->
+                    <div id="noAvailableCoursesMessage" class="message-container" style="display: none;">No courses found. Check back later!</div>
+                </div>
+            </section>
+
+            <!-- --- Progress Section --- -->
+            <section id="progress-content" class="content-section" style="display: none;">
+                <h2>Your Progress Overview</h2>
+                <p>Track your learning journey and achievements across all your courses.</p>
+                <div class="progress-summary">
+                    <!-- Placeholder for detailed progress charts/info -->
+                    <p>Detailed progress tracking coming soon! For now, see your completion rates on the Dashboard.</p>
+                    <div class="stat-card">
+                        <i class="ri-bar-chart-line stat-icon"></i>
+                        <span class="stat-number">Placeholder Chart</span>
+                        <span class="stat-label">Overall Progress</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- --- Affiliate Tools Section --- -->
+            <section id="affiliate-tools-content" class="content-section" style="display: none;">
+                <h2>Affiliate Dashboard</h2>
+                <p>Manage your affiliate links, track referrals, and view your earnings.</p>
+                <div class="affiliate-stats-grid">
+                    <div class="stat-card">
+                        <i class="ri-link-m stat-icon"></i>
+                        <span class="stat-number" id="affiliateLink">Loading...</span>
+                        <span class="stat-label">Your Referral Link</span>
+                        <button class="btn btn-primary btn-small" id="copyAffiliateLinkBtn">Copy Link</button>
+                    </div>
+                    <div class="stat-card">
+                        <i class="ri-user-add-line stat-icon"></i>
+                        <span class="stat-number" id="affiliateReferrals">0</span>
+                        <span class="stat-label">Total Referrals</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="ri-money-dollar-circle-line stat-icon"></i>
+                        <span class="stat-number" id="affiliateEarnings">₦0</span>
+                        <span class="stat-label">Total Earnings</span>
+                    </div>
+                </div>
+                <div class="affiliate-resources">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Marketing Banners</a></li>
+                        <li><a href="#">Promotional Content</a></li>
+                        <li><a href="#">Affiliate Program Terms</a></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- --- Account Settings Section --- -->
+            <section id="account-settings-content" class="content-section" style="display: none;">
+                <h2>Account Settings</h2>
+                <p>Update your profile information and manage your account preferences.</p>
+                <form id="accountSettingsForm" class="settings-form">
+                    <div class="form-group">
+                        <label for="settingsFullName">Full Name</label>
+                        <input type="text" id="settingsFullName" name="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="settingsEmail">Email Address</label>
+                        <input type="email" id="settingsEmail" name="email" disabled> <!-- Email usually not editable directly -->
+                    </div>
+                    <!-- Display User Role -->
+                    <div class="form-group">
+                        <label>Your Role</label>
+                        <span id="settingsRole" class="display-value"></span>
+                    </div>
+                    <div id="accountSettingsMessage" class="message-container"></div>
+                    <button type="submit" class="btn btn-primary" id="saveAccountSettingsBtn">Save Changes</button>
+                    <button type="button" class="btn btn-secondary" id="resetPasswordBtn">Reset Password</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <!-- Logout Confirmation Modal -->
+    <div class="modal-overlay" id="logoutModalOverlay">
+        <div class="modal-content">
+            <h3>Confirm Logout</h3>
+            <p>Are you sure you want to log out?</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelLogoutBtn">No</button>
+                <button class="btn btn-primary" id="confirmLogoutBtn">Yes, Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Generic Message Modal (for user feedback) -->
+    <div class="modal-overlay" id="messageModalOverlay">
+        <div class="modal-content message-modal-content">
+            <button class="close-modal-btn ri-close-line" id="closeMessageModalBtn"></button>
+            <h3 id="messageModalTitle"></h3>
+            <p id="messageModalText"></p>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="messageModalCloseBtn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Specific JavaScript File -->
+    <script type="module" src="assets/js/dashboard.js"></script>
+</body>
+</html>

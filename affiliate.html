@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindStack - Affiliate Program</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo/mindstack_logo__1_-removebg-preview.png" type="image/png">
+    
+    <!-- Affiliate Page Specific Stylesheet -->
+    <link rel="stylesheet" href="assets/css/affiliate.css">
+    
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+    
+    <!-- Remix Icons (for icons) -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+</head>
+<body>
+    <!-- Header (Content that would come from includes/header.html) -->
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <!-- Corrected path for header logo -->
+                    <img src="assets/images/logo/mindstack_logo__1_-removebg-preview.png" alt="MindStack Logo">
+                </a>
+            </div>
+
+            <nav class="main-nav">
+                <div class="close-menu-btn" id="closeMenuBtn">
+                    <i class="ri-close-line"></i>
+                </div>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="affiliate.html" class="active">Affiliates</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="login.html" class="btn btn-secondary">Login</a>
+                <a href="signup.html" class="btn btn-primary">Start for Free</a>
+            </div>
+
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1>Earn Money by Sharing MindStack</h1>
+            <p class="hero-subtext">Join our affiliate program and get paid for every person you refer.</p>
+            <button class="btn btn-primary cta-btn" id="heroCtaBtn">Join Now</button>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works-section">
+        <div class="container">
+            <h2 class="section-title text-center">How It Works</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <i class="ri-user-add-line step-icon"></i>
+                    <h3>1. Join the Program</h3>
+                    <p>Sign up or log in to get your unique referral link instantly.</p>
+                </div>
+                <div class="step-card">
+                    <i class="ri-share-line step-icon"></i>
+                    <h3>2. Share Your Link</h3>
+                    <p>Promote MindStack on your social media, blog, website, or with friends.</p>
+                </div>
+                <div class="step-card">
+                    <i class="ri-money-dollar-circle-line step-icon"></i>
+                    <h3>3. Earn Money</h3>
+                    <p>Get paid a commission when people sign up or buy Premium through your link.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Affiliate Benefits Section -->
+    <section class="affiliate-benefits-section">
+        <div class="container">
+            <h2 class="section-title text-center">Why Promote MindStack?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <i class="ri-hand-coin-line benefit-icon"></i>
+                    <p>Passive income opportunity</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="ri-lightbulb-line benefit-icon"></i>
+                    <p>Help others discover great learning</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="ri-bar-chart-line benefit-icon"></i>
+                    <p>Real-time tracking of performance</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="ri-bank-card-line benefit-icon"></i>
+                    <p>Flexible monthly payouts</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="ri-trophy-line benefit-icon"></i>
+                    <p>Bonuses for top performers</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="ri-customer-service-2-line benefit-icon"></i>
+                    <p>Dedicated affiliate support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Affiliate Dashboard Panel (Conditional Visibility) -->
+    <section class="affiliate-dashboard-section" id="affiliateDashboard">
+        <div class="container">
+            <h2 class="section-title text-center">Your Affiliate Dashboard</h2>
+            <div class="dashboard-content">
+                <div class="referral-link-block">
+                    <h3>Your Referral Link</h3>
+                    <div class="link-display">
+                        <span id="referralLink">mindstack.com/?ref=YOURID</span>
+                        <button class="btn btn-secondary copy-link-btn" id="copyLinkBtn">Copy Link</button>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="ri-cursor-line stat-icon"></i>
+                        <span class="stat-number" id="totalClicks">0</span>
+                        <span class="stat-label">Clicks</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="ri-user-follow-line stat-icon"></i>
+                        <span class="stat-number" id="totalSignups">0</span>
+                        <span class="stat-label">Signups</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="ri-check-double-line stat-icon"></i>
+                        <span class="stat-number" id="totalConversions">0</span>
+                        <span class="stat-label">Conversions</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="ri-wallet-line stat-icon"></i>
+                        <span class="stat-number" id="totalEarnings">₦0</span>
+                        <span class="stat-label">Earnings</span>
+                    </div>
+                </div>
+
+                <div class="payout-status-block">
+                    <h3>Payout Status</h3>
+                    <p id="payoutMessage">Minimum payout is ₦5,000. Current balance: ₦0</p>
+                    <button class="btn btn-primary" id="requestPayoutBtn" disabled>Request Payout</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotion Tips & Tools Section -->
+    <section class="promotion-tips-section">
+        <div class="container">
+            <h2 class="section-title text-center">Tips & Tools to Succeed</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h3>Social Media Captions</h3>
+                    <p>Ready-to-use captions for Facebook, Twitter, and Instagram.</p>
+                    <button class="btn btn-secondary" id="viewCaptionsBtn">View Examples</button>
+                </div>
+                <div class="tip-card">
+                    <h3>Banners & Logos</h3>
+                    <p>Download high-quality MindStack banners and logos for your site.</p>
+                    <button class="btn btn-secondary" id="downloadAssetsBtn">Download Assets</button>
+                </div>
+                <div class="tip-card">
+                    <h3>Email Templates</h3>
+                    <p>Pre-written email templates to share with your audience.</p>
+                    <button class="btn btn-secondary" id="getTemplatesBtn">Get Templates</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title text-center">Frequently Asked Questions</h2>
+            <div class="faq-accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        How do I get paid?
+                        <i class="ri-arrow-down-s-line accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>We offer payouts via bank transfer or PayPal. You can select your preferred method in your affiliate dashboard settings.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        When do I receive my commission?
+                        <i class="ri-arrow-down-s-line accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Commissions are paid out on the 15th of every month for earnings accrued in the previous month, provided you meet the minimum payout threshold.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        Is there a minimum payout amount?
+                        <i class="ri-arrow-down-s-line accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Yes, the minimum payout threshold is ₦5,000. If your earnings are below this amount, they will roll over to the next month until the threshold is met.</p>
+                    (Optional: You can also add `totalEarnings` as a Number field and set it to `1000` for consistency, though `pendingEarnings` is the critical one for the button.)
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        Can I refer myself?
+                        <i class="ri-arrow-down-s-line accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>No, self-referrals are not permitted. The affiliate program is designed to reward you for bringing new users to MindStack.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section class="newsletter-signup section-padding bg-light-gray">
+        <div class="container text-center">
+            <h2>Stay Updated with MindStack</h2>
+            <p>Get the latest course updates, special offers, and learning tips directly in your inbox.</p>
+            <form id="newsletterForm" class="newsletter-form"> <!-- ADDED id="newsletterForm" -->
+                <input type="email" id="newsletterEmail" placeholder="Enter your email address" required> <!-- ADDED id="newsletterEmail" -->
+                <button type="submit" class="btn btn-primary">Subscribe for updates</button>
+                <div id="newsletterMessage" class="newsletter-message"></div> 
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer (Content that would come from includes/footer.html) -->
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <!-- Corrected path for footer logo -->
+                <img src="assets/images/logo/mindstack_logo__1_-removebg-preview.png" alt="MindStack Logo">
+            </div>
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                </ul>
+            </nav>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
+                <a href="#" aria-label="Twitter"><i class="ri-twitter-fill"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
+                <a href="#" aria-label="Instagram"><i class="ri-instagram-fill"></i></a>
+            </div>
+            <p class="copyright">&copy; 2025 MindStack. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- --- Modals for Tips & Tools (NEW) --- -->
+
+    <!-- Generic Message Modal -->
+    <div class="modal-overlay" id="messageModalOverlay">
+        <div class="modal-content message-modal-content">
+            <button class="close-modal-btn ri-close-line" id="closeMessageModalBtnTop"></button>
+            <h3 id="messageModalTitle"></h3>
+            <p id="messageModalText"></p>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="messageModalCloseBtn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Media Captions Modal -->
+    <div class="modal-overlay" id="socialMediaCaptionsModalOverlay">
+        <div class="modal-content captions-modal-content">
+            <button class="close-modal-btn ri-close-line" id="closeCaptionsModalBtn"></button>
+            <h3>Social Media Captions</h3>
+            <div class="captions-list">
+                <div class="caption-item">
+                    <h4>Caption 1 (General)</h4>
+                    <p>Unlock your potential with MindStack! 🚀 Dive into expert-led courses and master new skills. Start your learning journey today! #MindStack #OnlineLearning #SkillUp</p>
+                    <button class="btn btn-secondary copy-caption-btn">Copy</button>
+                </div>
+                <div class="caption-item">
+                    <h4>Caption 2 (Benefit-focused)</h4>
+                    <p>Tired of endless tutorials? MindStack offers structured courses that get straight to the point. Learn smarter, not harder. Link in bio! #LearnFast #CareerGrowth #MindStack</p>
+                    <button class="btn btn-secondary copy-caption-btn">Copy</button>
+                </div>
+                <div class="caption-item">
+                    <h4>Caption 3 (Call to Action)</h4>
+                    <p>Ready to transform your career? MindStack's premium courses are designed for real-world impact. Sign up now and use my link for exclusive access! [Your Referral Link Here] #Education #OnlineCourses #MindStackAffiliate</p>
+                    <button class="btn btn-secondary copy-caption-btn">Copy</button>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="captionsModalCloseBtnBottom">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Banners & Logos Modal -->
+    <div class="modal-overlay" id="bannersLogosModalOverlay">
+        <div class="modal-content banners-modal-content">
+            <button class="close-modal-btn ri-close-line" id="closeBannersModalBtn"></button>
+            <h3>Banners & Logos</h3>
+            <div class="asset-grid">
+                <div class="asset-item">
+                    <h4>MindStack Logo (PNG)</h4>
+                    <img src="https://placehold.co/150x50/E0F2F7/0ED2F7?text=Logo" alt="MindStack Logo">
+                    <a href="https://placehold.co/150x50/E0F2F7/0ED2F7?text=Logo" class="btn btn-secondary" download>Download</a>
+                </div>
+                <div class="asset-item">
+                    <h4>Horizontal Banner (728x90)</h4>
+                    <img src="https://placehold.co/728x90/E0F2F7/0ED2F7?text=MindStack+Banner" alt="Horizontal Banner">
+                    <a href="https://placehold.co/728x90/E0F2F7/0ED2F7?text=MindStack+Banner" class="btn btn-secondary" download>Download</a>
+                </div>
+                <div class="asset-item">
+                    <h4>Square Banner (300x250)</h4>
+                    <img src="https://placehold.co/300x250/E0F2F7/0ED2F7?text=MindStack+Square" alt="Square Banner">
+                    <a href="https://placehold.co/300x250/E0F2F7/0ED2F7?text=MindStack+Square" class="btn btn-secondary" download>Download</a>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="bannersModalCloseBtnBottom">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Email Templates Modal -->
+    <div class="modal-overlay" id="emailTemplatesModalOverlay">
+        <div class="modal-content email-templates-modal-content">
+            <button class="close-modal-btn ri-close-line" id="closeEmailTemplatesModalBtn"></button>
+            <h3>Email Templates</h3>
+            <div class="email-templates-list">
+                <div class="email-template-item">
+                    <h4>Welcome Email for New Learners</h4>
+                    <pre>Subject: Welcome to MindStack - Your Learning Journey Begins!
+
+Hi [Name],
+
+Welcome to MindStack! We're thrilled to have you join our community of learners.
+
+At MindStack, we believe in empowering you with the skills you need to succeed in today's fast-paced world. Our expert-led courses cover everything from [mention a few categories, e.g., web development to digital marketing].
+
+Ready to dive in? Explore our courses here: [Your Referral Link Here]
+
+Happy learning!
+
+The MindStack Team</pre>
+                    <button class="btn btn-secondary copy-email-btn">Copy</button>
+                </div>
+                <div class="email-template-item">
+                    <h4>Promotional Email for a Specific Course</h4>
+                    <pre>Subject: Master [Course Topic] with MindStack!
+
+Hi [Name],
+
+Are you looking to master [Course Topic]? Our new course, "[Course Title]," is designed to take you from beginner to expert.
+
+In this course, you'll learn:
+- [Key Benefit 1]
+- [Key Benefit 2]
+- [Key Benefit 3]
+
+Enroll today and start building valuable skills: [Your Referral Link Here]
+
+Best,
+
+[Your Name/MindStack Team]</pre>
+                    <button class="btn btn-secondary copy-email-btn">Copy</button>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="emailTemplatesModalCloseBtnBottom">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing Page Specific JavaScript -->
+    <script type="module" src="assets/js/main.js"></script>
+    <!-- Affiliate Page Specific JavaScript -->
+    <script type="module" src="assets/js/affiliate.js"></script>
+</body>
+</html>

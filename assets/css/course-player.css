@@ -1,0 +1,571 @@
+/* mindstack/assets/css/course-player.css */
+
+/* --- Base Variables (consistent with other pages) --- */
+:root {
+    --color-navy: #1F2D5A;
+    --color-dark-blue: #1A2238;
+    --color-teal: #0ED2F7;
+    --color-cyan: #1ABC9C;
+    --color-white: #ffffff;
+    --color-light-gray: #f5f5f5;
+    --color-gray: #cccccc;
+    --color-dark-gray: #555555;
+    --color-red: #e74c3c; /* For error messages */
+    --color-green: #2ecc71; /* For success messages/icons */
+    --color-purple: #8A2BE2; 
+    --color-orange: #FF8C00; 
+
+    --font-primary: 'Poppins', sans-serif;
+
+    --sidebar-width-desktop: 300px;
+    --sidebar-width-mobile: 280px;
+}
+
+/* --- Global Resets & Body Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden; /* Prevent body scroll, main container will handle */
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--color-dark-blue);
+    background-color: var(--color-light-gray);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex; /* For full height layout */
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-teal);
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #0cbbd9;
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- Buttons (General Styles - consistent) --- */
+.btn {
+    display: inline-flex; /* Use flex for icon alignment */
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Space between text and icon */
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--color-teal);
+    color: var(--color-white);
+    border: 2px solid var(--color-teal);
+}
+
+.btn-primary:hover {
+    background-color: #0cbbd9;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-navy);
+    border: 2px solid var(--color-navy);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+/* --- Course Player Layout --- */
+.course-player-container {
+    display: flex;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Managed by child elements */
+}
+
+/* --- Sidebar: Course Curriculum --- */
+.curriculum-sidebar {
+    width: var(--sidebar-width-desktop);
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.15);
+    flex-shrink: 0;
+    overflow-y: auto; /* Enable scrolling for curriculum */
+    position: relative; /* For mobile overlay */
+    z-index: 100; /* Above main content */
+    transition: transform 0.3s ease-in-out;
+}
+
+.curriculum-sidebar .sidebar-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.curriculum-sidebar .back-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9em;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 10px;
+}
+
+.curriculum-sidebar .back-link i {
+    font-size: 1.1em;
+}
+
+.curriculum-sidebar h2 {
+    font-size: 1.5em;
+    color: var(--color-white);
+    margin: 0;
+    line-height: 1.3;
+}
+
+.curriculum-sidebar .close-sidebar-btn {
+    display: none; /* Hidden on desktop */
+    position: absolute;
+    top: 5px;
+    right: 0;
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    color: var(--color-white);
+    cursor: pointer;
+    padding: 5px;
+}
+
+.curriculum-nav {
+    flex-grow: 1;
+}
+
+.curriculum-nav .loading-message {
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Curriculum Modules & Lessons */
+.curriculum-module-item {
+    margin-bottom: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.05); /* Slightly lighter background for modules */
+}
+
+.curriculum-module-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background-color: var(--color-dark-blue); /* Darker blue for module headers */
+    color: var(--color-white);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.curriculum-module-header:hover {
+    background-color: #2a3a6b; /* Slightly lighter navy */
+}
+
+.curriculum-module-header i {
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+}
+
+.curriculum-module-item.open .curriculum-module-header i {
+    transform: rotate(90deg); /* Rotate icon when open */
+}
+
+.curriculum-lessons-list {
+    max-height: 0; /* Hidden by default */
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+    padding: 0 15px; /* Padding for lessons within module */
+}
+
+.curriculum-module-item.open .curriculum-lessons-list {
+    max-height: 500px; /* Adjust as needed for content height */
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.curriculum-lesson-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+}
+
+.curriculum-lesson-item:last-child {
+    border-bottom: none;
+}
+
+.curriculum-lesson-item:hover,
+.curriculum-lesson-item.active {
+    color: var(--color-teal);
+    background-color: rgba(14, 210, 247, 0.1); /* Light teal background */
+    border-radius: 5px;
+}
+
+.curriculum-lesson-item i {
+    font-size: 1.1em;
+    flex-shrink: 0;
+    color: rgba(255, 255, 255, 0.5); /* Default icon color */
+}
+
+.curriculum-lesson-item.active i {
+    color: var(--color-teal); /* Active icon color */
+}
+
+.curriculum-lesson-item .lesson-title {
+    flex-grow: 1;
+}
+
+.curriculum-lesson-item .lesson-duration {
+    font-size: 0.85em;
+    color: rgba(255, 255, 255, 0.5);
+    flex-shrink: 0;
+}
+
+.curriculum-lesson-item.locked {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.curriculum-lesson-item.locked i {
+    color: var(--color-red); /* Red lock icon */
+}
+
+/* --- Main Content: Video Player & Lesson Content --- */
+.main-player-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-light-gray);
+    overflow-y: auto; /* Enable scrolling for main content */
+    padding: 30px;
+     /* Offset for desktop sidebar */
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.player-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    background-color: var(--color-white);
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.hamburger-menu {
+    display: none; /* Hidden on desktop */
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: var(--color-navy);
+    cursor: pointer;
+    padding: 5px;
+}
+
+.player-header h1 {
+    font-size: 2em;
+    color: var(--color-navy);
+    margin: 0;
+}
+
+.video-player-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    background-color: #000;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.video-player-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.lesson-actions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+    justify-content: flex-end; /* Align buttons to the right */
+}
+
+.lesson-actions .btn {
+    min-width: 150px; /* Ensure buttons have a decent size */
+}
+
+.lesson-details-section,
+.downloads-section {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+.lesson-details-section h2,
+.downloads-section h2 {
+    font-size: 1.8em;
+    color: var(--color-navy);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-light-gray);
+}
+
+.lesson-details-section #lessonContent p {
+    color: var(--color-dark-blue);
+    line-height: 1.7;
+}
+
+.downloads-section ul {
+    padding: 0;
+}
+
+.downloads-section li {
+    margin-bottom: 10px;
+}
+
+.downloads-section li a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    background-color: var(--color-light-gray);
+    border-radius: 8px;
+    color: var(--color-navy);
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+    border: 1px solid var(--color-gray);
+}
+
+.downloads-section li a:hover {
+    background-color: #d0d0d0;
+}
+
+.downloads-section li i {
+    font-size: 1.2em;
+    color: var(--color-teal);
+}
+
+/* --- Generic Message Modal (consistent) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    position: relative; 
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.modal-content h3 {
+    color: var(--color-navy);
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.modal-content p {
+    color: #555;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.modal-content .close-modal-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    padding: 5px;
+    z-index: 10;
+}
+
+.modal-content .close-modal-btn:hover {
+    color: #333;
+}
+
+.modal-content .close-modal-btn.ri-close-line::before {
+    content: "\e90b"; 
+    font-family: "remixicon" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 992px) {
+    .course-player-container {
+        flex-direction: column;
+    }
+
+    .curriculum-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: var(--sidebar-width-mobile);
+        transform: translateX(-100%); /* Hidden by default */
+        z-index: 1000; /* Above main content */
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .curriculum-sidebar.active {
+        transform: translateX(0); /* Show when active */
+    }
+
+    .curriculum-sidebar .close-sidebar-btn {
+        display: block; /* Show close button on mobile sidebar */
+    }
+
+    .main-player-content {
+        margin-left: 0; /* No offset on mobile */
+        padding: 20px;
+    }
+
+    .player-header {
+        padding: 15px 20px;
+        margin-bottom: 25px;
+    }
+
+    .hamburger-menu {
+        display: block; /* Show hamburger menu on mobile */
+    }
+
+    .player-header h1 {
+        font-size: 1.6em;
+    }
+
+    .video-player-wrapper {
+        margin-bottom: 25px;
+    }
+
+    .lesson-actions {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+
+    .lesson-actions .btn {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .lesson-details-section,
+    .downloads-section {
+        padding: 25px;
+        margin-bottom: 25px;
+    }
+
+    .lesson-details-section h2,
+    .downloads-section h2 {
+        font-size: 1.6em;
+        margin-bottom: 15px;
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
+    .modal-content h3 {
+        font-size: 1.5em;
+    }
+    .modal-content p {
+        font-size: 1em;
+    }
+    .modal-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .modal-actions .btn {
+        width: 100%;
+    }
+}

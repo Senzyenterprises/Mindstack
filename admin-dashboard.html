@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindStack - Admin Dashboard</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo/mindstack_logo__1_-removebg-preview.png" type="image/png">
+    
+    <!-- Admin Dashboard Page Specific Stylesheet -->
+    <link rel="stylesheet" href="assets/css/admin-dashboard.css">
+    
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+    
+    <!-- Remix Icons (for icons) -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="adminSidebar">
+            <div class="sidebar-header">
+                <a href="index.html" >
+                    <img src="assets/images/logo/mindstack_logo__1_-removebg-preview.png" alt="MindStack Logo" class="sidebar-logo">
+                </a> 
+                <span class="logo-text">MindStack Admin</span>
+                <button class="close-sidebar-btn ri-close-line" id="closeSidebarBtn"></button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#" class="nav-item active" data-section="dashboard-overview">
+                        <i class="ri-dashboard-line"></i> <span>Dashboard</span>
+                    </a></li>
+                    <li><a href="#" class="nav-item" data-section="add-course">
+                        <i class="ri-add-circle-line"></i> <span>Add Course</span>
+                    </a></li>
+                    <li><a href="#" class="nav-item" data-section="manage-courses">
+                        <i class="ri-book-open-line"></i> <span>Manage Courses</span>
+                    </a></li>
+                    <li><a href="#" class="nav-item" data-section="manage-users">
+                        <i class="ri-group-line"></i> <span>Manage Users</span>
+                    </a></li>
+                    <li><a href="#" class="nav-item" data-section="manage-affiliates">
+                        <i class="ri-hand-coin-line"></i> <span>Manage Affiliates</span>
+                    </a></li>
+                    <li><a href="#" class="nav-item" data-section="manage-pricing"> <!-- NEW SECTION LINK -->
+                        <i class="ri-money-dollar-box-line"></i> <span>Manage Pricing</span>
+                    </a></li>
+                    <li><a href="#" class="nav-item" data-section="platform-settings">
+                        <i class="ri-settings-3-line"></i> <span>Platform Settings</span>
+                    </a></li>
+                </ul>
+                <ul class="bottom-nav">
+                    <li class="logout-item">
+                        <a href="#" class="nav-item" id="logoutBtn">
+                            <i class="ri-logout-box-line"></i> <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="main-content-area">
+            <!-- Topbar -->
+            <header class="topbar">
+                <button class="hamburger-menu ri-menu-line" id="hamburgerMenu"></button>
+                <div class="admin-info">
+                    <span>Welcome, Admin!</span>
+                    <img src="https://placehold.co/40x40/E0F2F7/0ED2F7?text=AD" alt="Admin Avatar" class="admin-avatar">
+                </div>
+            </header>
+
+            <!-- Main Content Sections -->
+            <main class="content-sections">
+                <!-- Dashboard Overview Section -->
+                <section id="dashboard-overview" class="content-section active">
+                    <h2 class="section-heading">Dashboard Overview</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <i class="ri-user-line stat-icon"></i>
+                            <span class="stat-number" id="totalUsers">0</span>
+                            <span class="stat-label">Total Users</span>
+                        </div>
+                        <div class="stat-card">
+                            <i class="ri-book-open-line stat-icon"></i>
+                            <span class="stat-number" id="totalCourses">0</span>
+                            <span class="stat-label">Total Courses</span>
+                        </div>
+                        <div class="stat-card">
+                            <i class="ri-hand-coin-line stat-icon"></i>
+                            <span class="stat-number" id="totalAffiliates">0</span>
+                            <span class="stat-label">Total Affiliates</span>
+                        </div>
+                        <div class="stat-card">
+                            <i class="ri-wallet-line stat-icon"></i>
+                            <span class="stat-number" id="totalRevenue">₦0</span>
+                            <span class="stat-label">Total Revenue (Simulated)</span>
+                        </div>
+                    </div>
+
+                    <div class="recent-activity-block">
+                        <h3>Recent User Activity</h3>
+                        <div class="activity-list" id="recentActivityList">
+                            <!-- Activity data will be populated here by JS -->
+                            <div class="activity-item">
+                                <span class="activity-user">User: John Doe</span>
+                                <span class="activity-action">logged in</span>
+                                <span class="activity-time">5 mins ago</span>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-user">User: Jane Smith</span>
+                                <span class="activity-action">enrolled in "Web Design Basics"</span>
+                                <span class="activity-time">1 hour ago</span>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-user">Affiliate: senzy101</span>
+                                <span class="activity-action">generated new referral link</span>
+                                <span class="activity-time">3 hours ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Add Course Section -->
+                <section id="add-course" class="content-section">
+                    <h2 class="section-heading">Add New Course</h2>
+                    <form id="addCourseForm" class="admin-form">
+                        <div class="form-group">
+                            <label for="addCourseTitle">Course Title</label>
+                            <input type="text" id="addCourseTitle" name="courseTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addInstructorName">Instructor Name</label>
+                            <input type="text" id="addInstructorName" name="instructorName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addInstructorBio">Instructor Bio</label>
+                            <textarea id="addInstructorBio" name="instructorBio" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="addInstructorAvatarUrl">Instructor Avatar URL</label>
+                            <input type="url" id="addInstructorAvatarUrl" name="instructorAvatarUrl" placeholder="e.g., https://placehold.co/80x80/...">
+                        </div>
+                        <div class="form-group">
+                            <label for="addCourseCategory">Category</label>
+                            <select id="addCourseCategory" name="courseCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="design">Design</option>
+                                <option value="business">Business</option>
+                                <option value="coding">Coding</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="development">Development</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="addCourseAccessType">Access Type</label>
+                            <select id="addCourseAccessType" name="courseAccessType" required>
+                                <option value="free">Free</option>
+                                <option value="premium">Premium</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="addCourseThumbnail">Course Thumbnail URL</label>
+                            <input type="url" id="addCourseThumbnail" name="courseThumbnail" placeholder="e.g., https://placehold.co/400x250/..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addIntroVideo">Intro Video Embed URL (YouTube/Vimeo)</label>
+                            <input type="url" id="addIntroVideo" name="introVideo" placeholder="e.g., https://www.youtube.com/embed/..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addShortDescription">Short Description (for course cards)</label>
+                            <textarea id="addShortDescription" name="shortDescription" rows="2" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="addLongDescription">Full Description (for course page)</label>
+                            <textarea id="addLongDescription" name="longDescription" rows="8"></textarea>
+                        </div>
+                        
+                        <!-- Course Meta (Duration, Level, Lessons Count) -->
+                        <div class="form-section-heading">Course Metadata</div>
+                        <div class="form-group">
+                            <label for="addCourseDuration">Duration (e.g., 12 hours)</label>
+                            <input type="text" id="addCourseDuration" name="courseDuration">
+                        </div>
+                        <div class="form-group">
+                            <label for="addCourseLevel">Level</label>
+                            <select id="addCourseLevel" name="courseLevel">
+                                <option value="">Select Level</option>
+                                <option value="beginner">Beginner</option>
+                                <option value="intermediate">Intermediate</option>
+                                <option value="advanced">Advanced</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="addLessonsCount">Number of Lessons</label>
+                            <input type="number" id="addLessonsCount" name="lessonsCount" min="0">
+                        </div>
+
+                        <!-- What You'll Learn -->
+                        <div class="form-section-heading">What You'll Learn <button type="button" class="btn btn-secondary btn-small" id="addWhatYoullLearnItem">Add Item</button></div>
+                        <div id="whatYoullLearnContainer" class="dynamic-list-container">
+                            <!-- Dynamic input fields will be added here -->
+                        </div>
+
+                        <!-- Who This Course Is For -->
+                        <div class="form-section-heading">Who This Course Is For <button type="button" class="btn btn-secondary btn-small" id="addWhoThisIsForItem">Add Item</button></div>
+                        <div id="whoThisIsForContainer" class="dynamic-list-container">
+                            <!-- Dynamic input fields will be added here -->
+                        </div>
+
+                        <!-- Prerequisites -->
+                        <div class="form-section-heading">Prerequisites <button type="button" class="btn btn-secondary btn-small" id="addPrerequisiteItem">Add Item</button></div>
+                        <div id="prerequisitesContainer" class="dynamic-list-container">
+                            <!-- Dynamic input fields will be added here -->
+                        </div>
+
+                        <!-- Downloads -->
+                        <div class="form-section-heading">Downloads <button type="button" class="btn btn-secondary btn-small" id="addDownloadItem">Add Download</button></div>
+                        <div id="downloadsContainer" class="dynamic-list-container">
+                            <!-- Dynamic download fields will be added here -->
+                        </div>
+
+                        <!-- Curriculum -->
+                        <div class="form-section-heading">Curriculum <button type="button" class="btn btn-primary btn-small" id="addModuleBtn">Add Module</button></div>
+                        <div id="curriculumContainer" class="dynamic-curriculum-container">
+                            <!-- Dynamic module and lesson fields will be added here -->
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="addIsFeatured" name="isFeatured">
+                            <label for="addIsFeatured">Mark as Featured Course</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Add Course</button>
+                        <div id="addCourseMessage" class="message-container"></div>
+                    </form>
+                </section>
+
+                <!-- Manage Courses Section -->
+                <section id="manage-courses" class="content-section">
+                    <h2 class="section-heading">Manage Courses</h2>
+                    <div class="table-responsive">
+                        <table class="data-table" id="coursesTable">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Instructor</th>
+                                    <th>Category</th>
+                                    <th>Access Type</th>
+                                    <th>Featured</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Course data will be populated here by JS -->
+                                <tr id="noCoursesMessage" style="display: none;"><td colspan="6">No courses added yet.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Manage Users Section -->
+                <section id="manage-users" class="content-section">
+                        <h2 class="section-heading">Manage Users</h2>
+                        <div class="table-responsive">
+                            <table class="data-table" id="usersTable">
+                                <thead>
+                                    <tr>
+                                        <th>Full Name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Status</th>
+                                        <th>Registered On</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- User data will be populated here by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="noUsersMessage" class="message-container" style="display: none;">No users found. New users will appear here after signup.</div>
+                    </section>
+
+                <!-- Manage Affiliates Section -->
+                <section id="manage-affiliates" class="content-section">
+                    <h2 class="section-heading">Manage Affiliates</h2>
+                    <p>Overview of your affiliate partners and their performance.</p>
+                    <div class="table-responsive">
+                        <table class="data-table" id="affiliatesTable">
+                            <thead>
+                                <tr>
+                                    <th>Affiliate Name</th>
+                                    <th>Referrals</th>
+                                    <th>Total Earnings</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Affiliate data will be populated here by JS -->
+                                <tr id="noAffiliatesMessage" style="display: none;"><td colspan="5">No affiliates found.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Manage Pricing Section (NEW) -->
+                <section id="manage-pricing" class="content-section">
+                    <h2 class="section-heading">Manage Pricing</h2>
+                    <div class="card">
+                        <h3>Premium Plan Price</h3>
+                        <div class="form-group">
+                            <label for="premiumPriceInput">Premium Plan Monthly Price (₦)</label>
+                            <input type="number" id="premiumPriceInput" placeholder="e.g., 12000" min="0" step="1" required>
+                        </div>
+                        <button class="btn btn-primary" id="savePremiumPriceBtn"><i class="ri-save-line"></i> Save Premium Price</button>
+                        <div id="pricingMessage" class="message-container"></div>
+                    </div>
+                </section>
+
+                <!-- Settings Section -->
+                <section id="platform-settings" class="content-section">
+                    <h2 class="section-heading">Platform Settings</h2>
+                    <form class="admin-form" id="settingsForm">
+                        <div class="form-group">
+                            <label for="platformName">Platform Name</label>
+                            <input type="text" id="platformName" value="MindStack">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Support Email</label>
+                            <input type="email" id="contactEmail" value="support@mindstack.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="defaultCurrency">Default Currency</label>
+                            <input type="text" id="defaultCurrency" value="₦">
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="enableAffiliate" checked>
+                            <label for="enableAffiliate">Enable Affiliate Program</label>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="maintenanceMode">
+                            <label for="maintenanceMode">Enable Maintenance Mode</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Settings</button>
+                        <div id="settingsMessage" class="message-container"></div>
+                    </form>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Logout Confirmation Modal -->
+    <div class="modal-overlay" id="logoutModalOverlay">
+        <div class="modal-content logout-modal-content">
+            <button class="close-modal-btn ri-close-line" id="cancelLogoutBtnTop"></button>
+            <h3>Confirm Logout</h3>
+            <p>Are you sure you want to log out of the admin dashboard?</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelLogoutBtn">Cancel</button>
+                <button class="btn btn-primary" id="confirmLogoutBtn">Yes, Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Generic Message Modal -->
+    <div class="modal-overlay" id="messageModalOverlay">
+        <div class="modal-content message-modal-content">
+            <button class="close-modal-btn ri-close-line" id="closeMessageModalBtnTop"></button>
+            <h3 id="messageModalTitle"></h3>
+            <p id="messageModalText"></p>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="messageModalCloseBtn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Course Modal -->
+    <div class="modal-overlay" id="editCourseModalOverlay">
+        <div class="modal-content edit-course-modal-content">
+            <button class="close-modal-btn ri-close-line" id="closeEditCourseModalBtn"></button>
+            <h3>Edit Course</h3>
+            <form id="editCourseForm" class="admin-form">
+                <input type="hidden" id="editCourseId" name="courseId">
+                <div class="form-group">
+                    <label for="editCourseTitle">Course Title</label>
+                    <input type="text" id="editCourseTitle" name="courseTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="editInstructorName">Instructor Name</label>
+                    <input type="text" id="editInstructorName" name="instructorName" required>
+                </div>
+                <div class="form-group">
+                    <label for="editInstructorBio">Instructor Bio</label>
+                    <textarea id="editInstructorBio" name="instructorBio" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="editInstructorAvatarUrl">Instructor Avatar URL</label>
+                    <input type="url" id="editInstructorAvatarUrl" name="instructorAvatarUrl" placeholder="e.g., https://placehold.co/80x80/...">
+                </div>
+                <div class="form-group">
+                    <label for="editCourseCategory">Category</label>
+                    <select id="editCourseCategory" name="courseCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="design">Design</option>
+                        <option value="business">Business</option>
+                        <option value="coding">Coding</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="development">Development</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editCourseAccessType">Access Type</label>
+                    <select id="editCourseAccessType" name="courseAccessType" required>
+                        <option value="free">Free</option>
+                        <option value="premium">Premium</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editCourseThumbnail">Course Thumbnail URL</label>
+                    <input type="url" id="editCourseThumbnail" name="courseThumbnail" placeholder="e.g., https://placehold.co/400x250/..." required>
+                </div>
+                <div class="form-group">
+                    <label for="editIntroVideo">Intro Video Embed URL (YouTube/Vimeo)</label>
+                    <input type="url" id="editIntroVideo" name="introVideo" placeholder="e.g., https://www.youtube.com/embed/..." required>
+                </div>
+                <div class="form-group">
+                    <label for="editShortDescription">Short Description (for course cards)</label>
+                    <textarea id="editShortDescription" name="shortDescription" rows="2" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="editLongDescription">Full Description (for course page)</label>
+                    <textarea id="editLongDescription" name="longDescription" rows="8"></textarea>
+                </div>
+                
+                <!-- Course Meta (Duration, Level, Lessons Count) -->
+                <div class="form-section-heading">Course Metadata</div>
+                <div class="form-group">
+                    <label for="editCourseDuration">Duration (e.g., 12 hours)</label>
+                    <input type="text" id="editCourseDuration" name="courseDuration">
+                </div>
+                <div class="form-group">
+                    <label for="editCourseLevel">Level</label>
+                    <select id="editCourseLevel" name="courseLevel">
+                        <option value="">Select Level</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editLessonsCount">Number of Lessons</label>
+                    <input type="number" id="editLessonsCount" name="lessonsCount" min="0">
+                </div>
+
+                <!-- What You'll Learn (Edit) -->
+                <div class="form-section-heading">What You'll Learn <button type="button" class="btn btn-secondary btn-small" id="editAddWhatYoullLearnItem">Add Item</button></div>
+                <div id="editWhatYoullLearnContainer" class="dynamic-list-container">
+                    <!-- Dynamic input fields will be added here -->
+                </div>
+
+                <!-- Who This Course Is For (Edit) -->
+                <div class="form-section-heading">Who This Course Is For <button type="button" class="btn btn-secondary btn-small" id="editAddWhoThisIsForItem">Add Item</button></div>
+                <div id="editWhoThisIsForContainer" class="dynamic-list-container">
+                    <!-- Dynamic input fields will be added here -->
+                </div>
+
+                <!-- Prerequisites (Edit) -->
+                <div class="form-section-heading">Prerequisites <button type="button" class="btn btn-secondary btn-small" id="editAddPrerequisiteItem">Add Item</button></div>
+                <div id="editPrerequisitesContainer" class="dynamic-list-container">
+                    <!-- Dynamic input fields will be added here -->
+                </div>
+
+                <!-- Downloads (Edit) -->
+                <div class="form-section-heading">Downloads <button type="button" class="btn btn-secondary btn-small" id="editAddDownloadItem">Add Download</button></div>
+                <div id="editDownloadsContainer" class="dynamic-list-container">
+                    <!-- Dynamic download fields will be added here -->
+                </div>
+
+                <!-- Curriculum (Edit) -->
+                <div class="form-section-heading">Curriculum <button type="button" class="btn btn-primary btn-small" id="editAddModuleBtn">Add Module</button></div>
+                <div id="editCurriculumContainer" class="dynamic-curriculum-container">
+                    <!-- Dynamic module and lesson fields will be added here -->
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="editIsFeatured" name="isFeatured">
+                    <label for="editIsFeatured">Mark as Featured Course</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <div id="editCourseMessage" class="message-container"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal-overlay" id="deleteConfirmModalOverlay">
+        <div class="modal-content delete-confirm-modal-content">
+            <button class="close-modal-btn ri-close-line" id="cancelDeleteBtnTop"></button>
+            <h3>Confirm Deletion</h3>
+            <p>Are you sure you want to delete the course "<span id="deleteCourseTitle"></span>"? This action cannot be undone.</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelDeleteBtn">Cancel</button>
+                <button class="btn btn-danger" id="confirmDeleteBtn">Yes, Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- --- View User Details Modal --- -->
+    <div id="viewUserModalOverlay" class="modal-overlay">
+        <div class="modal-content view-user-modal-content">
+            <button class="close-modal-btn ri-close-line" id="closeViewUserModalBtn"></button>
+            <h3>User Details</h3>
+            <div class="user-details-grid">
+                <div><strong>Full Name:</strong> <span id="viewUserFullName"></span></div>
+                <div><strong>Email:</strong> <span id="viewUserEmail"></span></div>
+                <div><strong>Role:</strong> <span id="viewUserRole"></span></div>
+                <div><strong>Registered On:</strong> <span id="viewUserRegistered"></span></div>
+                <div><strong>Status:</strong> <span id="viewUserStatus"></span></div>
+                <div><strong>User ID:</strong> <span id="viewUserUID"></span></div>
+                <!-- Add more fields as needed, e.g., enrolled courses, activity -->
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" id="closeViewUserModalBtnBottom">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- --- Edit User Modal (for Role/Status Change) --- -->
+    <div id="editUserModalOverlay" class="modal-overlay">
+        <div class="modal-content edit-user-modal-content">
+            <button class="close-modal-btn ri-close-line" id="closeEditUserModalBtn"></button>
+            <h3>Edit User: <span id="editUserEmailSpan"></span></h3>
+            <form id="editUserForm" class="admin-form">
+                <input type="hidden" id="editUserUID"> <!-- Hidden field to store user ID for updates -->
+                <div class="form-group">
+                    <label for="editUserRoleSelect">User Role</label>
+                    <select id="editUserRoleSelect" name="role">
+                        <option value="student">Student</option>
+                        <option value="affiliate">Affiliate</option>
+                        <option value="admin">Admin</option> <!-- Be careful with this role! -->
+                    </select>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="editUserSuspended" name="suspended">
+                    <label for="editUserSuspended">Account Suspended</label>
+                </div>
+                <div id="editUserMessageContainer" class="message-container"></div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary" id="saveUserChangesBtn">Save Changes</button>
+                    <button type="button" class="btn btn-secondary" id="cancelEditUserBtn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- --- View Affiliate Details Modal (NEW) --- -->
+    <div id="viewAffiliateModalOverlay" class="modal-overlay">
+        <div class="modal-content view-affiliate-modal-content">
+            <button class="close-modal-btn ri-close-line" id="closeViewAffiliateModalBtn"></button>
+            <h3>Affiliate Details</h3>
+            <div class="affiliate-details-grid">
+                <div><strong>Full Name:</strong> <span id="viewAffiliateFullName"></span></div>
+                <div><strong>Email:</strong> <span id="viewAffiliateEmail"></span></div>
+                <div><strong>User ID:</strong> <span id="viewAffiliateUID"></span></div>
+                <div><strong>Referrals:</strong> <span id="viewAffiliateReferrals"></span></div>
+                <div><strong>Total Earnings:</strong> <span id="viewAffiliateTotalEarnings"></span></div>
+                <div><strong>Pending Payout:</strong> <span id="viewAffiliatePendingPayout"></span></div>
+                <div><strong>Paid Earnings:</strong> <span id="viewAffiliatePaidEarnings"></span></div>
+                <div><strong>Registered On:</strong> <span id="viewAffiliateRegistered"></span></div>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" id="closeViewAffiliateModalBtnBottom">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- --- Mark Affiliate Payout Modal --- -->
+    <div id="markPayoutModalOverlay" class="modal-overlay">
+        <div class="modal-content mark-payout-modal-content">
+            <button class="close-modal-btn ri-close-line" id="closeMarkPayoutModalBtn"></button>
+            <h3>Mark Payout for <span id="markPayoutAffiliateName"></span></h3>
+            <p>Pending: <span id="markPayoutPendingAmount"></span></p>
+            <form id="markPayoutForm" class="admin-form">
+                <input type="hidden" id="markPayoutAffiliateId">
+                <div class="form-group">
+                    <label for="payoutAmount">Amount to Pay (₦)</label>
+                    <input type="number" id="payoutAmount" min="0" step="1" required>
+                </div>
+                <div id="markPayoutMessageContainer" class="message-container"></div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary" id="processPayoutBtn">Process Payout</button>
+                    <button type="button" class="btn btn-secondary" id="cancelMarkPayoutBtn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- --- View Payout History Modal --- -->
+    <div id="payoutHistoryModalOverlay" class="modal-overlay">
+        <div class="modal-content payout-history-modal-content">
+            <button class="close-modal-btn ri-close-line" id="closePayoutHistoryModalBtn"></button>
+            <h3>Payout History for <span id="payoutHistoryAffiliateName"></span></h3>
+            <div class="table-responsive">
+                <table class="data-table" id="payoutHistoryTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Transaction ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Payout history will be populated here by JS -->
+                        <tr id="noPayoutHistoryMessage" style="display: none;"><td colspan="4">No payout history found.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-primary" id="closePayoutHistoryBtnBottom">Close</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Admin Dashboard Specific JavaScript -->
+    <script type="module" src="assets/js/admin-dashboard.js"></script>
+</body>
+</html>

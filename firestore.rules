@@ -1,0 +1,38 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Private user data: Each user can only read/write their own data
+    match /artifacts/{appId}/users/{userId}/{document=**} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Rule for 'courses' collection:
+    // - Allow public read access (for your website's course listings)
+    // - Allow authenticated write access (for your admin dashboard to add/edit/delete courses)
+    match /artifacts/{appId}/public/data/courses/{document=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // Rule for 'settings' collection:
+    // - Allow public read access (if settings are needed publicly)
+    // - Allow authenticated write access (for your admin dashboard to save settings)
+    match /artifacts/{appId}/public/data/settings/{document=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // Rule for 'newsletter_subscribers' collection:
+    // - Allow anyone to create (subscribe)
+    // - Deny read, update, delete for everyone
+    match /artifacts/{appId}/public/data/newsletter_subscribers/{documentId} {
+      allow create: if true;
+      allow read, update, delete: if false; // Changed 'false' to 'if false'
+    }
+    
+    // Default rule: deny all other access unless explicitly allowed above
+    match /{document=**} {
+      allow read, write: if false; // Changed 'false' to 'if false'
+    }
+  }
+}

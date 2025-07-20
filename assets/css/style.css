@@ -1,0 +1,990 @@
+/* mindstack/assets/css/style.css */
+
+/* --- Base Styles & Reset --- */
+:root {
+    --color-navy: #1F2D5A;
+    --color-dark-blue: #1A2238; /* A slightly darker variation for text */
+    --color-teal: #0ED2F7;
+    --color-cyan: #1ABC9C; /* Alternative accent */
+    --color-white: #ffffff;
+    --color-light-gray: #f5f5f5;
+    --color-gray: #cccccc;
+    --color-dark-gray: #555555;
+
+    --font-primary: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--color-dark-blue);
+    background-color: var(--color-white);
+    overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+}
+
+body.no-scroll {
+    overflow: hidden; /* Disable scrolling when mobile menu is active */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* Add some padding on the sides */
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-teal);
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- Reusable Section Padding --- */
+.section-padding {
+    padding: 80px 0; /* Consistent vertical padding for sections */
+}
+
+.bg-light-gray {
+    background-color: var(--color-light-gray);
+}
+
+.bg-dark-blue {
+    background-color: var(--color-navy); /* Using navy for consistency with design */
+}
+
+.text-white {
+    color: var(--color-white);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-40 { /* Margin-top utility */
+    margin-top: 40px;
+}
+
+.section-description {
+    font-size: 1.1em;
+    max-width: 700px;
+    margin: 15px auto 40px auto;
+    color: var(--color-dark-gray);
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    white-space: nowrap; /* Prevent button text from wrapping */
+}
+
+.btn-primary {
+    background-color: var(--color-teal);
+    color: var(--color-white);
+    border: 2px solid var(--color-teal);
+}
+
+.btn-primary:hover {
+    background-color: #0cbbd9; /* Slightly darker teal */
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-navy);
+    border: 2px solid var(--color-navy);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+/* --- Header Styles --- */
+.main-header {
+    background-color: var(--color-white);
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky; /* Makes header sticky on scroll */
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 70px; /* Ensure header has a consistent minimum height */
+}
+
+.logo img {
+    height: 65px; /* Increased logo height for "very big" */
+    width: auto;
+    display: block; /* Prevents extra space below image */
+}
+
+.main-nav ul {
+    display: flex;
+    gap: 30px;
+}
+
+.main-nav ul li a {
+    color: var(--color-navy);
+    font-weight: 600;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.main-nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-teal);
+    transition: width 0.3s ease;
+}
+
+.main-nav ul li a:hover::after,
+.main-nav ul li a.active::after {
+    width: 100%;
+}
+
+.header-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.mobile-menu-toggle {
+    display: none; /* Hidden by default, shown on mobile */
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    width: 30px;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* For animating lines */
+    z-index: 1100; /* Ensure it's above the mobile nav */
+}
+
+.mobile-menu-toggle span {
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-navy);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center; /* For rotation */
+}
+
+/* Hamburger animation */
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px); /* Slide out for a cleaner 'X' */
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* --- Hero Section Styles --- */
+.hero-section {
+    position: relative;
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.hero-fallback-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    display: none; /* Hidden by default, shown by media query or if video fails */
+}
+
+/* Basic media query to show fallback image on very small screens or if video fails */
+@media (max-width: 768px) {
+    
+    .hero-fallback-img {
+        display: block; /* Show fallback image */
+    }
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+    z-index: -1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    font-weight: 700;
+    position: relative; /* Needed for absolute positioning of dots */
+    display: inline-block; /* Or block, depending on layout */
+}
+
+.hero-content p {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+.hero-content .btn {
+    font-size: 1.1em;
+    padding: 15px 35px;
+}
+
+/* --- "Rolling Circles" Text Effect Styles --- */
+.animated-word {
+    position: relative;
+    display: inline-block; /* Important for positioning dots relative to the word */
+    color: var(--color-teal); /* Highlight the animated word */
+    padding-right: 5px; /* Give a little space for dots */
+}
+
+.rolling-dot {
+    position: absolute;
+    width: 8px; /* Size of the dot */
+    height: 8px;
+    background-color: var(--color-teal); /* Dot color */
+    border-radius: 50%;
+    opacity: 0; /* Start invisible */
+    transform: translate(var(--x-offset, 0), var(--y-offset, 0)); /* Initial random offset */
+    animation: dotFadeMove 2s ease-out forwards; /* Animation for dot */
+    animation-delay: var(--animation-delay, 0s); /* Staggered delay */
+}
+
+@keyframes dotFadeMove {
+    0% {
+        opacity: 0;
+        transform: translate(var(--x-offset), var(--y-offset)) scale(0.5);
+    }
+    20% {
+        opacity: 1;
+        transform: translate(var(--x-offset), var(--y-offset)) scale(1);
+    }
+    80% {
+        opacity: 1;
+        transform: translate(var(--x-offset), var(--y-offset)) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--x-offset), var(--y-offset)) scale(0.5);
+    }
+}
+
+
+/* --- Why Choose MindStack? Section Styles --- */
+.why-choose-us h2,
+.featured-courses h2,
+.pricing-teaser h2,
+.affiliate-promo h2,
+.testimonials h2,
+.newsletter-signup h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-navy);
+}
+
+.why-choose-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.why-choose-card {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.why-choose-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.why-choose-card .icon {
+    font-size: 3em;
+    color: var(--color-teal);
+    margin-bottom: 20px;
+}
+
+.why-choose-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: var(--color-navy);
+}
+
+.why-choose-card p {
+    color: var(--color-dark-gray);
+}
+
+/* --- Featured Courses Section Styles --- */
+.featured-courses h2 {
+    color: var(--color-navy);
+}
+
+.course-grid {
+    display: grid;
+    /* The auto-fit and minmax are great for general responsiveness, */
+    /* allowing as many columns as can fit based on item width. */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    /* REMOVED: max-width: 350px; <-- This was the culprit forcing a single column */
+    /* The grid will now naturally expand to fill its container (e.g., .container) */
+}
+
+.course-card {
+    background-color: var(--color-white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.course-thumbnail {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+
+.course-info {
+    padding: 20px;
+    position: relative;
+}
+
+.course-info h3 {
+    font-size: 1.3em;
+    margin-bottom: 8px;
+    color: var(--color-navy);
+}
+
+.course-info .instructor {
+    font-size: 0.95em;
+    color: var(--color-dark-gray);
+    margin-bottom: 15px;
+}
+
+.badge {
+    position: absolute;
+    top: 50px;
+    right: 15px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.badge-free {
+    background-color: var(--color-cyan);
+    color: var(--color-white);
+}
+
+.badge-premium {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+}
+
+/* --- Responsive Adjustments for Featured Courses Grid --- */
+/* For larger screens (e.g., desktops), explicitly set 4 columns */
+@media (min-width: 1200px) { /* Adjust this breakpoint if your design needs it */
+    .course-grid {
+        grid-template-columns: repeat(3, 1fr); /* Force 4 equal columns */
+    }
+}
+
+/* --- Pricing Teaser Section Styles --- */
+.pricing-teaser h2 {
+    color: var(--color-navy);
+}
+
+.pricing-teaser-grid {
+    display: flex;
+    gap: 30px;
+    margin-top: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.plan-card {
+    background-color: var(--color-white);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    flex: 1;
+    min-width: 300px;
+    max-width: 45%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.plan-card h3 {
+    font-size: 2em;
+    color: var(--color-navy);
+    margin-bottom: 15px;
+}
+
+.plan-card .price {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--color-teal);
+    margin-bottom: 30px;
+}
+
+.plan-card ul {
+    text-align: left;
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
+
+.plan-card ul li {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    color: var(--color-dark-blue);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.plan-card ul li i {
+    font-size: 1.2em;
+}
+
+.plan-card ul li .ri-check-line {
+    color: var(--color-cyan);
+}
+
+.plan-card ul li .ri-close-line {
+    color: var(--color-dark-gray);
+}
+
+.plan-card .btn {
+    width: 100%;
+    margin-top: auto;
+}
+
+.plan-card.featured-plan {
+    border: 3px solid var(--color-teal);
+    box-shadow: 0 8px 25px rgba(14, 210, 247, 0.2);
+}
+
+/* --- Affiliate Promotion Section Styles --- */
+.affiliate-promo {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+}
+
+.affiliate-promo h2 {
+    color: var(--color-white);
+    margin-bottom: 15px;
+}
+
+.affiliate-promo p {
+    font-size: 1.2em;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+}
+
+.affiliate-promo .btn-primary {
+    background-color: var(--color-teal);
+    border-color: var(--color-teal);
+    color: var(--color-white);
+}
+
+.affiliate-promo .btn-primary:hover {
+    background-color: #0cbbd9;
+}
+
+/* --- Testimonials Section Styles --- */
+.testimonials h2 {
+    color: var(--color-navy);
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.testimonial-card {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.testimonial-card .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid var(--color-teal);
+}
+
+.testimonial-card p {
+    font-style: italic;
+    margin-bottom: 15px;
+    color: var(--color-dark-blue);
+    font-size: 1.1em;
+}
+
+.testimonial-card cite {
+    font-weight: 600;
+    color: var(--color-navy);
+    font-style: normal;
+}
+
+/* --- Newsletter Signup Section Styles --- */
+.newsletter-signup h2 {
+    color: var(--color-navy);
+}
+
+.newsletter-signup p {
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+    color: var(--color-dark-gray);
+}
+
+.newsletter-form {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.newsletter-form input[type="email"] {
+    padding: 12px 20px;
+    border: 2px solid var(--color-gray);
+    border-radius: 8px;
+    font-size: 1em;
+    width: 100%;
+    max-width: 400px;
+    color: var(--color-navy);
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.newsletter-form input[type="email"]:focus {
+    border-color: var(--color-teal);
+}
+
+.newsletter-form .btn-primary {
+    padding: 12px 30px;
+    font-size: 1em;
+}
+
+/* --- Footer Styles --- */
+.main-footer {
+    background-color: var(--color-dark-blue);
+    color: var(--color-white);
+    padding: 40px 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.footer-logo img {
+    height: 95px;
+    width: 80px;
+    filter: brightness(0) invert(1); /* Example for making a dark logo white on dark background */
+    margin-bottom: -20px;
+    margin-top: -10px;
+}
+
+.footer-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px 30px;
+}
+
+.footer-nav ul li a {
+    color: var(--color-white);
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.footer-nav ul li a:hover {
+    color: var(--color-teal);
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.social-links a {
+    color: var(--color-white);
+    font-size: 1.5em;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--color-teal);
+}
+
+.copyright {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
+/* --- Responsive Adjustments (for mobile menu & layout) --- */
+@media (max-width: 992px) {
+    .hero-content h1 {
+        font-size: 3em;
+    }
+    .hero-content p {
+        font-size: 1.2em;
+    }
+    .section-padding {
+        padding: 60px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-nav {
+        /* Mobile menu overlay styles - NO CHANGES HERE */
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 65vw;
+        max-width: 200px;
+        max-height: calc(100vh - 70px); /* Adjusted to account for header min-height */
+        background-color: var(--color-navy);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 10px 0; /* General padding */
+        padding-top: 50px; /* Space for close button */
+        transform: translateX(100%);
+        transition: transform 0.4s ease-out;
+        z-index: 999;
+        overflow-y: auto;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    }
+
+    .main-nav.active {
+        transform: translateX(0);
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        gap: 1px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .main-nav ul li a {
+        color: var(--color-white);
+        font-size: 1em;
+        padding: 10px 0;
+        display: block;
+    }
+
+    .main-nav ul li a::after {
+        background-color: var(--color-teal);
+    }
+
+    /* Show header actions on mobile */
+    .header-actions {
+        display: flex; /* Make buttons visible */
+        gap: 8px; /* Reduce gap between buttons on mobile */
+        margin-left: auto; /* Push buttons to the right, next to hamburger */
+        align-items: center; /* Align with hamburger */
+    }
+
+    /* Adjust button size for mobile header - UPDATED */
+    .header-actions .btn {
+        padding: 6px 12px; /* Smaller padding for mobile header buttons */
+        font-size: 0.75em; /* Smaller font size for mobile header buttons */
+        border-width: 1px; /* Thinner border */
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+        margin-left: 15px; /* Add some space between buttons and hamburger */
+    }
+
+    .hero-section{
+      height: 60vh; /* This was already in your provided code, keeping it */
+    }
+
+    .hero-content h1 {
+        font-size: 2.2em;
+    }
+
+    .hero-content p {
+        font-size: 1em;
+    }
+
+    /* Ensure hero button is always visible on small screens - NO CHANGES HERE */
+    .hero-content .btn {
+        display: inline-block !important;
+        width: auto;
+        margin: 0 auto;
+    }
+
+    .course-grid {
+        grid-template-columns: 1fr; /* Single column on mobile */
+        gap: 20px;
+    }
+    .pricing-teaser-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    .plan-card {
+        max-width: 100%;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .newsletter-form input[type="email"] {
+        max-width: 100%;
+    }
+
+    .footer-nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.8em;
+    }
+    .hero-content p {
+        font-size: 0.9em;
+    }
+    .why-choose-card,
+    .course-card,
+    .testimonial-card {
+        padding: 20px;
+    }
+    .why-choose-card .icon {
+        font-size: 2.5em;
+    }
+    .why-choose-card h3 {
+        font-size: 1.3em;
+    }
+    .course-info h3 {
+        font-size: 1.1em;
+    }
+}
+
+/* Close button for mobile menu */
+.close-menu-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2.5em;
+    color: var(--color-white);
+    cursor: pointer;
+    z-index: 1200;
+    transition: transform 0.2s ease;
+}
+
+.close-menu-btn:hover {
+    transform: rotate(90deg);
+}.close-menu-btn {
+    position: absolute;
+    top: 15px; /* Adjusted top for better alignment */
+    right: 15px; /* Adjusted right for better alignment */
+    font-size: 2.2em; /* Slightly smaller font size for the icon itself */
+    color: var(--color-white);
+    cursor: pointer;
+    z-index: 1200;
+    transition: transform 0.2s ease, background-color 0.2s ease; /* Added background-color to transition */
+    display: flex; /* Use flex to center the icon */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: 40px; /* Explicit width to give a larger clickable area */
+    height: 40px; /* Explicit height to give a larger clickable area */
+    border-radius: 50%; /* Make it a circle */
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle background for click area */
+}
+
+.close-menu-btn:hover {
+    transform: rotate(90deg);
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly more prominent on hover */
+}
+
+/* --- Cookie Consent Banner Styles --- */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-navy); /* Dark blue background */
+    color: var(--color-white);
+    padding: 20px 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Ensure it's above other content */
+    transform: translateY(100%); /* Start hidden below the screen */
+    transition: transform 0.5s ease-out; /* Animation from bottom */
+}
+
+.cookie-banner.show {
+    transform: translateY(0); /* Slide up into view */
+}
+
+.cookie-content {
+    display: flex;
+    flex-wrap: wrap; /* Allow content to wrap on smaller screens */
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px; /* Space between text and buttons */
+}
+
+.cookie-content p {
+    flex-grow: 1; /* Allow text to take up available space */
+    margin: 0; /* Reset default paragraph margin */
+    font-size: 0.95em;
+    line-height: 1.4;
+}
+
+.cookie-content .cookie-policy-link {
+    color: var(--color-teal);
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.cookie-actions {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    flex-wrap: wrap; /* Allow buttons to wrap */
+    justify-content: center; /* Center buttons on smaller screens */
+}
+
+/* Adjust button sizes within the cookie banner for consistency */
+.cookie-actions .btn {
+    padding: 10px 20px;
+    font-size: 0.9em;
+}
+
+/* Specific styling for cookie banner buttons */
+.cookie-actions .btn-primary {
+    background-color: var(--color-teal);
+    border-color: var(--color-teal);
+    color: var(--color-white);
+}
+
+.cookie-actions .btn-secondary {
+    background-color: transparent;
+    border-color: var(--color-white); /* White border for contrast */
+    color: var(--color-white);
+}
+
+.cookie-actions .btn-secondary:hover {
+    background-color: var(--color-white);
+    color: var(--color-navy);
+}
+
+/* Media query for smaller screens on cookie banner */
+@media (max-width: 600px) {
+    .cookie-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .cookie-actions {
+        width: 100%; /* Buttons take full width */
+        justify-content: center;
+    }
+    .cookie-actions .btn {
+        flex-grow: 1; /* Buttons grow to fill space */
+        max-width: 150px; /* Limit individual button width */
+    }
+}

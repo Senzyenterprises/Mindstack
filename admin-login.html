@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindStack - Admin Login</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo/mindstack_logo__1_-removebg-preview.png" type="image/png">
+    
+    <!-- Admin Login Page Specific Stylesheet -->
+    <link rel="stylesheet" href="assets/css/admin-login.css">
+    
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+    
+    <!-- Remix Icons (for icons) -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+</head>
+<body class="auth-page" style="background: url(assets/images/background-image.jpg);">
+    <div class="admin-login-wrapper">
+        <div class="login-card">
+            <div class="login-header">
+               <a href="index.html"> 	<img src="assets/images/logo/mindstack_logo__1_-removebg-preview.png" alt="MindStack Logo" class="logo"></a>
+                <h1>Admin Login</h1>
+            </div>
+            
+            <form id="adminLoginForm" class="login-form">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="admin@mindstack.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="********" required>
+                </div>
+                
+                <div class="form-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="rememberMe" name="rememberMe">
+                        <label for="rememberMe">Remember Me</label>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+                
+                <button type="submit" class="btn btn-primary login-btn">Log In</button>
+                
+                <div id="messageContainer" class="message-container">
+                    <!-- Error/Success messages will appear here -->
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Login Page Specific JavaScript -->
+    <script type="module" src="assets/js/admin-login.js"></script> <!-- ADDED type="module" HERE -->
+</body>
+</html>

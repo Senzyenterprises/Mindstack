@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindStack - Pricing Plans</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo/mindstack_logo__1_-removebg-preview.png" type="image/png">
+    
+    <!-- Pricing Page Specific Stylesheet -->
+    <link rel="stylesheet" href="assets/css/pricing.css">
+    
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+    
+    <!-- Remix Icons (for icons) -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+</head>
+<body>
+    <!-- Header (Content that would come from includes/header.html) -->
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <!-- Corrected path for header logo -->
+                    <img src="assets/images/logo/mindstack_logo__1_-removebg-preview.png" alt="MindStack Logo">
+                </a>
+            </div>
+
+            <nav class="main-nav">
+                <div class="close-menu-btn" id="closeMenuBtn">
+                    <i class="ri-close-line"></i>
+                </div>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="pricing.html" class="active">Pricing</a></li>
+                    <li><a href="affiliate.html">Affiliates</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="login.html" class="btn btn-secondary">Login</a>
+                <a href="signup.html" class="btn btn-primary">Start for Free</a>
+            </div>
+
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1>Simple Pricing for Every Learner</h1>
+            <p class="hero-subtext">Start free. Upgrade anytime to unlock premium courses and tools.</p>
+        </div>
+    </section>
+
+    <!-- Pricing Cards / Tiers Section -->
+    <section class="pricing-cards-section">
+        <div class="container">
+            <div class="pricing-cards-grid">
+                <!-- Free Plan Card -->
+                <div class="pricing-card free-plan">
+                    <h2 class="plan-title">Free Plan</h2>
+                    <p class="plan-price">₦0 <span>/ month</span></p>
+                    <p class="plan-label">Start Learning Free</p>
+                    <ul class="plan-features">
+                        <li><i class="ri-check-line"></i> Access 3 free courses</li>
+                        <li><i class="ri-check-line"></i> Basic dashboard</li>
+                        <li class="unavailable"><i class="ri-close-line"></i> No certifications</li>
+                        <li class="unavailable"><i class="ri-close-line"></i> No premium support</li>
+                    </ul>
+                    <a href="signup.html" class="btn btn-primary plan-cta-btn">Start for Free</a>
+                </div>
+
+                <!-- Premium Plan Card -->
+                <div class="pricing-card premium-plan featured">
+                    <span class="badge">Best Value</span>
+                    <h2 class="plan-title">Premium Plan</h2>
+                    <p class="plan-price" id="premiumPlanPrice">Loading...</p> <!-- ADDED ID and changed content -->
+                    <p class="plan-label">Best for serious learners</p>
+                    <ul class="plan-features">
+                        <li><i class="ri-check-line"></i> All Free features</li>
+                        <li><i class="ri-check-line"></i> Unlimited course access</li>
+                        <li><i class="ri-check-line"></i> Certificates of completion</li>
+                        <li><i class="ri-check-line"></i> Early access to new content</li>
+                        <li><i class="ri-check-line"></i> Priority support</li>
+                        <li><i class="ri-check-line"></i> Affiliate program access</li>
+                    </ul>
+                    <button class="btn btn-primary plan-cta-btn">Upgrade to Premium</button>
+                </div>
+
+                <!-- Optional: Team/Business Plan Card -->
+                <div class="pricing-card team-plan">
+                    <h2 class="plan-title">Team Plan</h2>
+                    <p class="plan-price">Custom <span>/ user</span></p>
+                    <p class="plan-label">For schools & businesses</p>
+                    <ul class="plan-features">
+                        <li><i class="ri-check-line"></i> Everything in Premium</li>
+                        <li><i class="ri-check-line"></i> Centralized dashboard</li>
+                        <li><i class="ri-check-line"></i> Dedicated account manager</li>
+                        <li><i class="ri-check-line"></i> Bulk enrollment discounts</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-secondary plan-cta-btn">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Comparison Table Section -->
+    <section class="feature-comparison-section">
+        <div class="container">
+            <h2 class="section-title text-center">Compare Our Plans</h2>
+            <div class="table-responsive">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Free Plan</th>
+                            <th>Premium Plan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Access to Free Courses</td>
+                            <td><i class="ri-check-line check-icon"></i></td>
+                            <td><i class="ri-check-line check-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Access to All Courses</td>
+                            <td><i class="ri-close-line close-icon"></i></td>
+                            <td><i class="ri-check-line check-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Certificates of Completion</td>
+                            <td><i class="ri-close-line close-icon"></i></td>
+                            <td><i class="ri-check-line check-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Early Access to New Content</td>
+                            <td><i class="ri-close-line close-icon"></i></td>
+                            <td><i class="ri-check-line check-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Priority Support</td>
+                            <td><i class="ri-close-line close-icon"></i></td>
+                            <td><i class="ri-check-line check-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Affiliate Program Access</td>
+                            <td><i class="ri-close-line close-icon"></i></td>
+                            <td><i class="ri-check-line check-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Basic Dashboard</td>
+                            <td><i class="ri-check-line check-icon"></i></td>
+                            <td><i class="ri-check-line check-icon"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title text-center">Frequently Asked Questions</h2>
+            <div class="faq-accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        Can I cancel my Premium subscription anytime?
+                        <i class="ri-arrow-down-s-line accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Yes, you can cancel your Premium subscription at any time directly from your account settings. Your access will continue until the end of your current billing period.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        What happens after my Free plan ends?
+                        <i class="ri-arrow-down-s-line accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>The Free plan does not "end." It's a perpetual free tier that gives you access to a limited number of courses. You can continue using it for as long as you like without any obligation to upgrade.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        Do I need a credit card to start the Free plan?
+                        <i class="ri-arrow-down-s-line accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>No, you do not need a credit card to sign up for the Free plan. We only require payment information if you choose to upgrade to a Premium or Team plan.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        What is the difference between monthly and annual billing?
+                        <i class="ri-arrow-down-s-line accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Annual billing offers a significant discount compared to paying monthly, making it the most cost-effective option for serious learners committed to their long-term growth. Monthly billing provides more flexibility.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title text-center">What Our Learners Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="quote">“MindStack helped me land my first tech job after completing just three courses. The content is practical and the instructors are amazing!”</p>
+                    <div class="author-info">
+                        <img src="https://placehold.co/60x60/F0F7E0/2ECC71?text=MA" alt="Mary A." class="author-avatar">
+                        <p class="author-name">Mary A.</p>
+                        <p class="author-title">Junior Developer</p>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">“The Premium plan is worth every penny. Unlimited access to high-quality courses has transformed my skills and confidence. Highly recommend!”</p>
+                    <div class="author-info">
+                        <img src="https://placehold.co/60x60/E0F7F7/00BFFF?text=RS" alt="Robert S." class="author-avatar">
+                        <p class="author-name">Robert S.</p>
+                        <p class="author-title">Marketing Manager</p>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">“I love the flexibility of learning at my own pace. The course materials are engaging, and the support team is always quick to help.”</p>
+                    <div class="author-info">
+                        <img src="https://placehold.co/60x60/F5E0F7/9932CC?text=LS" alt="Lisa S." class="author-avatar">
+                        <p class="author-name">Lisa S.</p>
+                        <p class="author-title">Freelance Designer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Call-to-Action Section -->
+    <section class="final-cta-section">
+        <div class="container text-center">
+            <h2>Join over 100,000 learners.</h2>
+            <p>Start your journey today and unlock your full potential.</p>
+            <a href="signup.html" class="btn btn-primary cta-btn">Get Started Free</a>
+        </div>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section class="newsletter-signup section-padding bg-light-gray">
+        <div class="container text-center">
+            <h2>Stay Updated with MindStack</h2>
+            <p>Get the latest course updates, special offers, and learning tips directly in your inbox.</p>
+            <form id="newsletterForm" class="newsletter-form">
+                <input type="email" id="newsletterEmail" placeholder="Enter your email address" required>
+                <button type="submit" class="btn btn-primary">Subscribe for updates</button>
+                <div id="newsletterMessage" class="newsletter-message"></div> 
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer (Content that would come from includes/footer.html) -->
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <!-- Corrected path for footer logo -->
+                <img src="assets/images/logo/mindstack_logo__1_-removebg-preview.png" alt="MindStack Logo">
+            </div>
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                </ul>
+            </nav>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
+                <a href="#" aria-label="Twitter"><i class="ri-twitter-fill"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
+                <a href="#" aria-label="Instagram"><i class="ri-instagram-fill"></i></a>
+            </div>
+            <p class="copyright">&copy; 2025 MindStack. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Pricing Page Specific JavaScript -->
+    <!-- Removed main.js as it's not needed here and can cause conflicts -->
+    <script type="module" src="assets/js/pricing.js"></script> 
+</body>
+</html>

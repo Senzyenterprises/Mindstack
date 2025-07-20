@@ -1,0 +1,1234 @@
+/* mindstack/assets/css/affiliate.css */
+
+/* --- Base Variables --- */
+:root {
+    --color-navy: #1F2D5A;
+    --color-dark-blue: #1A2238;
+    --color-teal: #0ED2F7;
+    --color-cyan: #1ABC9C;
+    --color-white: #ffffff;
+    --color-light-gray: #f5f5f5;
+    --color-gray: #cccccc;
+    --color-dark-gray: #555555;
+    --color-red: #e74c3c;
+    --color-green: #2ecc71;
+    --color-gold: #FFD700;
+
+    --font-primary: 'Poppins', sans-serif;
+}
+
+/* --- Global Resets & Body Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--color-dark-blue);
+    background-color: var(--color-white);
+    overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+}
+
+body.no-scroll {
+    overflow: hidden; /* Disable scrolling when mobile menu is active */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* Add some padding on the sides */
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-teal);
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- Reusable Section Padding --- */
+.section-padding {
+    padding: 80px 0; /* Consistent vertical padding for sections */
+}
+
+.bg-light-gray {
+    background-color: var(--color-light-gray);
+}
+
+.bg-dark-blue {
+    background-color: var(--color-navy); /* Using navy for consistency with design */
+}
+
+.text-white {
+    color: var(--color-white);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-40 { /* Margin-top utility */
+    margin-top: 40px;
+}
+
+.section-description {
+    font-size: 1.1em;
+    max-width: 700px;
+    margin: 15px auto 40px auto;
+    color: var(--color-dark-gray);
+}
+/* --- Buttons (General Styles) --- */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--color-teal);
+    color: var(--color-white);
+    border: 2px solid var(--color-teal);
+}
+
+.btn-primary:hover {
+    background-color: #0cbbd9;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-navy);
+    border: 2px solid var(--color-navy);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+/* --- Header Styles --- */
+.main-header {
+    background-color: var(--color-white);
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky; /* Makes header sticky on scroll */
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 70px; /* Ensure header has a consistent minimum height */
+}
+
+.logo img {
+    height: 65px; /* Increased logo height for "very big" */
+    width: auto;
+    display: block; /* Prevents extra space below image */
+}
+
+.main-nav ul {
+    display: flex;
+    gap: 30px;
+}
+
+.main-nav ul li a {
+    color: var(--color-navy);
+    font-weight: 600;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.main-nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-teal);
+    transition: width 0.3s ease;
+}
+
+.main-nav ul li a:hover::after,
+.main-nav ul li a.active::after {
+    width: 100%;
+}
+
+.header-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.mobile-menu-toggle {
+    display: none; /* Hidden by default, shown on mobile */
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    width: 30px;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* For animating lines */
+    z-index: 1100; /* Ensure it's above the mobile nav */
+}
+
+.mobile-menu-toggle span {
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-navy);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center; /* For rotation */
+}
+
+/* Hamburger animation */
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px); /* Slide out for a cleaner 'X' */
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+/* --- Hero Section --- */
+.hero-section {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    padding: 80px 0;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.hero-section h1 {
+    font-size: 3.5em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-subtext {
+    font-size: 1.3em;
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+    opacity: 0.9;
+}
+
+.hero-section .cta-btn {
+    padding: 18px 40px;
+    font-size: 1.2em;
+    border-radius: 10px;
+}
+
+/* --- How It Works Section --- */
+.how-it-works-section {
+    padding-bottom: 60px;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    justify-content: center;
+}
+
+.step-card {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+}
+
+.step-icon {
+    font-size: 3.5em;
+    color: var(--color-teal);
+    margin-bottom: 20px;
+}
+
+.step-card h3 {
+    font-size: 1.5em;
+    color: var(--color-navy);
+    margin-bottom: 15px;
+}
+
+.step-card p {
+    font-size: 0.95em;
+    color: var(--color-dark-gray);
+}
+
+/* --- Affiliate Benefits Section --- */
+.affiliate-benefits-section {
+    background-color: var(--color-white);
+    padding: 60px 0;
+    margin-bottom: 60px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: var(--color-light-gray);
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 1.05em;
+    color: var(--color-dark-blue);
+    font-weight: 500;
+}
+
+.benefit-icon {
+    font-size: 2em;
+    color: var(--color-teal);
+    flex-shrink: 0;
+}
+
+/* --- Affiliate Dashboard Panel --- */
+.affiliate-dashboard-section {
+    background-color: var(--color-white);
+    padding: 60px 0;
+    margin-bottom: 60px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    /* Initially hidden by default, JS will toggle 'active' class */
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.affiliate-dashboard-section.active {
+    display: block; /* Show when active */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dashboard-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.referral-link-block {
+    background-color: var(--color-light-gray);
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.referral-link-block h3 {
+    font-size: 1.6em;
+    color: var(--color-navy);
+    margin-bottom: 20px;
+}
+
+.link-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.link-display span {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray);
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 1em;
+    color: var(--color-dark-blue);
+    flex-grow: 1;
+    max-width: 400px;
+    text-align: left;
+    overflow-x: auto; /* Allow horizontal scroll for long links */
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.link-display .copy-link-btn {
+    padding: 12px 20px;
+    font-size: 0.95em;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+.stats-grid .stat-card { /* Reusing dashboard stat-card style */
+    background-color: var(--color-light-gray);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    transition: transform 0.2s ease;
+}
+
+.stats-grid .stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stats-grid .stat-icon {
+    font-size: 2.5em;
+    color: var(--color-teal); /* Default icon color */
+}
+
+/* Specific icon colors for variety */
+.stats-grid .stat-card:nth-child(1) .stat-icon { color: var(--color-teal); }
+.stats-grid .stat-card:nth-child(2) .stat-icon { color: var(--color-green); }
+.stats-grid .stat-card:nth-child(3) .stat-icon { color: var(--color-red); }
+.stats-grid .stat-card:nth-child(4) .stat-icon { color: var(--color-gold); }
+
+
+.stats-grid .stat-number {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--color-navy);
+    line-height: 1;
+}
+
+.stats-grid .stat-label {
+    font-size: 1em;
+    color: var(--color-dark-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.payout-status-block {
+    background-color: var(--color-light-gray);
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.payout-status-block h3 {
+    font-size: 1.6em;
+    color: var(--color-navy);
+    margin-bottom: 15px;
+}
+
+.payout-status-block p {
+    font-size: 1em;
+    color: var(--color-dark-gray);
+    margin-bottom: 25px;
+}
+
+.payout-status-block .btn {
+    padding: 12px 30px;
+    font-size: 1em;
+}
+
+.payout-status-block .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: var(--color-gray);
+    border-color: var(--color-gray);
+    color: var(--color-dark-gray);
+    transform: none;
+}
+
+/* --- Promotion Tips & Tools Section --- */
+.promotion-tips-section {
+    padding-bottom: 60px;
+}
+
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    justify-content: center;
+}
+
+.tip-card {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tip-card h3 {
+    font-size: 1.5em;
+    color: var(--color-navy);
+    margin-bottom: 15px;
+}
+
+.tip-card p {
+    font-size: 0.95em;
+    color: var(--color-dark-gray);
+    margin-bottom: 25px;
+    flex-grow: 1; /* Push button to bottom */
+}
+
+.tip-card .btn {
+    margin-top: auto;
+}
+
+/* --- FAQ Section (reusing pricing.css styles) --- */
+.faq-section {
+    padding-bottom: 80px;
+}
+
+.faq-accordion {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-accordion .accordion-item {
+    background-color: var(--color-white);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.faq-accordion .accordion-header {
+    width: 100%;
+    background-color: var(--color-white);
+    color: var(--color-navy);
+    padding: 20px 25px;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-align: left;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+
+.faq-accordion .accordion-header:hover {
+    background-color: var(--color-light-gray);
+}
+
+.faq-accordion .accordion-icon {
+    font-size: 1.5em;
+    transition: transform 0.3s ease;
+}
+
+.faq-accordion .accordion-header.active .accordion-icon {
+    transform: rotate(180deg);
+}
+
+.faq-accordion .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+    background-color: var(--color-light-gray);
+    padding: 0 25px; /* Initial padding is 0 */
+}
+
+.faq-accordion .accordion-content.active {
+    max-height: 300px; /* Sufficiently large value */
+    padding: 15px 25px; /* Padding when active */
+}
+
+.faq-accordion .accordion-content p {
+    color: var(--color-dark-blue);
+    font-size: 0.95em;
+}
+
+/* --- Newsletter Signup Section Styles --- */
+.newsletter-signup h2 {
+    color: var(--color-navy);
+}
+
+.newsletter-signup p {
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+    color: var(--color-dark-gray);
+}
+
+.newsletter-form {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.newsletter-form input[type="email"] {
+    padding: 12px 20px;
+    border: 2px solid var(--color-gray);
+    border-radius: 8px;
+    font-size: 1em;
+    width: 100%;
+    max-width: 400px;
+    color: var(--color-navy);
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.newsletter-form input[type="email"]:focus {
+    border-color: var(--color-teal);
+}
+
+.newsletter-form .btn-primary {
+    padding: 12px 30px;
+    font-size: 1em;
+}
+
+/* --- Footer Styles --- */
+.main-footer {
+    background-color: var(--color-dark-blue);
+    color: var(--color-white);
+    padding: 40px 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.footer-logo img {
+    height: 95px;
+    width: 80px;
+    filter: brightness(0) invert(1); /* Example for making a dark logo white on dark background */
+    margin-bottom: -20px;
+    margin-top: -10px;
+}
+
+.footer-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px 30px;
+}
+
+.footer-nav ul li a {
+    color: var(--color-white);
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.footer-nav ul li a:hover {
+    color: var(--color-teal);
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.social-links a {
+    color: var(--color-white);
+    font-size: 1.5em;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--color-teal);
+}
+
+.copyright {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7);
+}
+/* Close button for mobile menu */
+.close-menu-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2.5em;
+    color: var(--color-white);
+    cursor: pointer;
+    z-index: 1200;
+    transition: transform 0.2s ease;
+}
+
+.close-menu-btn:hover {
+    transform: rotate(90deg);
+}.close-menu-btn {
+    position: absolute;
+    top: 15px; /* Adjusted top for better alignment */
+    right: 15px; /* Adjusted right for better alignment */
+    font-size: 2.2em; /* Slightly smaller font size for the icon itself */
+    color: var(--color-white);
+    cursor: pointer;
+    z-index: 1200;
+    transition: transform 0.2s ease, background-color 0.2s ease; /* Added background-color to transition */
+    display: flex; /* Use flex to center the icon */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: 40px; /* Explicit width to give a larger clickable area */
+    height: 40px; /* Explicit height to give a larger clickable area */
+    border-radius: 50%; /* Make it a circle */
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle background for click area */
+}
+
+.close-menu-btn:hover {
+    transform: rotate(90deg);
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly more prominent on hover */
+}
+/* --- Mobile Responsiveness --- */
+@media (max-width: 992px) {
+    body {
+        padding-top: 30px;
+    }
+    .hero-section {
+        padding: 60px 0;
+        margin-bottom: 40px;
+    }
+    .hero-section h1 {
+        font-size: 2.8em;
+    }
+    .hero-subtext {
+        font-size: 1.1em;
+    }
+    .section-title {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+    .how-it-works-section,
+    .affiliate-benefits-section,
+    .affiliate-dashboard-section,
+    .promotion-tips-section,
+    .faq-section {
+        padding-bottom: 40px;
+        margin-bottom: 40px;
+    }
+    .step-card {
+        padding: 25px;
+    }
+    .step-icon {
+        font-size: 3em;
+    }
+    .step-card h3 {
+        font-size: 1.3em;
+    }
+    .benefit-item {
+        padding: 15px;
+        font-size: 0.95em;
+    }
+    .benefit-icon {
+        font-size: 1.8em;
+    }
+    .referral-link-block h3,
+    .payout-status-block h3 {
+        font-size: 1.4em;
+    }
+    .link-display span {
+        font-size: 0.9em;
+        padding: 10px 15px;
+    }
+    .link-display .copy-link-btn {
+        padding: 10px 15px;
+        font-size: 0.85em;
+    }
+    .stats-grid .stat-card {
+        padding: 20px;
+    }
+    .stats-grid .stat-icon {
+        font-size: 2em;
+    }
+    .stats-grid .stat-number {
+        font-size: 2em;
+    }
+    .stats-grid .stat-label {
+        font-size: 0.9em;
+    }
+    .payout-status-block p {
+        font-size: 0.9em;
+    }
+    .payout-status-block .btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+    .tip-card {
+        padding: 25px;
+    }
+    .tip-card h3 {
+        font-size: 1.3em;
+    }
+    .faq-accordion .accordion-header {
+        padding: 15px 20px;
+        font-size: 1em;
+    }
+    .faq-accordion .accordion-content.active {
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2.5em;
+    }
+    .steps-grid,
+    .benefits-grid,
+    .stats-grid,
+    .tips-grid {
+        grid-template-columns: 1fr; /* Stack columns vertically */
+        gap: 25px;
+    }
+    .step-card,
+    .benefit-item,
+    .stats-grid .stat-card,
+    .tip-card {
+        max-width: 400px; /* Constrain width when stacked */
+        margin: 0 auto;
+    }
+    .link-display {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .link-display span,
+    .link-display .copy-link-btn {
+        width: 100%;
+        max-width: none;
+    }
+     .main-nav {
+        /* Mobile menu overlay styles - NO CHANGES HERE */
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 65vw;
+        max-width: 200px;
+        max-height: calc(100vh - 70px); /* Adjusted to account for header min-height */
+        background-color: var(--color-navy);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 10px 0; /* General padding */
+        padding-top: 50px; /* Space for close button */
+        transform: translateX(100%);
+        transition: transform 0.4s ease-out;
+        z-index: 999;
+        overflow-y: auto;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    }
+
+    .main-nav.active {
+        transform: translateX(0);
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        gap: 1px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .main-nav ul li a {
+        color: var(--color-white);
+        font-size: 1em;
+        padding: 10px 0;
+        display: block;
+    }
+
+    .main-nav ul li a::after {
+        background-color: var(--color-teal);
+    }
+
+    /* Show header actions on mobile */
+    .header-actions {
+        display: flex; /* Make buttons visible */
+        gap: 8px; /* Reduce gap between buttons on mobile */
+        margin-left: auto; /* Push buttons to the right, next to hamburger */
+        align-items: center; /* Align with hamburger */
+    }
+
+    /* Adjust button size for mobile header - UPDATED */
+    .header-actions .btn {
+        padding: 6px 12px; /* Smaller padding for mobile header buttons */
+        font-size: 0.75em; /* Smaller font size for mobile header buttons */
+        border-width: 1px; /* Thinner border */
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+        margin-left: 15px; /* Add some space between buttons and hamburger */
+    }
+    .badge{
+      padding: 4px 6px;
+    }
+      .newsletter-form {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .newsletter-form input[type="email"] {
+        max-width: 100%;
+    }
+
+    .footer-nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+}
+
+
+@media (max-width: 576px) {
+    body {
+        padding-top: 20px;
+    }
+    .hero-section {
+        padding: 40px 0;
+        margin-bottom: 30px;
+    }
+    .hero-section h1 {
+        font-size: 2em;
+    }
+    .hero-subtext {
+        font-size: 1em;
+        margin-bottom: 30px;
+    }
+    .hero-section .cta-btn {
+        padding: 15px 30px;
+        font-size: 1.1em;
+    }
+    .section-title {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+    }
+    .how-it-works-section,
+    .affiliate-benefits-section,
+    .affiliate-dashboard-section,
+    .promotion-tips-section,
+    .faq-section {
+        padding-bottom: 30px;
+        margin-bottom: 30px;
+    }
+    .step-card {
+        padding: 20px;
+    }
+    .step-icon {
+        font-size: 2.8em;
+    }
+    .step-card h3 {
+        font-size: 1.2em;
+    }
+    .benefit-item {
+        padding: 12px;
+        font-size: 0.9em;
+    }
+    .benefit-icon {
+        font-size: 1.6em;
+    }
+    .referral-link-block h3,
+    .payout-status-block h3 {
+        font-size: 1.2em;
+    }
+    .stats-grid .stat-card {
+        padding: 15px;
+    }
+    .stats-grid .stat-icon {
+        font-size: 1.8em;
+    }
+    .stats-grid .stat-number {
+        font-size: 1.8em;
+    }
+    .stats-grid .stat-label {
+        font-size: 0.8em;
+    }
+    .tip-card {
+        padding: 20px;
+    }
+    .tip-card h3 {
+        font-size: 1.2em;
+    }
+    .faq-accordion .accordion-header {
+        padding: 12px 15px;
+        font-size: 0.9em;
+    }
+    .faq-accordion .accordion-content.active {
+        padding: 8px 15px;
+    }
+}
+/* --- General Modal Styles (for all new modals) --- */
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    padding: 20px;
+}
+
+.modal-overlay.active {
+    display: flex; /* Show when active */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto; /* Center the modal */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-width: 90%;
+    max-height: 90vh; /* Limit height for scrollable content */
+    overflow-y: auto; /* Enable scrolling within modal content */
+    animation: fadeInScale 0.3s ease-out forwards;
+    transform: scale(0.95); /* Start slightly smaller */
+    opacity: 0; /* Start invisible */
+}
+
+@keyframes fadeInScale {
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-content h3 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.6em;
+    text-align: center;
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-modal-btn:hover {
+    color: #333;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.modal-actions .btn {
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 8px;
+}
+
+/* --- Specific Modal Styles for Affiliate Tools --- */
+
+/* Generic Message Modal */
+.message-modal-content {
+    max-width: 400px;
+    text-align: center;
+}
+.message-modal-content p {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 20px;
+}
+.message-modal-content.success {
+    border: 1px solid #d4edda;
+    background-color: #e2f9e6;
+}
+.message-modal-content.error {
+    border: 1px solid #f5c6cb;
+    background-color: #fcebeb;
+}
+.message-modal-content.info {
+    border: 1px solid #bee5eb;
+    background-color: #e9f7f9;
+}
+
+
+/* Social Media Captions Modal */
+.captions-modal-content {
+    max-width: 700px;
+}
+
+.captions-list .caption-item {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.captions-list .caption-item h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 1.1em;
+}
+
+.captions-list .caption-item p {
+    font-size: 0.95em;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.captions-list .caption-item .copy-caption-btn {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    padding: 8px 15px;
+    font-size: 0.85em;
+    border-radius: 6px;
+}
+
+/* Banners & Logos Modal */
+.banners-modal-content {
+    max-width: 800px;
+}
+
+.asset-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.asset-item {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+}
+
+.asset-item h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 1.1em;
+}
+
+.asset-item img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.asset-item .btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.9em;
+    border-radius: 6px;
+}
+
+/* Email Templates Modal */
+.email-templates-modal-content {
+    max-width: 800px;
+}
+
+.email-templates-list .email-template-item {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.email-templates-list .email-template-item h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 1.1em;
+}
+
+.email-templates-list .email-template-item pre {
+    background-color: #eef;
+    padding: 10px;
+    border-radius: 6px;
+    white-space: pre-wrap; /* Preserve whitespace and wrap text */
+    word-wrap: break-word; /* Break long words */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85em;
+    color: #333;
+    max-height: 200px; /* Limit height for long templates */
+    overflow-y: auto; /* Enable scrolling */
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+
+.email-templates-list .email-template-item .copy-email-btn {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    padding: 8px 15px;
+    font-size: 0.85em;
+    border-radius: 6px;
+}
+
+/* Responsive adjustments for modals */
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 20px;
+    }
+    .modal-content h3 {
+        font-size: 1.4em;
+    }
+    .close-modal-btn {
+        font-size: 1.5em;
+    }
+    .affiliate-details-grid, .asset-grid {
+        grid-template-columns: 1fr; /* Stack columns on small screens */
+    }
+    .captions-list .caption-item .copy-caption-btn,
+    .email-templates-list .email-template-item .copy-email-btn {
+        position: static; /* Make copy button inline */
+        margin-top: 10px;
+        width: 100%;
+    }
+}
