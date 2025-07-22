@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const hamburgerMenu = document.getElementById('hamburgerMenu');
     const closeSidebarBtn = document.getElementById('closeSidebarBtn');
     const navItems = document.querySelectorAll('.sidebar-nav .nav-item');
-    const contentSections = document.querySelectorAll('.content-section');
+    const contentSections = document.querySelectorAll('.content-section'); // This is a NodeList, will iterate later
     const logoutBtn = document.getElementById('logoutBtn');
 
     // Logout Modal Elements
@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const downloadsContainer = document.getElementById('downloadsContainer');
     const addModuleBtn = document.getElementById('addModuleBtn');
     const curriculumContainer = document.getElementById('curriculumContainer');
+    
     const addCourseTitleInput = document.getElementById('addCourseTitle');
     const addInstructorNameInput = document.getElementById('addInstructorName');
     const addInstructorBioInput = document.getElementById('addInstructorBio');
@@ -99,7 +100,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const addLessonsCountInput = document.getElementById('addLessonsCount');
     const addIsFeaturedCheckbox = document.getElementById('addIsFeatured');
 
-
     // Manage Courses Table Elements
     const coursesTableBody = document.querySelector('#coursesTable tbody');
     const noCoursesMessage = document.getElementById('noCoursesMessage');
@@ -112,14 +112,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     const editCourseMessageContainer = document.getElementById('editCourseMessage');
     const editAddWhatYoullLearnItemBtn = document.getElementById('editAddWhatYoullLearnItem');
     const editWhatYoullLearnContainer = document.getElementById('editWhatYoullLearnContainer');
-    const editAddWhoThisIsForItemBtn = document.getElementById('editAddWhoThisIsForItem'); 
+    const editAddWhoThisIsForItemBtn = document.getElementById('editAddWhoThisIsForItem');
     const editWhoThisIsForContainer = document.getElementById('editWhoThisIsForContainer');
-    const editAddPrerequisiteItemBtn = document.getElementById('editAddPrerequisiteItem');
+    const editAddPrerequisiteItemBtn = document.getElementById('editPrerequisiteItem');
     const editPrerequisitesContainer = document.getElementById('editPrerequisitesContainer');
     const editAddDownloadItemBtn = document.getElementById('editAddDownloadItem');
     const editDownloadsContainer = document.getElementById('editDownloadsContainer');
     const editAddModuleBtn = document.getElementById('editAddModuleBtn');
     const editCurriculumContainer = document.getElementById('editCurriculumContainer');
+    
     const editCourseTitleInput = document.getElementById('editCourseTitle');
     const editInstructorNameInput = document.getElementById('editInstructorName');
     const editInstructorBioInput = document.getElementById('editInstructorBio');
@@ -145,7 +146,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Manage Users Table Elements
     const usersTableBody = document.querySelector('#usersTable tbody'); 
-    const noUsersMessage = document.getElementById('noUsersMessage'); 
+    const noUsersMessageForUsersTable = document.querySelector('#manage-users #noUsersMessage'); // Specific for users section
 
     // User Details Modal Elements (New)
     const viewUserModalOverlay = document.getElementById('viewUserModalOverlay');
@@ -183,7 +184,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const viewAffiliateEmail = document.getElementById('viewAffiliateEmail');
     const viewAffiliateReferrals = document.getElementById('viewAffiliateReferrals');
     const viewAffiliateTotalEarnings = document.getElementById('viewAffiliateTotalEarnings');
-    const viewAffiliatePendingEarnings = document.getElementById('viewAffiliatePendingEarnings');
+    const viewAffiliatePendingPayout = document.getElementById('viewAffiliatePendingPayout'); // Corrected from pendingEarnings
     const viewAffiliatePaidEarnings = document.getElementById('viewAffiliatePaidEarnings');
     const viewAffiliatePayoutHistoryList = document.getElementById('viewAffiliatePayoutHistoryList');
     const viewAffiliateUID = document.getElementById('viewAffiliateUID');
@@ -207,7 +208,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const closePayoutHistoryModalBtn = document.getElementById('closePayoutHistoryModalBtn');
     const payoutHistoryAffiliateNameSpan = document.getElementById('payoutHistoryAffiliateName');
     const payoutHistoryTableBody = document.querySelector('#payoutHistoryTable tbody');
-    const noPayoutHistoryMessage = document.getElementById('noPayoutHistoryMessage');
+    const noPayoutHistoryMessageForPayouts = document.getElementById('noPayoutHistoryMessage'); // Specific for payout history
     const closePayoutHistoryBtnBottom = document.getElementById('closePayoutHistoryBtnBottom');
 
 
@@ -275,13 +276,24 @@ document.addEventListener('DOMContentLoaded', async () => {
                 isAdmin = true;
                 console.log("Admin Dashboard: Admin access granted. Loading data...");
                 loadDashboardData();
-                // Initial section load is handled by default, but fetch data for active section
-                const activeSectionId = document.querySelector('.content-section.active')?.id || 'dashboard-overview';
-                if (activeSectionId === 'manage-courses') populateCoursesTable();
-                else if (activeSectionId === 'manage-users') populateUsersTable();
-                else if (activeSectionId === 'manage-affiliates') populateAffiliatesTable();
-                else if (activeSectionId === 'manage-pricing') fetchPremiumPrice();
-                else if (activeSectionId === 'platform-settings') loadSettings();
+                
+                // Determine active section from URL or default to dashboard-overview
+                const urlParams = new URLSearchParams(window.location.search);
+                const initialSection = urlParams.get('section') || 'dashboard-overview';
+                showSection(initialSection); // Show the initial section
+
+                // Call the appropriate data loading function based on the initial section
+                if (initialSection === 'manage-courses') {
+                    populateCoursesTable();
+                } else if (initialSection === 'manage-users') {
+                    populateUsersTable();
+                } else if (initialSection === 'manage-affiliates') {
+                    populateAffiliatesTable();
+                } else if (initialSection === 'manage-pricing') {
+                    fetchPremiumPrice();
+                } else if (initialSection === 'platform-settings') {
+                    loadSettings();
+                }
                 
                 resetTimer(); 
             } else {
@@ -323,21 +335,29 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // --- Sidebar & Section Switching Logic ---
     function showSection(sectionId) {
+        // Hide all content sections first
         contentSections.forEach(section => {
-            section.classList.remove('active');
+            section.style.display = 'none'; // Use display: none for direct visibility control
+            section.classList.remove('active'); // Remove active class for consistency
         });
+        
+        // Show the target section
         const targetSection = document.getElementById(sectionId);
         if (targetSection) {
-            targetSection.classList.add('active');
+            targetSection.style.display = 'block'; // Show the target section
+            targetSection.classList.add('active'); // Add active class
         }
 
+        // Update active state for sidebar navigation items
         navItems.forEach(item => {
             item.classList.remove('active');
+            // Check if the nav item's data-section matches the target sectionId
             if (item.dataset.section === sectionId) {
                 item.classList.add('active');
             }
         });
 
+        // Close sidebar on mobile after selection
         if (window.innerWidth <= 992) {
             adminSidebar.classList.remove('active');
             document.body.classList.remove('no-scroll');
@@ -369,7 +389,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 } else if (sectionId === 'add-course') {
                     // No data to fetch, just show form
                 } else if (sectionId === 'manage-courses') {
-                    populateCoursesTable();
+                    populateCoursesTable(); 
                 } else if (sectionId === 'manage-users') {
                     populateUsersTable();
                 } else if (sectionId === 'manage-affiliates') {
@@ -392,11 +412,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // --- Logout Confirmation Modal ---
     function showLogoutModal() {
+        if (!logoutModalOverlay) {
+            console.error("Logout modal overlay not found.");
+            return;
+        }
         logoutModalOverlay.classList.add('active');
         document.body.classList.add('no-scroll');
     }
 
     function hideLogoutModal() {
+        if (!logoutModalOverlay) return;
         logoutModalOverlay.classList.remove('active');
         document.body.classList.remove('no-scroll'); 
     }
@@ -596,11 +621,29 @@ document.addEventListener('DOMContentLoaded', async () => {
         lessonDiv.querySelector('.remove-item-btn').addEventListener('click', () => lessonDiv.remove());
     }
 
+    // Event listeners for Add Course dynamic field buttons (as per your HTML)
     if (addWhatYoullLearnItemBtn) addWhatYoullLearnItemBtn.addEventListener('click', () => addListItem(whatYoullLearnContainer, 'whatYoullLearnItem'));
     if (addWhoThisIsForItemBtn) addWhoThisIsForItemBtn.addEventListener('click', () => addListItem(whoThisIsForContainer, 'whoThisIsForItem'));
     if (addPrerequisiteItemBtn) addPrerequisiteItemBtn.addEventListener('click', () => addListItem(prerequisitesContainer, 'prerequisiteItem'));
     if (addDownloadItemBtn) addDownloadItemBtn.addEventListener('click', () => addDownloadItem(downloadsContainer));
     if (addModuleBtn) addModuleBtn.addEventListener('click', () => addModule(curriculumContainer));
+
+    // Event delegation for remove buttons within dynamic containers for Add Course
+    [whatYoullLearnContainer, whoThisIsForContainer, prerequisitesContainer, downloadsContainer, curriculumContainer].forEach(container => {
+        if (container) {
+            container.addEventListener('click', (e) => {
+                if (e.target.classList.contains('remove-item-btn') || e.target.closest('.remove-item-btn')) {
+                    e.target.closest('.dynamic-list-item, .download-item-fields, .dynamic-module-item, .dynamic-lesson-item').remove();
+                } else if (e.target.classList.contains('add-lesson-btn') && container === curriculumContainer) {
+                    const moduleDiv = e.target.closest('.dynamic-module-item');
+                    const lessonsList = moduleDiv.querySelector('.lessons-list');
+                    if (lessonsList) addLesson(lessonsList);
+                } else if (e.target.classList.contains('remove-module-btn') && container === curriculumContainer) {
+                    e.target.closest('.dynamic-module-item').remove();
+                }
+            });
+        }
+    });
 
 
     // --- Add Course Form Submission (Firebase) ---
@@ -696,11 +739,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                 });
                 showFormMessage(addCourseMessageContainer, 'Course added successfully!', 'success');
                 addCourseForm.reset(); // Clear form
-                whatYoullLearnContainer.innerHTML = ''; // Clear dynamic fields
-                whoThisIsForContainer.innerHTML = '';
-                prerequisitesContainer.innerHTML = '';
-                downloadsContainer.innerHTML = '';
-                curriculumContainer.innerHTML = '';
+                // CRITICAL FIX: Re-initialize dynamic fields after clearing form
+                // This ensures the "Add Item" buttons are present again and containers are clean
+                if (whatYoullLearnContainer) whatYoullLearnContainer.innerHTML = ''; 
+                if (whoThisIsForContainer) whoThisIsForContainer.innerHTML = '';
+                if (prerequisitesContainer) prerequisitesContainer.innerHTML = '';
+                if (downloadsContainer) downloadsContainer.innerHTML = '';
+                if (curriculumContainer) curriculumContainer.innerHTML = '';
+
+
                 populateCoursesTable(); // Refresh courses table
                 loadDashboardData(); // Update stats
             } catch (error) {
@@ -715,32 +762,57 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // --- Manage Courses Functions ---
     async function populateCoursesTable() {
+        console.log("DEBUG: Attempting to populate courses table...");
+        if (!coursesTableBody) {
+            console.error("DEBUG: coursesTableBody element not found. Cannot populate courses table.");
+            return;
+        }
         coursesTableBody.innerHTML = '<tr><td colspan="6" class="loading-cell">Loading courses...</td></tr>';
-        noCoursesMessage.style.display = 'none';
+        if (noCoursesMessage) noCoursesMessage.style.display = 'none'; // Ensure noCoursesMessage is hidden during loading
+        
+        console.log("DEBUG: Firestore Collection Path for courses:", coursesCollectionRef.path);
+
         try {
-            const q = query(coursesCollectionRef, orderBy('createdAt', 'desc')); // Order by creation date
-            const querySnapshot = await getDocs(q);
+            // Temporarily removed orderBy to rule out indexing issues
+            const querySnapshot = await getDocs(coursesCollectionRef); 
             const courses = [];
-            querySnapshot.forEach(doc => {
-                courses.push({ id: doc.id, ...doc.data() });
+
+            console.log("DEBUG: Courses Query Snapshot received. Is empty?", querySnapshot.empty, "Number of documents:", querySnapshot.size);
+
+            if (querySnapshot.empty) {
+                console.log("DEBUG: No course documents found in Firestore at the specified path.");
+            }
+
+            querySnapshot.forEach(docSnap => {
+                console.log("DEBUG: Found course document ID:", docSnap.id);
+                console.log("DEBUG: Found course document Data:", docSnap.data());
+                courses.push({ id: docSnap.id, ...docSnap.data() });
             });
             renderCoursesTable(courses);
         } catch (error) {
-            console.error("Error fetching courses:", error);
+            console.error("DEBUG: Error fetching courses:", error);
             coursesTableBody.innerHTML = '<tr><td colspan="6" class="error-cell">Error loading courses.</td></tr>';
             showModal('Error', 'Failed to load course data. Please try again.', 'error');
         }
     }
 
     function renderCoursesTable(coursesToRender) {
-        coursesTableBody.innerHTML = '';
-        if (coursesToRender.length === 0) {
-            noCoursesMessage.style.display = 'table-row';
+        console.log("DEBUG: Rendering courses table with", coursesToRender.length, "courses.");
+        if (!coursesTableBody) {
+            console.error("DEBUG: coursesTableBody element not found. Cannot render courses table.");
             return;
         }
-        noCoursesMessage.style.display = 'none'; // Hide if courses are found
+        coursesTableBody.innerHTML = ''; // Clear existing rows
+        
+        if (coursesToRender.length === 0) {
+            if (noCoursesMessage) noCoursesMessage.style.display = 'table-row'; // Show "No courses added yet."
+            console.log("DEBUG: No courses to render, showing 'No courses added yet' message.");
+            return;
+        }
+        if (noCoursesMessage) noCoursesMessage.style.display = 'none'; // Hide if courses are found
 
         coursesToRender.forEach(course => {
+            console.log("DEBUG: Adding row for course:", course.title);
             const row = coursesTableBody.insertRow();
             row.insertCell().textContent = course.title || 'N/A';
             row.insertCell().textContent = course.instructor?.name || 'N/A';
@@ -768,52 +840,83 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // --- Edit Course Modal Logic ---
     function openEditCourseModal(course) {
+        if (!editCourseModalOverlay || !editCourseIdInput || !editCourseForm) {
+            console.error("Edit course modal elements not found.");
+            showModal('Error', 'Edit course modal elements are missing.', 'error');
+            return;
+        }
+
         editCourseIdInput.value = course.id;
         editCourseForm.reset(); // Clear previous form data
-        editCourseMessageContainer.classList.remove('active', 'error', 'success');
+        if (editCourseMessageContainer) editCourseMessageContainer.classList.remove('active', 'error', 'success');
 
-        editCourseTitleInput.value = course.title || '';
-        editInstructorNameInput.value = course.instructor?.name || '';
-        editInstructorBioInput.value = course.instructor?.bio || '';
-        editInstructorAvatarUrlInput.value = course.instructor?.avatarUrl || '';
-        editCourseCategorySelect.value = course.category || '';
-        editCourseAccessTypeSelect.value = course.accessType || 'free';
-        editCourseThumbnailInput.value = course.thumbnailUrl || '';
-        editIntroVideoInput.value = course.videoEmbedUrl || '';
-        editShortDescriptionInput.value = course.shortDescription || '';
-        editLongDescriptionInput.value = course.longDescription || '';
-        editCourseDurationInput.value = course.estimatedTime || '';
-        editCourseLevelSelect.value = course.courseMeta?.level || '';
-        editLessonsCountInput.value = course.courseMeta?.lessonsCount || 0;
-        editIsFeaturedCheckbox.checked = course.isFeatured || false;
+        if (editCourseTitleInput) editCourseTitleInput.value = course.title || '';
+        if (editInstructorNameInput) editInstructorNameInput.value = course.instructor?.name || '';
+        if (editInstructorBioInput) editInstructorBioInput.value = course.instructor?.bio || '';
+        if (editInstructorAvatarUrlInput) editInstructorAvatarUrlInput.value = course.instructor?.avatarUrl || '';
+        if (editCourseCategorySelect) editCourseCategorySelect.value = course.category || '';
+        if (editCourseAccessTypeSelect) editCourseAccessTypeSelect.value = course.accessType || 'free';
+        if (editCourseThumbnailInput) editCourseThumbnailInput.value = course.thumbnailUrl || '';
+        if (editIntroVideoInput) editIntroVideoInput.value = course.videoEmbedUrl || '';
+        if (editShortDescriptionInput) editShortDescriptionInput.value = course.shortDescription || '';
+        if (editLongDescriptionInput) editLongDescriptionInput.value = course.longDescription || '';
+        if (editCourseDurationInput) editCourseDurationInput.value = course.estimatedTime || '';
+        if (editCourseLevelSelect) editCourseLevelSelect.value = course.courseMeta?.level || '';
+        if (editLessonsCountInput) editLessonsCountInput.value = course.courseMeta?.lessonsCount || 0;
+        if (editIsFeaturedCheckbox) editIsFeaturedCheckbox.checked = course.isFeatured || false;
 
         // Populate dynamic lists
-        editWhatYoullLearnContainer.innerHTML = '';
-        (course.whatYoullLearn || []).forEach(item => addListItem(editWhatYoullLearnContainer, 'whatYoullLearnItem', item));
-        
-        editWhoThisIsForContainer.innerHTML = '';
-        (course.whoThisIsFor || []).forEach(item => addListItem(editWhoThisIsForContainer, 'whoThisIsForItem', item));
-
-        editPrerequisitesContainer.innerHTML = '';
-        (course.prerequisites || []).forEach(item => addListItem(editPrerequisitesContainer, 'prerequisiteItem', item));
-
-        editDownloadsContainer.innerHTML = '';
-        (course.downloads || []).forEach(item => addDownloadItem(editDownloadsContainer, item));
-
-        editCurriculumContainer.innerHTML = '';
-        (course.curriculum || []).forEach(module => {
-            addModule(editCurriculumContainer, module);
-        });
+        if (editWhatYoullLearnContainer) {
+            editWhatYoullLearnContainer.innerHTML = ''; // Clear existing
+            (course.whatYoullLearn || []).forEach(item => addListItem(editWhatYoullLearnContainer, 'whatYoullLearnItem', item));
+        }
+        if (editWhoThisIsForContainer) {
+            editWhoThisIsForContainer.innerHTML = '';
+            (course.whoThisIsFor || []).forEach(item => addListItem(editWhoThisIsForContainer, 'whoThisIsForItem', item));
+        }
+        if (editPrerequisitesContainer) {
+            editPrerequisitesContainer.innerHTML = '';
+            (course.prerequisites || []).forEach(item => addListItem(editPrerequisitesContainer, 'prerequisiteItem', item));
+        }
+        if (editDownloadsContainer) {
+            editDownloadsContainer.innerHTML = '';
+            (course.downloads || []).forEach(item => addDownloadItem(editDownloadsContainer, item));
+        }
+        if (editCurriculumContainer) {
+            editCurriculumContainer.innerHTML = '';
+            (course.curriculum || []).forEach(module => {
+                addModule(editCurriculumContainer, module);
+            });
+        }
 
         editCourseModalOverlay.classList.add('active');
         document.body.classList.add('no-scroll');
     }
 
+    // Event listeners for Edit Course dynamic field buttons (as per your HTML)
     if (editAddWhatYoullLearnItemBtn) editAddWhatYoullLearnItemBtn.addEventListener('click', () => addListItem(editWhatYoullLearnContainer, 'whatYoullLearnItem'));
     if (editAddWhoThisIsForItemBtn) editAddWhoThisIsForItemBtn.addEventListener('click', () => addListItem(editWhoThisIsForContainer, 'whoThisIsForItem'));
     if (editAddPrerequisiteItemBtn) editAddPrerequisiteItemBtn.addEventListener('click', () => addListItem(editPrerequisitesContainer, 'prerequisiteItem'));
     if (editAddDownloadItemBtn) editAddDownloadItemBtn.addEventListener('click', () => addDownloadItem(editDownloadsContainer));
     if (editAddModuleBtn) editAddModuleBtn.addEventListener('click', () => addModule(editCurriculumContainer));
+
+    // Event delegation for remove buttons within dynamic containers for Edit Course
+    [editWhatYoullLearnContainer, editWhoThisIsForContainer, editPrerequisitesContainer, editDownloadsContainer, editCurriculumContainer].forEach(container => {
+        if (container) {
+            container.addEventListener('click', (e) => {
+                if (e.target.classList.contains('remove-item-btn') || e.target.closest('.remove-item-btn')) {
+                    e.target.closest('.dynamic-list-item, .download-item-fields, .dynamic-module-item, .dynamic-lesson-item').remove();
+                } else if (e.target.classList.contains('add-lesson-btn') && container === editCurriculumContainer) {
+                    const moduleDiv = e.target.closest('.dynamic-module-item');
+                    const lessonsList = moduleDiv.querySelector('.lessons-list');
+                    if (lessonsList) addLesson(lessonsList);
+                } else if (e.target.classList.contains('remove-module-btn') && container === editCurriculumContainer) {
+                    e.target.closest('.dynamic-module-item').remove();
+                }
+            });
+        }
+    });
+
 
     if (closeEditCourseModalBtn) {
         closeEditCourseModalBtn.addEventListener('click', () => {
@@ -931,6 +1034,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // --- Delete Course Confirmation Modal Logic ---
     function openDeleteConfirmModal(courseId, courseTitle) {
+        if (!deleteConfirmModalOverlay || !deleteCourseTitleSpan || !confirmDeleteBtn) {
+            console.error("Delete confirmation modal elements not found.");
+            showModal('Error', 'Delete confirmation modal elements are missing.', 'error');
+            return;
+        }
         deleteCourseTitleSpan.textContent = courseTitle;
         confirmDeleteBtn.dataset.courseId = courseId; // Store ID on the button
         deleteConfirmModalOverlay.classList.add('active');
@@ -980,8 +1088,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // --- Manage Users Functions ---
     async function populateUsersTable() {
+        if (!usersTableBody) {
+            console.error("usersTableBody element not found. Cannot populate users table.");
+            return;
+        }
         usersTableBody.innerHTML = '<tr><td colspan="6" class="loading-cell">Loading users...</td></tr>';
-        noUsersMessage.style.display = 'none';
+        if (noUsersMessageForUsersTable) noUsersMessageForUsersTable.style.display = 'none'; // Use the specific ID for users table
+        
         try {
             const q = query(usersCollectionRef, orderBy('createdAt', 'desc')); // Order by creation date
             const querySnapshot = await getDocs(q);
@@ -998,12 +1111,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     function renderUsersTable(usersToRender) {
-        usersTableBody.innerHTML = '';
-        if (usersToRender.length === 0) {
-            noUsersMessage.style.display = 'block';
+        if (!usersTableBody) {
+            console.error("usersTableBody element not found. Cannot render users table.");
             return;
         }
-        noUsersMessage.style.display = 'none';
+        usersTableBody.innerHTML = '';
+        
+        if (usersToRender.length === 0) {
+            if (noUsersMessageForUsersTable) noUsersMessageForUsersTable.style.display = 'block'; // Use the specific ID for users table
+            return;
+        }
+        if (noUsersMessageForUsersTable) noUsersMessageForUsersTable.style.display = 'none'; // Use the specific ID for users table
 
         usersToRender.forEach(user => {
             const row = usersTableBody.insertRow();
@@ -1012,15 +1130,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             row.insertCell().textContent = user.role || 'student';
             row.insertCell().textContent = user.isSuspended ? 'Suspended' : 'Active';
             
-            // FIX: Handle date conversion robustly
             let registeredDate = 'N/A';
             if (user.createdAt) {
                 try {
-                    // If it's a Firestore Timestamp, toDate() will exist.
-                    // If it's already a JS Date object, new Date() will handle it.
-                    // If it's a string, new Date() will attempt to parse it.
                     const dateObj = typeof user.createdAt.toDate === 'function' ? user.createdAt.toDate() : new Date(user.createdAt);
-                    if (!isNaN(dateObj.getTime())) { // Check if it's a valid date
+                    if (!isNaN(dateObj.getTime())) { 
                         registeredDate = dateObj.toLocaleDateString();
                     }
                 } catch (e) {
@@ -1050,6 +1164,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // --- View User Details Modal Logic ---
     function openViewUserModal(user) {
+        if (!viewUserModalOverlay || !viewUserFullName || !viewUserEmail || !viewUserRole || !viewUserRegistered || !viewUserStatus || !viewUserUID) {
+            console.error("View user modal elements not found.");
+            showModal('Error', 'View user modal elements are missing.', 'error');
+            return;
+        }
         viewUserFullName.textContent = user.fullName || 'N/A';
         viewUserEmail.textContent = user.email || 'N/A';
         viewUserRole.textContent = user.role || 'student';
@@ -1090,9 +1209,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // --- Edit User Modal Logic ---
     function openEditUserModal(user) {
+        if (!editUserModalOverlay || !editUserUID || !editUserForm || !editUserEmailSpan || !editUserRoleSelect || !editUserSuspended) {
+            console.error("Edit user modal elements not found.");
+            showModal('Error', 'Edit user modal elements are missing.', 'error');
+            return;
+        }
         editUserUID.value = user.id;
         editUserForm.reset();
-        editUserMessageContainer.classList.remove('active', 'error', 'success');
+        if (editUserMessageContainer) editUserMessageContainer.classList.remove('active', 'error', 'success');
 
         editUserEmailSpan.textContent = user.email || user.id;
         editUserRoleSelect.value = user.role || 'student';
@@ -1120,6 +1244,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             e.preventDefault();
             if (!isAdmin) {
                 showModal('Access Denied', 'You do not have permission to edit users.', 'error');
+                return;
+            }
+            if (!saveUserChangesBtn) {
+                console.error("Save User Changes button not found.");
+                showModal('Error', 'Save button missing.', 'error');
                 return;
             }
             saveUserChangesBtn.textContent = 'Saving...';
@@ -1155,8 +1284,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // --- Manage Affiliates Functions ---
     async function populateAffiliatesTable() {
+        if (!affiliatesTableBody) {
+            console.error("affiliatesTableBody element not found. Cannot populate affiliates table.");
+            return;
+        }
         affiliatesTableBody.innerHTML = '<tr><td colspan="5" class="loading-cell">Loading affiliates...</td></tr>';
-        noAffiliatesMessage.style.display = 'none';
+        if (noAffiliatesMessage) noAffiliatesMessage.style.display = 'none';
+        
         try {
             const q = query(usersCollectionRef, where('role', '==', 'affiliate'), orderBy('createdAt', 'desc'));
             const querySnapshot = await getDocs(q);
@@ -1173,12 +1307,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     function renderAffiliatesTable(affiliatesToRender) {
-        affiliatesTableBody.innerHTML = '';
-        if (affiliatesToRender.length === 0) {
-            noAffiliatesMessage.style.display = 'table-row';
+        if (!affiliatesTableBody) {
+            console.error("affiliatesTableBody element not found. Cannot render affiliates table.");
             return;
         }
-        noAffiliatesMessage.style.display = 'none';
+        affiliatesTableBody.innerHTML = '';
+        if (affiliatesToRender.length === 0) {
+            if (noAffiliatesMessage) noAffiliatesMessage.style.display = 'block';
+            return;
+        }
+        if (noAffiliatesMessage) noAffiliatesMessage.style.display = 'none';
 
         affiliatesToRender.forEach(affiliate => {
             const row = affiliatesTableBody.insertRow();
@@ -1216,12 +1354,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // --- View Affiliate Details Modal Logic ---
     function openViewAffiliateModal(affiliate) {
+        if (!viewAffiliateModalOverlay || !viewAffiliateFullName || !viewAffiliateEmail || !viewAffiliateUID || !viewAffiliateReferrals || !viewAffiliateTotalEarnings || !viewAffiliatePendingPayout || !viewAffiliatePaidEarnings || !viewAffiliateRegistered) {
+            console.error("View affiliate modal elements not found.");
+            showModal('Error', 'View affiliate modal elements are missing.', 'error');
+            return;
+        }
         viewAffiliateFullName.textContent = affiliate.fullName || 'N/A';
         viewAffiliateEmail.textContent = affiliate.email || 'N/A';
         viewAffiliateUID.textContent = affiliate.id;
         viewAffiliateReferrals.textContent = affiliate.referralsCount || 0;
         viewAffiliateTotalEarnings.textContent = (affiliate.totalEarnings || 0).toLocaleString('en-NG', { style: 'currency', currency: 'NGN' });
-        viewAffiliatePendingEarnings.textContent = (affiliate.pendingEarnings || 0).toLocaleString('en-NG', { style: 'currency', currency: 'NGN' });
+        viewAffiliatePendingPayout.textContent = (affiliate.pendingEarnings || 0).toLocaleString('en-NG', { style: 'currency', currency: 'NGN' }); // Corrected to pendingEarnings
         viewAffiliatePaidEarnings.textContent = (affiliate.paidEarnings || 0).toLocaleString('en-NG', { style: 'currency', currency: 'NGN' });
         
         let registeredDate = 'N/A';
@@ -1257,6 +1400,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // --- Mark Affiliate Payout Modal Logic ---
     function openMarkPayoutModal(affiliate) {
+        if (!markPayoutModalOverlay || !markPayoutAffiliateIdInput || !markPayoutAffiliateNameSpan || !markPayoutPendingAmountSpan || !payoutAmountInput || !markPayoutMessageContainer) {
+            console.error("Mark payout modal elements not found.");
+            showModal('Error', 'Mark payout modal elements are missing.', 'error');
+            return;
+        }
         markPayoutAffiliateIdInput.value = affiliate.id;
         markPayoutAffiliateNameSpan.textContent = affiliate.fullName || affiliate.email;
         markPayoutPendingAmountSpan.textContent = (affiliate.pendingEarnings || 0).toLocaleString('en-NG', { style: 'currency', currency: 'NGN' });
@@ -1284,6 +1432,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             e.preventDefault();
             if (!isAdmin) {
                 showModal('Access Denied', 'You do not have permission to process payouts.', 'error');
+                return;
+            }
+            if (!processPayoutBtn) {
+                console.error("Process Payout button not found.");
+                showModal('Error', 'Process Payout button missing.', 'error');
                 return;
             }
             processPayoutBtn.textContent = 'Processing...';
@@ -1314,14 +1467,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 await updateDoc(affiliateDocRef, {
                     pendingEarnings: increment(-amountToPay), // Corrected usage
-                    paidEarnings: increment(amountToPay),    // Corrected usage
-                    payoutHistory: arrayUnion({              // Corrected usage
-                        date: serverTimestamp(),             // Corrected usage
+                    paidEarnings: increment(amountToPay),     // Corrected usage
+                    payoutHistory: arrayUnion({                // Corrected usage
+                        date: serverTimestamp(),               // Corrected usage
                         amount: amountToPay,
                         status: 'paid',
                         transactionId: `TXN_${Date.now()}` 
                     }),
-                    updatedAt: serverTimestamp()             // Corrected usage
+                    updatedAt: serverTimestamp()               // Corrected usage
                 });
                 showFormMessage(markPayoutMessageContainer, 'Payout processed successfully!', 'success');
                 setTimeout(() => {
@@ -1342,14 +1495,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // --- View Payout History Modal Logic ---
     function openPayoutHistoryModal(affiliate) {
+        if (!payoutHistoryModalOverlay || !payoutHistoryAffiliateNameSpan || !payoutHistoryTableBody || !noPayoutHistoryMessageForPayouts) {
+            console.error("Payout history modal elements not found.");
+            showModal('Error', 'Payout history modal elements are missing.', 'error');
+            return;
+        }
         payoutHistoryAffiliateNameSpan.textContent = affiliate.fullName || affiliate.email;
         payoutHistoryTableBody.innerHTML = '';
-        noPayoutHistoryMessage.style.display = 'none';
+        noPayoutHistoryMessageForPayouts.style.display = 'none'; // Use specific ID
 
         const history = affiliate.payoutHistory || [];
 
         if (history.length === 0) {
-            noPayoutHistoryMessage.style.display = 'table-row';
+            noPayoutHistoryMessageForPayouts.style.display = 'block'; // Show "No payout history found."
         } else {
             history.sort((a, b) => {
                 const dateA = a.date ? (typeof a.date.toDate === 'function' ? a.date.toDate() : new Date(a.date)) : new Date(0);
@@ -1396,7 +1554,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     // --- Platform Settings Functions ---
     async function loadSettings() {
         if (!isAdmin) return;
-        settingsForm.querySelector('button[type="submit"]').disabled = true;
+        if (!settingsForm || !settingsMessageContainer || !platformNameInput || !contactEmailInput || !defaultCurrencyInput || !enableAffiliateCheckbox || !maintenanceModeCheckbox) {
+            console.error("Platform settings form elements not found.");
+            showModal('Error', 'Platform settings elements are missing.', 'error');
+            return;
+        }
+        const submitBtn = settingsForm.querySelector('button[type="submit"]');
+        if (submitBtn) submitBtn.disabled = true;
         settingsMessageContainer.classList.remove('active', 'error', 'success');
         settingsMessageContainer.textContent = 'Loading settings...';
         settingsMessageContainer.classList.add('active', 'info');
@@ -1412,13 +1576,25 @@ document.addEventListener('DOMContentLoaded', async () => {
                 maintenanceModeCheckbox.checked = settings.maintenanceMode || false;
                 showFormMessage(settingsMessageContainer, 'Platform settings loaded.', 'success');
             } else {
-                showFormMessage(settingsMessageContainer, 'No platform settings found. Using defaults.', 'info');
+                console.warn("No platform settings found. Initializing with defaults.");
+                // Create default settings if they don't exist
+                await setDoc(settingsDocRef, {
+                    platformName: 'MindStack',
+                    contactEmail: 'support@mindstack.com',
+                    defaultCurrency: '₦',
+                    enableAffiliate: true,
+                    maintenanceMode: false,
+                    premiumPrice: 5000, // Ensure premiumPrice is also initialized here
+                    lastUpdated: serverTimestamp()
+                }, { merge: true });
+                showFormMessage(settingsMessageContainer, 'No platform settings found. Initializing with defaults.', 'info');
+                loadSettings(); // Reload after creating default
             }
         } catch (error) {
             console.error("Error fetching platform settings:", error);
             showFormMessage(settingsMessageContainer, `Error loading settings: ${error.message}`, 'error');
         } finally {
-            settingsForm.querySelector('button[type="submit"]').disabled = false;
+            if (submitBtn) submitBtn.disabled = false;
         }
     }
 
@@ -1430,11 +1606,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                 return;
             }
             const submitBtn = settingsForm.querySelector('button[type="submit"]');
-            submitBtn.textContent = 'Saving...';
-            submitBtn.disabled = true;
-            settingsMessageContainer.classList.remove('active', 'error', 'success', 'info');
-            settingsMessageContainer.textContent = 'Saving settings...';
-            settingsMessageContainer.classList.add('active', 'info');
+            if (submitBtn) {
+                submitBtn.textContent = 'Saving...';
+                submitBtn.disabled = true;
+            }
+            if (settingsMessageContainer) {
+                settingsMessageContainer.classList.remove('active', 'error', 'success', 'info');
+                settingsMessageContainer.textContent = 'Saving settings...';
+                settingsMessageContainer.classList.add('active', 'info');
+            }
 
             const updatedSettings = {
                 platformName: platformNameInput.value.trim(),
@@ -1452,8 +1632,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 console.error("Error saving platform settings:", error);
                 showFormMessage(settingsMessageContainer, `Error saving settings: ${error.message}`, 'error');
             } finally {
-                submitBtn.textContent = 'Save Settings';
-                submitBtn.disabled = false;
+                if (submitBtn) {
+                    submitBtn.textContent = 'Save Settings';
+                    submitBtn.disabled = false;
+                }
             }
         });
     }
@@ -1461,6 +1643,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     // --- Manage Pricing Functions (NEW) ---
     async function fetchPremiumPrice() {
         if (!isAdmin) return;
+        if (!premiumPriceInput || !savePremiumPriceBtn || !pricingMessage) {
+            console.error("Pricing elements not found. Cannot fetch premium price.");
+            showModal('Error', 'Pricing elements are missing.', 'error');
+            return;
+        }
         premiumPriceInput.disabled = true;
         savePremiumPriceBtn.disabled = true;
         pricingMessage.classList.remove('active', 'error', 'success', 'info');
@@ -1491,6 +1678,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         savePremiumPriceBtn.addEventListener('click', async () => {
             if (!isAdmin) {
                 showModal('Access Denied', 'You do not have permission to set pricing.', 'error');
+                return;
+            }
+            if (!premiumPriceInput || !pricingMessage) {
+                console.error("Pricing input or message container not found.");
+                showModal('Error', 'Pricing elements are missing.', 'error');
                 return;
             }
             const newPrice = parseFloat(premiumPriceInput.value);
