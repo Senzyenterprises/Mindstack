@@ -1,9 +1,40 @@
 // mindstack/assets/js/main.js
 
 // Import Firebase modules, including firebaseConfig
-import { db, collection, addDoc, query, where, limit, onSnapshot, firebaseConfig } from './firebase.js'; // Added query, where, limit, onSnapshot
+import { db, collection, addDoc, query, where, limit, onSnapshot, doc, getDoc, firebaseConfig } from './firebase.js'; // Added doc, getDoc
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => { // Made async to await Firestore call
+
+    // Determine the correct appId for the Firestore path
+    const currentAppId = typeof __app_id !== 'undefined' ? __app_id : firebaseConfig.projectId;
+
+    // --- MAINTENANCE MODE CHECK (CRITICAL: This runs first) ---
+    const settingsDocRef = doc(db, `artifacts/${currentAppId}/public/data/settings/platform_settings`);
+    
+    try {
+        const settingsSnap = await getDoc(settingsDocRef);
+        if (settingsSnap.exists()) {
+            const settings = settingsSnap.data();
+            if (settings.maintenanceMode === true) {
+                console.warn("Maintenance Mode is ENABLED. Redirecting to maintenance page.");
+                // Redirect to a dedicated maintenance page
+                window.location.href = 'maintenance.html'; 
+                return; // Stop further script execution
+            } else {
+                console.log("Maintenance Mode is DISABLED. Proceeding with site load.");
+            }
+        } else {
+            console.warn("Platform settings document not found. Assuming maintenance mode is off.");
+            // Optionally, you might want to create default settings if they don't exist
+            // This is handled in admin-dashboard.js, so usually not needed here.
+        }
+    } catch (error) {
+        console.error("Error checking maintenance mode:", error);
+        // Even if there's an error checking, we generally allow the site to load
+        // to avoid locking out users due to a temporary network issue.
+    }
+    // --- END MAINTENANCE MODE CHECK ---
+
 
     // --- 1. Mobile Menu Toggle ---
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
@@ -113,7 +144,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Event listener for "Manage Cookies" button
     if (manageCookiesBtn && cookieBanner) {
         manageCookiesBtn.addEventListener('click', () => {
-            alert("To manage your cookie preferences, you can either accept/decline here, or clear your browser's site data for MindStack to reset your choice.");
+            // Changed from alert() to a more user-friendly modal/message if you have one, or simple console log for now
+            console.log("To manage your cookie preferences, you can either accept/decline here, or clear your browser's site data for MindStack to reset your choice.");
+            // If you have a custom modal function (like showModal in admin-dashboard.js), you could call it here
+            // showModal('Manage Cookies', "To manage your cookie preferences, you can either accept/decline here, or clear your browser's site data for MindStack to reset your choice.");
         });
     }
 
@@ -140,9 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             try {
-                // Determine the correct appId for the Firestore path
-                const currentAppId = typeof __app_id !== 'undefined' ? __app_id : firebaseConfig.projectId;
-                
                 const newsletterCollectionRef = collection(db, `artifacts/${currentAppId}/public/data/newsletter_subscribers`);
                 
                 await addDoc(newsletterCollectionRef, {
@@ -199,8 +230,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (featuredCourseGrid) {
-        // Determine the correct appId for the Firestore path
-        const currentAppId = typeof __app_id !== 'undefined' ? __app_id : firebaseConfig.projectId;
         const coursesCollectionRef = collection(db, `artifacts/${currentAppId}/public/data/courses`);
 
         // Query for featured courses (where isFeatured is true) and limit to 4
